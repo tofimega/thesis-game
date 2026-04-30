@@ -1,0 +1,9 @@
+My name is István Finta.
+I am currently studying informatics.
+I'm expected to complete my bachelor's degree next year.
+Throughout my studies I have taken courses on:
+- database usage and management
+- software architecture
+- 
+- machine learning and AI
+- and agile project management.

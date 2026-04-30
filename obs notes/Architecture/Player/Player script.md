@@ -1,0 +1,2 @@
+- contains references to relevant components
+- signals player death to GameScene (requires [[Health pool]])

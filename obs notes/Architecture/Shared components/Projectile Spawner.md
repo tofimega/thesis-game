@@ -1,0 +1,2 @@
+- is actually just a [[Spawn Point]] but doesn't delete itself
+- TODO: Might make more sense for spawn point to extend this instead
