@@ -11,9 +11,23 @@ config_version=5
 [application]
 
 config/name="Thesis Game"
+config/tags=PackedStringArray("games", "learning")
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
-config/tags=PackedStringArray("games", "learning")
+
+[autoload]
+
+SaveGame="*uid://c4nay355qcaev"
+Audio="*uid://bj4ea3jsv4i1i"
+
+[debug]
+
+gdscript/warnings/untyped_declaration=2
+gdscript/warnings/inferred_declaration=2
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gut/plugin.cfg")
 
 [physics]
 
@@ -22,4 +36,3 @@ config/tags=PackedStringArray("games", "learning")
 [rendering]
 
 rendering_device/driver.windows="d3d12"
-renderer/rendering_method="forward_plus"

@@ -1,0 +1,20 @@
+{
+	"nodes":[
+		{"id":"e9f09f24e5a1a0be","type":"text","text":"CharacterBody2D","x":-180,"y":-280,"width":250,"height":60,"color":"#4e6af9"},
+		{"id":"c752455f974c0a33","type":"text","text":"AnimatedSprite2D","x":11,"y":-40,"width":250,"height":60,"color":"#4e6af9"},
+		{"id":"467098a7bc1c1874","type":"text","text":"DamageTaker","x":11,"y":40,"width":250,"height":60},
+		{"id":"8cd5a33594047863","type":"text","text":"Hurtbox","x":11,"y":-120,"width":250,"height":60},
+		{"id":"3faaed91c1cec7f3","type":"text","text":"DeathHandler","x":11,"y":200,"width":250,"height":60},
+		{"id":"a04d1d13138adc0b","type":"text","text":"BehaviorDriver","x":11,"y":120,"width":250,"height":60}
+	],
+	"edges":[
+		{"id":"0293d1e38a48ec76","fromNode":"e9f09f24e5a1a0be","fromSide":"bottom","toNode":"8cd5a33594047863","toSide":"left"},
+		{"id":"8de3517763bcdf51","fromNode":"e9f09f24e5a1a0be","fromSide":"bottom","toNode":"c752455f974c0a33","toSide":"left"},
+		{"id":"3c08b7767fd590df","fromNode":"e9f09f24e5a1a0be","fromSide":"bottom","toNode":"467098a7bc1c1874","toSide":"left"},
+		{"id":"5b075f2fc802a886","fromNode":"e9f09f24e5a1a0be","fromSide":"bottom","toNode":"3faaed91c1cec7f3","toSide":"left"},
+		{"id":"853d86a30ae1c631","fromNode":"467098a7bc1c1874","fromSide":"right","toNode":"3faaed91c1cec7f3","toSide":"right","color":"3"},
+		{"id":"bcc5ce078682e459","fromNode":"8cd5a33594047863","fromSide":"right","toNode":"467098a7bc1c1874","toSide":"right"},
+		{"id":"85af53a5d204e233","fromNode":"a04d1d13138adc0b","fromSide":"left","toNode":"467098a7bc1c1874","toSide":"left"},
+		{"id":"86486c5d20187ae5","fromNode":"e9f09f24e5a1a0be","fromSide":"bottom","toNode":"a04d1d13138adc0b","toSide":"left","color":"3"}
+	]
+}

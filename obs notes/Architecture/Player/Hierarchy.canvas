@@ -8,8 +8,9 @@
 		{"id":"fb86bf7c193de015","type":"text","text":"Carry Handler Script","x":280,"y":360,"width":250,"height":60},
 		{"id":"abd64639ba8d689a","type":"text","text":"Damage Taker","x":0,"y":160,"width":250,"height":60},
 		{"id":"a0317a27fb90b747","type":"text","text":"Health Pool","x":0,"y":60,"width":250,"height":60},
-		{"id":"8cb1e2fdbe620b91","x":0,"y":-40,"width":250,"height":60,"type":"text","text":"Hurtbox"},
-		{"id":"5a744f3d4cc6d924","x":100,"y":-260,"width":250,"height":60,"type":"text","text":"Player Script"}
+		{"id":"8cb1e2fdbe620b91","type":"text","text":"Hurtbox","x":0,"y":-40,"width":250,"height":60},
+		{"id":"5a744f3d4cc6d924","type":"text","text":"Player Script","x":100,"y":-260,"width":250,"height":60},
+		{"id":"00461ffeb1319beb","x":0,"y":460,"width":250,"height":60,"color":"#4e6af9","type":"text","text":"AnimatedSprite2D"}
 	],
 	"edges":[
 		{"id":"f7ca19c983c33075","fromNode":"d6ac4153f5fbbf98","fromSide":"bottom","toNode":"37977fee53ff19dd","toSide":"left"},
@@ -19,10 +20,12 @@
 		{"id":"a09a5b2ca14808ab","fromNode":"384027d5c96c3643","fromSide":"right","toNode":"fb86bf7c193de015","toSide":"left"},
 		{"id":"5311c93e2efd2728","fromNode":"05f6a844228a05aa","fromSide":"bottom","toNode":"fb86bf7c193de015","toSide":"top"},
 		{"id":"8780fe76bf3532b6","fromNode":"d6ac4153f5fbbf98","fromSide":"bottom","toNode":"a0317a27fb90b747","toSide":"left"},
-		{"id":"8d2e23d42181e960","fromNode":"d6ac4153f5fbbf98","fromSide":"bottom","toNode":"abd64639ba8d689a","toSide":"left"},
 		{"id":"1ddc9bcecb903932","fromNode":"05f6a844228a05aa","fromSide":"top","toNode":"abd64639ba8d689a","toSide":"right"},
 		{"id":"e7692c736d0923e1","fromNode":"abd64639ba8d689a","fromSide":"top","toNode":"a0317a27fb90b747","toSide":"bottom"},
 		{"id":"48e854b4b6068db0","fromNode":"abd64639ba8d689a","fromSide":"right","toNode":"8cb1e2fdbe620b91","toSide":"right","color":"3"},
-		{"id":"2d8a1771dbc92f9c","fromNode":"d6ac4153f5fbbf98","fromSide":"right","toNode":"5a744f3d4cc6d924","toSide":"left"}
+		{"id":"2d8a1771dbc92f9c","fromNode":"d6ac4153f5fbbf98","fromSide":"right","toNode":"5a744f3d4cc6d924","toSide":"left"},
+		{"id":"8d2e23d42181e960","fromNode":"d6ac4153f5fbbf98","fromSide":"bottom","toNode":"abd64639ba8d689a","toSide":"left"},
+		{"id":"9e2e4e10cfd74efa","fromNode":"d6ac4153f5fbbf98","fromSide":"bottom","toNode":"8cb1e2fdbe620b91","toSide":"left"},
+		{"id":"24c4be11e25e4bac","fromNode":"d6ac4153f5fbbf98","fromSide":"bottom","toNode":"00461ffeb1319beb","toSide":"left"}
 	]
 }
