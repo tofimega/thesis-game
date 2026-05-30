@@ -2,7 +2,6 @@
 # Overview
 - Also saves and loads
 - stores data in a PackedByteArray indexed with an enum (SaveFlag)
-
 # Save Format
 - Header (Dict(String, Variant))
 	- Stores data about the save file:

@@ -12,22 +12,28 @@ config_version=5
 
 config/name="Thesis Game"
 config/tags=PackedStringArray("games", "learning")
+run/main_scene="uid://56ax0f0nnbmf"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-SaveGame="*uid://c4nay355qcaev"
 Audio="*uid://bj4ea3jsv4i1i"
+Overlay="*uid://cpwq3bcmdk2c0"
 
 [debug]
 
 gdscript/warnings/untyped_declaration=2
 gdscript/warnings/inferred_declaration=2
 
+[display]
+
+window/size/viewport_width=320
+window/size/viewport_height=180
+
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gut/plugin.cfg")
+enabled=PackedStringArray("res://addons/GDQuest_GDScript_formatter/plugin.cfg", "res://addons/gut/plugin.cfg")
 
 [physics]
 
@@ -35,4 +41,5 @@ enabled=PackedStringArray("res://addons/gut/plugin.cfg")
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
