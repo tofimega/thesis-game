@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cpwq3bcmdk2c0"]
 
 [ext_resource type="Script" uid="uid://cf3wt1njeo6wk" path="res://globals/overlay/overlay.gd" id="1_ynx6w"]
+[ext_resource type="Texture2D" uid="uid://d3n5ns2samxo" path="res://assets/images/ui/control_panel.png" id="2_7asm7"]
 
 [sub_resource type="Gradient" id="Gradient_mpier"]
 colors = PackedColorArray(0.22803396, 0.47843033, 1, 1, 0.10881125, 0.7145951, 0.31119967, 1)
@@ -44,15 +45,35 @@ grow_vertical = 2
 theme_override_constants/separation = 0
 alignment = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer" unique_id=1779462425]
+[node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer" unique_id=720286630]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_left = 3
-theme_override_constants/margin_top = 3
-theme_override_constants/margin_right = 3
-theme_override_constants/margin_bottom = 3
+texture = ExtResource("2_7asm7")
 
-[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/MarginContainer" unique_id=2082548124]
+[node name="LeftPanel" type="MarginContainer" parent="HBoxContainer/NinePatchRect" unique_id=563481003]
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 180.0
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/NinePatchRect/LeftPanel" unique_id=716139183]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Panel" type="Panel" parent="HBoxContainer/NinePatchRect/LeftPanel/VBoxContainer" unique_id=1682746890]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="HBoxContainer/NinePatchRect/LeftPanel/VBoxContainer" unique_id=1582343072]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Panel3" type="Panel" parent="HBoxContainer/NinePatchRect/LeftPanel/VBoxContainer" unique_id=1822365273]
+custom_minimum_size = Vector2(0, 72)
 layout_mode = 2
 
 [node name="Viewport" type="TextureRect" parent="HBoxContainer" unique_id=297340783]

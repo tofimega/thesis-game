@@ -30,6 +30,10 @@ gdscript/warnings/inferred_declaration=2
 
 window/size/viewport_width=320
 window/size/viewport_height=180
+window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
+window/size/window_width_override.editor=960
+window/size/window_height_override.editor=540
 
 [editor_plugins]
 
