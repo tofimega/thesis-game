@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://56ax0f0nnbmf"]
 
 [ext_resource type="Script" uid="uid://b0xkjwhq6fbad" path="res://globals/scene_control/main.gd" id="1_hyk8p"]
-[ext_resource type="PackedScene" uid="uid://bme4yofn800lr" path="res://scenes/menu/menu.tscn" id="2_xpil3"]
 
 [node name="SceneControl" type="SubViewport" unique_id=2146920913]
 disable_3d = true
@@ -10,5 +9,3 @@ snap_2d_vertices_to_pixel = true
 canvas_item_default_texture_filter = 0
 size = Vector2i(240, 180)
 script = ExtResource("1_hyk8p")
-
-[node name="Menu" parent="." unique_id=133621051 instance=ExtResource("2_xpil3")]

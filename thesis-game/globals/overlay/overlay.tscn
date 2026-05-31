@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://cf3wt1njeo6wk" path="res://globals/overlay/overlay.gd" id="1_ynx6w"]
 [ext_resource type="Texture2D" uid="uid://d3n5ns2samxo" path="res://assets/images/ui/control_panel.png" id="2_7asm7"]
+[ext_resource type="FontFile" uid="uid://cpqfrb8va6fe2" path="res://assets/fonts/dogica/TTF/dogica.ttf" id="3_co2uy"]
+[ext_resource type="Shader" uid="uid://c5h0ok6hf0bv" path="res://addons/crt_shader/crt_shader.gdshader" id="4_2klt3"]
+[ext_resource type="Script" uid="uid://cngwpf31ptsw6" path="res://addons/scolling_text/scrolling_text.gd" id="4_co2uy"]
 
 [sub_resource type="Gradient" id="Gradient_mpier"]
 colors = PackedColorArray(0.22803396, 0.47843033, 1, 1, 0.10881125, 0.7145951, 0.31119967, 1)
@@ -10,12 +13,28 @@ colors = PackedColorArray(0.22803396, 0.47843033, 1, 1, 0.10881125, 0.7145951, 0
 gradient = SubResource("Gradient_mpier")
 fill_to = Vector2(0, 1)
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_co2uy"]
+viewport_path = NodePath("InfoTextCRT")
+
 [sub_resource type="Gradient" id="Gradient_7asm7"]
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(0, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_wr0pm"]
 gradient = SubResource("Gradient_7asm7")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_wbmdg"]
+viewport_path = NodePath("InfoTextBase")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h6nm0"]
+resource_local_to_scene = true
+shader = ExtResource("4_2klt3")
+shader_parameter/tex = SubResource("ViewportTexture_wbmdg")
+shader_parameter/mask_type = 5
+shader_parameter/curve = 0.02000000095
+shader_parameter/color_offset = -0.5
+shader_parameter/mask_brightness = 0.3050000144875
+shader_parameter/aspect = 0.5
 
 [node name="Overlay" type="Control" unique_id=1897314556]
 layout_mode = 3
@@ -64,15 +83,17 @@ theme_override_constants/margin_bottom = 4
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="Panel" type="Panel" parent="HBoxContainer/NinePatchRect/LeftPanel/VBoxContainer" unique_id=1682746890]
+[node name="Health" type="Panel" parent="HBoxContainer/NinePatchRect/LeftPanel/VBoxContainer" unique_id=1682746890]
 custom_minimum_size = Vector2(0, 72)
 layout_mode = 2
 
-[node name="Panel2" type="Panel" parent="HBoxContainer/NinePatchRect/LeftPanel/VBoxContainer" unique_id=1582343072]
+[node name="InfoText" type="TextureRect" parent="HBoxContainer/NinePatchRect/LeftPanel/VBoxContainer" unique_id=1888612831]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
+texture = SubResource("ViewportTexture_co2uy")
+expand_mode = 1
 
-[node name="Panel3" type="Panel" parent="HBoxContainer/NinePatchRect/LeftPanel/VBoxContainer" unique_id=1822365273]
+[node name="Joystick" type="Panel" parent="HBoxContainer/NinePatchRect/LeftPanel/VBoxContainer" unique_id=1822365273]
 custom_minimum_size = Vector2(0, 72)
 layout_mode = 2
 
@@ -90,3 +111,42 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture1D_wr0pm")
+
+[node name="InfoTextBase" type="SubViewport" parent="." unique_id=1701961793]
+size = Vector2i(64, 20)
+
+[node name="ColorRect" type="ColorRect" parent="InfoTextBase" unique_id=1875300265]
+clip_contents = true
+custom_minimum_size = Vector2(0, 20)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.17641911, 0.17641908, 0.17641908, 1)
+
+[node name="Label" type="RichTextLabel" parent="InfoTextBase/ColorRect" unique_id=956620818]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.88283396, 0.47867638, 0.20078021, 1)
+theme_override_fonts/normal_font = ExtResource("3_co2uy")
+text = "THESIS GAME"
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+script = ExtResource("4_co2uy")
+
+[node name="InfoTextCRT" type="SubViewport" parent="." unique_id=624889459]
+size = Vector2i(288, 90)
+
+[node name="ColorRect" type="ColorRect" parent="InfoTextCRT" unique_id=2025118844]
+material = SubResource("ShaderMaterial_h6nm0")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
