@@ -44,13 +44,12 @@ offset_right = 20.0
 offset_bottom = -17.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Press any Button"
+text = "Press Start"
 label_settings = ExtResource("1_klgdb")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="FileSelect" type="Control" parent="ReferenceRect" unique_id=1054883887]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

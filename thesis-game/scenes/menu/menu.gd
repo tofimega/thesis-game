@@ -33,9 +33,11 @@ func switch_panel(panel: MenuPanel) -> void:
     if current_panel:
         current_panel.visible = false
         current_panel.set_process_input(false)
+        current_panel.on_hide()
 
     current_panel = panels[panel]
 
     current_panel.visible = true
     current_panel.set_process_input(true)
     current_panel.switch_to.connect(switch_panel, CONNECT_ONE_SHOT)
+    current_panel.on_show()

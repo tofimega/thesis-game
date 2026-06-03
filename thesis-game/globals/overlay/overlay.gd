@@ -2,6 +2,7 @@ extends Control
 
 @onready var loading: TextureRect = $Loading
 @onready var main_screen: ColorRect = $MainCRT/ColorRect
+@onready var info_text: ScrollingLabel = $InfoTextBase/ColorRect/Label
 
 
 func _input(event: InputEvent) -> void:
