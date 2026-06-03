@@ -3,14 +3,14 @@
 
 shader_type canvas_item;
 
-render_mode unshaded;
+render_mode blend_mix;
+
 
 /**
 	The input texture that will have the CRT effect applied to it.
 	This should be supplied by a subviewport texture rendered at a lower res.
 	*/
-uniform sampler2D tex: filter_linear;
-
+uniform sampler2D tex: filter_nearest, repeat_disable;
 
 /**
 	Set the type of mask this CRT will have.
@@ -72,6 +72,8 @@ vec2 warp(vec2 uv, float _aspect, float _curve)
 
 	return uv;
 }
+
+
 
 vec3 linear_to_srgb(vec3 col)
 {
@@ -241,17 +243,23 @@ vec3 apply_mask(vec3 linear_color, vec2 fragcoord)
 
 void fragment()
 {
+    
 	// Warp UV coordinates
 	vec2 warped_coords = warp(UV, aspect, curve);
-
+    if (warped_coords.x <0.0 || 
+    warped_coords.x >1.0 || 
+    warped_coords.y <0.0 ||
+    warped_coords.y >1.0
+    ) discard;
 	// Sample color
 	vec3 col = sample(warped_coords);
-
+    
 	// Apply phosphor mask
 	col = apply_mask(col, FRAGCOORD.xy);
 
 	// Convert back to srgb
 	col = linear_to_srgb(col);
-
+    COLOR.a = texture(tex, warped_coords).a;
 	COLOR.rgb = col;
+    
 }

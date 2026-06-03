@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://bme4yofn800lr"]
 
-[ext_resource type="Texture2D" uid="uid://bpni4m0cll4ky" path="res://icon.svg" id="1_klgdb"]
+[ext_resource type="LabelSettings" uid="uid://c4jxn1wt6u4pr" path="res://assets/label_settings/pixel_operator.tres" id="1_klgdb"]
+[ext_resource type="Script" uid="uid://bqftx7rbrwoa7" path="res://scenes/menu/menu.gd" id="1_mcvr8"]
+[ext_resource type="Script" uid="uid://crr71o2iri67l" path="res://scenes/menu/submenu/title_screen.gd" id="2_e0arn"]
+[ext_resource type="Script" uid="uid://dpu2vk5dmi1gy" path="res://scenes/menu/submenu/file_select.gd" id="4_037ec"]
+[ext_resource type="Script" uid="uid://c4osvq5vslhs3" path="res://scenes/menu/submenu/level_select.gd" id="5_y1o0p"]
 
 [node name="Menu" type="Control" unique_id=133621051]
 custom_minimum_size = Vector2(240, 180)
@@ -10,14 +14,99 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1136205066]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("1_klgdb")
+script = ExtResource("1_mcvr8")
 
 [node name="ReferenceRect" type="ReferenceRect" parent="." unique_id=30102710]
 layout_mode = 0
 offset_right = 240.0
 offset_bottom = 180.0
+
+[node name="TitleScreen" type="Control" parent="ReferenceRect" unique_id=1625657792]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_e0arn")
+
+[node name="Label" type="Label" parent="ReferenceRect/TitleScreen" unique_id=1979325813]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Press any Button"
+label_settings = ExtResource("1_klgdb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FileSelect" type="Control" parent="ReferenceRect" unique_id=1054883887]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_037ec")
+
+[node name="MarginContainer" type="MarginContainer" parent="ReferenceRect/FileSelect" unique_id=768112045]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Panel" type="Panel" parent="ReferenceRect/FileSelect/MarginContainer" unique_id=1631701946]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ReferenceRect/FileSelect/MarginContainer/Panel" unique_id=656340262]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ReferenceRect/FileSelect/MarginContainer/Panel/MarginContainer" unique_id=1930791492]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="ReferenceRect/FileSelect/MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=489700493]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel2" type="Panel" parent="ReferenceRect/FileSelect/MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=2122040564]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel3" type="Panel" parent="ReferenceRect/FileSelect/MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=465334807]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LevelSelect" type="Control" parent="ReferenceRect" unique_id=2040768722]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_y1o0p")

@@ -5,7 +5,10 @@ const starting_scene: PackedScene = MENU
 
 
 func _ready() -> void:
-    Overlay.viewport.texture = get_texture()
+    if name != "SceneControl":
+        queue_free()
+        return
+    Overlay.set_viewport(get_texture())
     if starting_scene == null or !starting_scene.can_instantiate():
         push_error("Cannot load starting scene")
         return

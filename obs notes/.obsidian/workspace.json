@@ -11,17 +11,14 @@
             "id": "78a2aeaac8a020b8",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "markdown",
               "state": {
-                "file": "Architecture/Hierarchy.canvas",
-                "viewState": {
-                  "x": 28.443701485747198,
-                  "y": 217.95840910686252,
-                  "zoom": -0.8023193321603059
-                }
+                "file": "Architecture/Globals/SceneControl.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-layout-dashboard",
-              "title": "Hierarchy"
+              "icon": "lucide-file",
+              "title": "SceneControl"
             }
           },
           {
@@ -203,6 +200,11 @@
   },
   "active": "78a2aeaac8a020b8",
   "lastOpenFiles": [
+    "Architecture/Resources/LevelData.md",
+    "Architecture/Globals/SceneControl.md",
+    "Architecture/Resources",
+    "Architecture/Scenes/MenuScene.md",
+    "Architecture/Hierarchy.canvas",
     "Architecture/Globals/SaveGame.md",
     "Architecture/Globals/Overlay.md",
     "Architecture/Globals/GameState.md",
@@ -212,14 +214,12 @@
     "Architecture/Enemy/EnemyState.md",
     "Architecture/Enemy/Hierarchy.canvas",
     "Architecture/Enemy/BehaviorDriver.md",
-    "Architecture/Globals/SceneControl.md",
     "Architecture/Shared components/Projectile Spawner.md",
     "Architecture/Level/Spawn Point.md",
     "Architecture/Player/Player script.md",
     "Architecture/Player/Movement state machine.md",
     "Architecture/Player/Hierarchy.canvas",
     "Architecture/Player/Carry handler.md",
-    "Architecture/Hierarchy.canvas",
     "Architecture/Shared components/Damage Taker.md",
     "Architecture/Shared components/Hitbox & Hurtbox.md",
     "Architecture/Shared components/Death handler.md",
@@ -233,8 +233,6 @@
     "Architecture/Level",
     "Architecture/Globals",
     "Architecture/Shared components/Health pool.md",
-    "GDD/7. Game Mechanics.md",
-    "Architecture/Scenes/MenuScene.md",
     "Architecture/Shared components",
     "Architecture/Scenes",
     "Architecture/Player",
@@ -243,7 +241,6 @@
     "Névtelen.canvas",
     "Architecture",
     "GDD",
-    "vb ötletek/ellenség ötletek.drawio",
-    "vb ötletek"
+    "vb ötletek/ellenség ötletek.drawio"
   ]
 }
