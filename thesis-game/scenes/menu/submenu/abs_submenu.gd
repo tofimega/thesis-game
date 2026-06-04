@@ -6,7 +6,7 @@ extends Control
 signal switch_to(panel: MenuScene.MenuPanel)
 
 
-@abstract func _input(event: InputEvent) -> void
+@abstract func _gui_input(event: InputEvent) -> void
 
 
 @abstract func on_show() -> void

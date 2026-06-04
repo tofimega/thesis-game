@@ -1,7 +1,7 @@
 extends Submenu # title screen
 
 
-func _input(event: InputEvent) -> void:
+func _gui_input(event: InputEvent) -> void:
     if !event.is_action_type():
         return
     if Input.is_action_just_pressed_by_event("ui_accept", event):

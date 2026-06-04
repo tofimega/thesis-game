@@ -39,5 +39,6 @@ func switch_panel(panel: MenuPanel) -> void:
 
     current_panel.visible = true
     current_panel.set_process_input(true)
+    current_panel.grab_focus.call_deferred()
     current_panel.switch_to.connect(switch_panel, CONNECT_ONE_SHOT)
     current_panel.on_show()

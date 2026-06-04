@@ -1,7 +1,7 @@
 extends Submenu # level select
 
 
-func _input(event: InputEvent) -> void:
+func _gui_input(event: InputEvent) -> void:
     if Input.is_action_just_pressed_by_event("ui_cancel", event):
         switch_to.emit(MenuScene.MenuPanel.FILE_SELECT)
 
