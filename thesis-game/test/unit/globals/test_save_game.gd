@@ -20,7 +20,7 @@ class TestLoad extends GutTest:
 
 
     func test_load_correct_flag_count() -> void:
-        var result: bool = SaveGame.load_game(RESERVED_SAVE_INDEX)
+        var result: SaveGame.SaveHeader = SaveGame.load_game(RESERVED_SAVE_INDEX)
         if !result:
             assert_push_error_count(1)
             return
@@ -33,14 +33,24 @@ class TestLoad extends GutTest:
         if save_file == null:
             fail_test(error_string(FileAccess.get_open_error()))
             return
-
+        var test_header: SaveGame.SaveHeader = SaveGame.SaveHeader.new()
+        test_header.timestamp = Time.get_datetime_dict_from_system()
+        test_header.new_game = false
+        test_header.store_header(save_file)
+        save_file.store_64(SaveGame.SaveFlag.size())
         for i: int in SaveGame.SaveFlag.size():
             save_file.store_8(randi_range(0, 255))
+
         save_file = FileAccess.open(FPATH, FileAccess.READ)
 
-        var buffer: PackedByteArray = save_file.get_buffer(SaveGame.SaveFlag.size())
+        var result: SaveGame.SaveHeader = SaveGame.load_game(RESERVED_SAVE_INDEX)
 
-        var result: bool = SaveGame.load_game(RESERVED_SAVE_INDEX)
+        var result_header: SaveGame.SaveHeader = SaveGame.SaveHeader.from_file(save_file)
+        assert_true(result_header.eq(result))
+        assert_true(result.eq(test_header))
+        save_file.get_64()
+
+        var buffer: PackedByteArray = save_file.get_buffer(SaveGame.SaveFlag.size())
         if !result:
             assert_push_error_count(1)
             return
@@ -63,6 +73,7 @@ class TestSave extends GutTest:
         SaveGame.save_game()
 
         var file: FileAccess = FileAccess.open(FPATH, FileAccess.READ)
-        assert_eq(file.get_length(), SaveGame.SaveFlag.size())
+        SaveGame.SaveHeader.from_file(file)
+        assert_eq(file.get_64(), SaveGame.SaveFlag.size())
         var buffer: PackedByteArray = file.get_buffer(SaveGame.SaveFlag.size())
         assert_eq(SaveGame._data, buffer)

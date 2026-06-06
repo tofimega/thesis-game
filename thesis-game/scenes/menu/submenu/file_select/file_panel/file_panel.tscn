@@ -1,0 +1,260 @@
+[gd_scene format=3 uid="uid://bhicuavynwvm0"]
+
+[ext_resource type="Theme" uid="uid://7irkfixs6pnw" path="res://new_theme.tres" id="1_qkfl6"]
+[ext_resource type="Script" uid="uid://bocu6wqe0j2uo" path="res://scenes/menu/submenu/file_select/file_panel/file_panel.gd" id="2_oxxbk"]
+[ext_resource type="LabelSettings" uid="uid://c4jxn1wt6u4pr" path="res://assets/label_settings/pixel_operator.tres" id="3_tcpxk"]
+[ext_resource type="FontFile" uid="uid://bjvrkeqf28h1c" path="res://assets/fonts/pixel_operator/PixelOperatorMonoHB.ttf" id="4_frv4t"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_t0a87"]
+font = ExtResource("4_frv4t")
+
+[node name="FilePanel" type="Button" unique_id=1980114349]
+size_flags_vertical = 3
+focus_neighbor_bottom = NodePath("../Panel2")
+theme = ExtResource("1_qkfl6")
+action_mode = 0
+button_mask = 0
+script = ExtResource("2_oxxbk")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1086901673]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="FileIndex" type="MarginContainer" parent="HBoxContainer" unique_id=1314784377]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Panel" type="Panel" parent="HBoxContainer/FileIndex" unique_id=756104817]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/FileIndex/Panel" unique_id=2000554836]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Info" type="Control" parent="HBoxContainer" unique_id=1965795893]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InfoPanel" type="Control" parent="HBoxContainer/Info" unique_id=2025804430]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Display" type="MarginContainer" parent="HBoxContainer/Info/InfoPanel" unique_id=1334901117]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Info/InfoPanel/Display" unique_id=1557427018]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Info/InfoPanel/Display/VBoxContainer" unique_id=641424437]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Date" type="Label" parent="HBoxContainer/Info/InfoPanel/Display/VBoxContainer/HBoxContainer" unique_id=228696890]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.3
+text = "XXXX/XX/XX"
+label_settings = ExtResource("3_tcpxk")
+clip_text = true
+
+[node name="Time" type="Label" parent="HBoxContainer/Info/InfoPanel/Display/VBoxContainer/HBoxContainer" unique_id=195320804]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "XX:XX"
+label_settings = ExtResource("3_tcpxk")
+clip_text = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/Info/InfoPanel/Display/VBoxContainer" unique_id=1710136249]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Playtime" type="Label" parent="HBoxContainer/Info/InfoPanel/Display/VBoxContainer/HBoxContainer2" unique_id=1755488922]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.55
+text = "XXX:XX"
+label_settings = ExtResource("3_tcpxk")
+
+[node name="Completion" type="Label" parent="HBoxContainer/Info/InfoPanel/Display/VBoxContainer/HBoxContainer2" unique_id=1111321642]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "XXX%"
+label_settings = ExtResource("3_tcpxk")
+
+[node name="Choicer" type="Control" parent="HBoxContainer/Info" unique_id=1477694196]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Display" type="MarginContainer" parent="HBoxContainer/Info/Choicer" unique_id=24153162]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Info/Choicer/Display" unique_id=2111135392]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="ChoicerLabel" type="Label" parent="HBoxContainer/Info/Choicer/Display/VBoxContainer" unique_id=435212744]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Choicer Text"
+label_settings = SubResource("LabelSettings_t0a87")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/Info/Choicer/Display/VBoxContainer" unique_id=2001868804]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Yes" type="Button" parent="HBoxContainer/Info/Choicer/Display/VBoxContainer/HBoxContainer2" unique_id=540072561]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../No")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath("../No")
+focus_previous = NodePath(".")
+theme_override_fonts/font = ExtResource("4_frv4t")
+theme_override_font_sizes/font_size = 12
+action_mode = 0
+button_mask = 0
+text = "Yes"
+clip_text = true
+
+[node name="No" type="Button" parent="HBoxContainer/Info/Choicer/Display/VBoxContainer/HBoxContainer2" unique_id=795925825]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+focus_neighbor_left = NodePath("../Yes")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath(".")
+focus_previous = NodePath("../Yes")
+theme_override_fonts/font = ExtResource("4_frv4t")
+theme_override_font_sizes/font_size = 12
+action_mode = 0
+button_mask = 0
+text = "No"
+
+[node name="Options" type="Control" parent="HBoxContainer/Info" unique_id=823731342]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Options" type="MarginContainer" parent="HBoxContainer/Info/Options" unique_id=416251163]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Info/Options/Options" unique_id=1738238839]
+layout_mode = 2
+
+[node name="Select" type="Button" parent="HBoxContainer/Info/Options/Options/HBoxContainer" unique_id=1164574548]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../Delete")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../Copy")
+focus_neighbor_bottom = NodePath("../Delete")
+focus_next = NodePath("../Copy")
+focus_previous = NodePath("../Delete")
+theme_override_fonts/font = ExtResource("4_frv4t")
+theme_override_font_sizes/font_size = 12
+action_mode = 0
+button_mask = 0
+text = "Load"
+clip_text = true
+
+[node name="Copy" type="Button" parent="HBoxContainer/Info/Options/Options/HBoxContainer" unique_id=1631266753]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../Select")
+focus_neighbor_top = NodePath("../Select")
+focus_neighbor_right = NodePath("../Delete")
+focus_neighbor_bottom = NodePath("../Delete")
+focus_next = NodePath("../Delete")
+focus_previous = NodePath("../Select")
+theme_override_fonts/font = ExtResource("4_frv4t")
+theme_override_font_sizes/font_size = 12
+action_mode = 0
+button_mask = 0
+text = "Copy"
+clip_text = true
+
+[node name="Delete" type="Button" parent="HBoxContainer/Info/Options/Options/HBoxContainer" unique_id=201148460]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../Copy")
+focus_neighbor_top = NodePath("../Select")
+focus_neighbor_right = NodePath("../Select")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath("../Select")
+focus_previous = NodePath("../Copy")
+theme_override_fonts/font = ExtResource("4_frv4t")
+theme_override_font_sizes/font_size = 12
+action_mode = 0
+button_mask = 0
+text = "Delete"
+clip_text = true

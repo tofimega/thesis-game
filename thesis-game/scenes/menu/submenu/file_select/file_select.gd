@@ -1,37 +1,66 @@
 extends Submenu # file select
 
-@onready var file_panels: Array[FilePanel] = [
-    $MarginContainer/Panel/MarginContainer/VBoxContainer/FilePanel
-]
-
 enum Mode {
     SELECT_FILE,
-    COPY_FILE
+    COPY_FILE,
 }
 
+@export var file_panels: Array[FilePanel]
+
 var selected_panel: int = 0
-var current_mode: Mode = Mode.SELECT_FILE
+var current_mode: Mode = Mode.SELECT_FILE:
+    set = _set_mode
 
-func _gui_input(event: InputEvent) -> void:
-    if Input.is_action_just_pressed_by_event("ui_cancel", event):
-        switch_to.emit(MenuScene.MenuPanel.TITLE)
+    # if new game: game_scene
+    # else: level select
 
-    elif Input.is_action_just_pressed_by_event("ui_down", event):
-        selected_panel= (selected_panel+1)%file_panels.size()
-    
-    elif Input.is_action_just_pressed_by_event("ui_up", event):
-        selected_panel= (selected_panel-1)%file_panels.size()
-        
+var _file_to_copy: int = -1
+
+
+func _ready() -> void:
+    for p: FilePanel in file_panels:
+        p.load_file.connect(_load_file)
+        p.copy_begin.connect(_copy_begin)
+        p.copy_confirm.connect(_copy_file)
+        p.delete_file.connect(_delete_file)
 
 
 func on_show() -> void:
-    Overlay.info_text.set_scrolling_text("Load which file?")
-    selected_panel = 0
     current_mode = Mode.SELECT_FILE
-    file_panels[selected_panel].grab_focus.call_deferred()
-    
-    
+    file_panels[0].grab_focus.call_deferred()
 
 
 func on_hide() -> void:
     pass
+
+
+func _set_mode(m: Mode) -> void:
+    current_mode = m
+
+    match current_mode:
+        Mode.SELECT_FILE: Overlay.info_text.set_scrolling_text("Load which file?")
+        Mode.COPY_FILE: Overlay.info_text.set_scrolling_text("Copy where?")
+
+
+func _delete_file(file: int) -> void:
+    SaveGame.delete_file(file)
+
+
+func _copy_file(file: int) -> void:
+    assert(_file_to_copy >= 0)
+    SaveGame.copy_file(_file_to_copy, file)
+    _file_to_copy = -1
+
+
+func _load_file(file: int) -> void:
+    SaveGame.load_game(file)
+
+
+func _copy_begin(file: int) -> void:
+    _file_to_copy = file
+    current_mode = Mode.COPY_FILE
+
+
+func _gui_input(event: InputEvent) -> void:
+    if Input.is_action_just_pressed_by_event("ui_cancel", event):
+        switch_to.emit(MenuScene.MenuPanel.TITLE)
