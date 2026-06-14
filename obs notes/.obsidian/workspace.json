@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Architecture/Globals/SceneControl.md",
+                "file": "Architecture/1. Systems.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "SceneControl"
+              "title": "1. Systems"
             }
           },
           {
@@ -92,7 +92,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 532.5
+    "width": 532.5,
+    "collapsed": true
   },
   "right": {
     "id": "f6ea3ed582c6a915",
@@ -147,7 +148,7 @@
                 "searchQuery": ""
               },
               "icon": "lucide-tags",
-              "title": "Tags"
+              "title": "Címkék"
             }
           },
           {
@@ -161,7 +162,7 @@
                 "searchQuery": ""
               },
               "icon": "lucide-archive",
-              "title": "All properties"
+              "title": "Minden tulajdonság"
             }
           },
           {
@@ -170,17 +171,16 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Alapötlet.md",
+                "file": "Architecture/1. Systems.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Alapötlet"
+              "title": "1. Systems vázlata"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -200,23 +200,28 @@
   },
   "active": "78a2aeaac8a020b8",
   "lastOpenFiles": [
-    "Architecture/Resources/LevelData.md",
+    "Architecture/0. Notes.md",
+    "Architecture/1. Systems.md",
+    "Architecture/Level/Room.md",
+    "Architecture/Level/Level.md",
+    "Architecture/Level/Player Spawn.md",
+    "Architecture/Level/Spawned Scene.md",
+    "Architecture/Level/Spawn Point.md",
+    "Architecture/Globals/SaveGame.md",
+    "Architecture/Player/Player script.md",
     "Architecture/Globals/SceneControl.md",
+    "Architecture/Resources/LevelData.md",
     "Architecture/Resources",
     "Architecture/Scenes/MenuScene.md",
     "Architecture/Hierarchy.canvas",
-    "Architecture/Globals/SaveGame.md",
     "Architecture/Globals/Overlay.md",
     "Architecture/Globals/GameState.md",
     "Architecture/Globals/Audio.md",
-    "Architecture/1. Systems.md",
     "Architecture/Enemy/Player Detector.md",
     "Architecture/Enemy/EnemyState.md",
     "Architecture/Enemy/Hierarchy.canvas",
     "Architecture/Enemy/BehaviorDriver.md",
     "Architecture/Shared components/Projectile Spawner.md",
-    "Architecture/Level/Spawn Point.md",
-    "Architecture/Player/Player script.md",
     "Architecture/Player/Movement state machine.md",
     "Architecture/Player/Hierarchy.canvas",
     "Architecture/Player/Carry handler.md",
@@ -224,15 +229,10 @@
     "Architecture/Shared components/Hitbox & Hurtbox.md",
     "Architecture/Shared components/Death handler.md",
     "Health Pool.md",
-    "Architecture/Level/Spawned Scene.md",
-    "Architecture/Level/Player Spawn.md",
     "Architecture/Enemy",
     "Architecture/Enemy.md",
-    "Architecture/Level/Screen.md",
-    "Architecture/Level/Level.md",
     "Architecture/Level",
     "Architecture/Globals",
-    "Architecture/Shared components/Health pool.md",
     "Architecture/Shared components",
     "Architecture/Scenes",
     "Architecture/Player",

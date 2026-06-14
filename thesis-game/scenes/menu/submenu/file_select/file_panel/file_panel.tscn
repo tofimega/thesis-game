@@ -9,8 +9,12 @@
 font = ExtResource("4_frv4t")
 
 [node name="FilePanel" type="Button" unique_id=1980114349]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 3
-focus_neighbor_bottom = NodePath("../Panel2")
 theme = ExtResource("1_qkfl6")
 action_mode = 0
 button_mask = 0
@@ -258,3 +262,24 @@ action_mode = 0
 button_mask = 0
 text = "Delete"
 clip_text = true
+
+[node name="InfoNew" type="Control" parent="HBoxContainer/Info" unique_id=443790072]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Info/InfoNew" unique_id=954227696]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Empty File"
+label_settings = ExtResource("3_tcpxk")
+horizontal_alignment = 1
+vertical_alignment = 1

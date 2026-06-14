@@ -94,17 +94,32 @@ layout_mode = 2
 
 [node name="FilePanel" parent="ReferenceRect/FileSelect/MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=1980114349 instance=ExtResource("5_r8yej")]
 layout_mode = 2
-focus_neighbor_bottom = NodePath("")
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../FilePanel3")
+focus_neighbor_right = NodePath("../FilePanel3")
+focus_neighbor_bottom = NodePath("../FilePanel2")
+focus_next = NodePath("../FilePanel2")
+focus_previous = NodePath("../FilePanel3")
 file_num = 0
 
 [node name="FilePanel2" parent="ReferenceRect/FileSelect/MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=1437487218 instance=ExtResource("5_r8yej")]
 layout_mode = 2
-focus_neighbor_bottom = NodePath("")
+focus_neighbor_left = NodePath("../FilePanel")
+focus_neighbor_top = NodePath("../FilePanel")
+focus_neighbor_right = NodePath("../FilePanel3")
+focus_neighbor_bottom = NodePath("../FilePanel3")
+focus_next = NodePath("../FilePanel3")
+focus_previous = NodePath("../FilePanel")
 file_num = 1
 
 [node name="FilePanel3" parent="ReferenceRect/FileSelect/MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=596251337 instance=ExtResource("5_r8yej")]
 layout_mode = 2
-focus_neighbor_bottom = NodePath("")
+focus_neighbor_left = NodePath("../FilePanel")
+focus_neighbor_top = NodePath("../FilePanel2")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../FilePanel")
+focus_next = NodePath("../FilePanel")
+focus_previous = NodePath("../FilePanel2")
 file_num = 2
 
 [node name="LevelSelect" type="Control" parent="ReferenceRect" unique_id=2040768722]

@@ -47,20 +47,27 @@ static func save_game() -> bool:
 
     if !_write_header(save_file):
         push_error("Save error")
+        _restore_backup(_save_index)
         return false
 
     if !save_file.store_64(_data.size()):
         push_error("Save data could not be created")
+        _restore_backup(_save_index)
         return false
 
     if !save_file.store_buffer(_data):
         push_error("Save data could not be created")
-        var err: Error = DirAccess.rename_absolute(path + ".tmp", path)
-        if err != Error.OK:
-            push_error("The backup save could not be restored: " + error_string(err))
+        _restore_backup(_save_index)
         return false
 
     return true
+
+
+static func _restore_backup(file: int) -> void:
+    var path: String = SAVE_FOLDER + str(file)
+    var err: Error = DirAccess.rename_absolute(path + ".tmp", path)
+    if err != Error.OK:
+        push_error("The backup save could not be restored: " + error_string(err))
 
 
 static func copy_file(from: int, to: int) -> bool:
@@ -68,7 +75,7 @@ static func copy_file(from: int, to: int) -> bool:
     assert(to >= 0)
     if from == to: return true
     var from_path: String = SAVE_FOLDER + str(from)
-    var to_path: String = SAVE_FOLDER + str(from)
+    var to_path: String = SAVE_FOLDER + str(to)
     if !FileAccess.file_exists(SAVE_FOLDER + str(from)): push_error("The file could not be found")
     var err: Error = DirAccess.copy_absolute(from_path, to_path)
     if err != OK:
@@ -84,10 +91,10 @@ static func _write_header(save_file: FileAccess) -> bool:
     assert(_loaded_at >= 0)
     var header: SaveHeader = SaveHeader.new()
     header.new_game = false
-    var time: String = Time.get_datetime_string_from_system()
-    return save_file.store_pascal_string(time) && \
-    save_file.store_double(_calc_completion()) && \
-    save_file.store_64(_last_saved_playtime + Time.get_ticks_usec() - _loaded_at)
+    header.timestamp = Time.get_datetime_dict_from_system()
+    header.playtime = _last_saved_playtime + Time.get_ticks_usec() - _loaded_at
+    header.completion = _calc_completion()
+    return header.store_header(save_file)
 
 
 static func _calc_completion() -> float:
@@ -158,9 +165,9 @@ static func _get_file_header(file: FileAccess) -> SaveHeader:
 
 class SaveHeader extends RefCounted:
     var new_game: bool = true
-    var timestamp: Dictionary
-    var completion: float
-    var playtime: int
+    var timestamp: Dictionary = { "year": 0, "month": 0, "day": 0, "hour": 0, "minute": 0 }
+    var completion: float = 0.0
+    var playtime: int = 0
 
 
     func store_header(save_file: FileAccess) -> bool:
@@ -183,7 +190,7 @@ class SaveHeader extends RefCounted:
     func eq(other: SaveHeader) -> bool:
         return new_game == other.new_game && \
         timestamp.keys().all(func(a: Variant) -> bool:
-             return other.timestamp.has(a) && other.timestamp[a] == timestamp[a]) && \
+                return other.timestamp.has(a) && other.timestamp[a] == timestamp[a]) && \
         completion == other.completion && \
         playtime == other.playtime
 

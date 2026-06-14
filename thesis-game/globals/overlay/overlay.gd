@@ -13,4 +13,4 @@ func _input(event: InputEvent) -> void:
 
 func set_viewport(texture: Texture) -> void:
     var mat: ShaderMaterial = main_screen.material
-    mat.set_shader_parameter("tex", texture)
+    mat.set_shader_parameter(&"tex", texture)
