@@ -49,14 +49,18 @@ func _delete_file(file: int) -> void:
 
 
 func _copy_file(file: int) -> void:
-    assert(_file_to_copy >= 0)
+    assert(_file_to_copy >= 0, "Invalid file")
     SaveGame.copy_file(_file_to_copy, file)
     _file_to_copy = -1
     current_mode = Mode.SELECT_FILE
 
 
 func _load_file(file: int) -> void:
-    var header: SaveGame.SaveHeader = SaveGame.load_game(file)
+    var load_error: Array[SaveGame.ErrorCode] = []
+    var header: SaveGame.SaveHeader = SaveGame.load_game(file, load_error)
+    
+    if !load_error.is_empty(): pass # show popup or smth
+    
     if header.new_game: pass # jump into game immediately
     else: pass # open level select
 

@@ -14,13 +14,44 @@ func before_all() -> void:
 
 
 class TestLoad extends GutTest:
+
     var FPATH: String = SaveGame.SAVE_FOLDER + str(RESERVED_SAVE_INDEX):
         set(a):
             pass
 
 
+    func test_load_signals_correct_param_load_process_finishes_and_errors_are_reported() -> void:
+        watch_signals(SaveGame.signals)
+        var load_error: Array[SaveGame.ErrorCode]
+        var header: SaveGame.SaveHeader = SaveGame.load_game(RESERVED_SAVE_INDEX, load_error)
+
+        assert_signal_emit_count(SaveGame.signals.load_begin, 1)
+        assert_signal_emitted_with_parameters(SaveGame.signals.load_begin, [RESERVED_SAVE_INDEX])
+
+        assert_signal_emit_count(SaveGame.signals.load_finish, 1)
+
+        var errs: Array = get_errors()
+        if errs.is_empty():
+            assert_true(load_error.is_empty())
+            assert_eq(SaveGame._save_index, RESERVED_SAVE_INDEX)
+            assert_not_null(header)
+            assert_signal_emitted_with_parameters(SaveGame.signals.load_finish, [OK])
+        else:
+            assert_false(load_error.is_empty())
+            assert_push_error_count(load_error.size())
+            assert_ne(load_error[0], SaveGame.ErrorCode.OK)
+            assert_eq(SaveGame._save_index, -1)
+            assert_null(header)
+
+
+    func test_load_signals_incorrect_param_causes_assertion_failure() -> void:
+        SaveGame.load_game(-1, [])
+        assert_engine_error_count(1)
+
+
     func test_load_correct_flag_count() -> void:
-        var result: SaveGame.SaveHeader = SaveGame.load_game(RESERVED_SAVE_INDEX)
+        var load_error: Array[SaveGame.ErrorCode]
+        var result: SaveGame.SaveHeader = SaveGame.load_game(RESERVED_SAVE_INDEX, load_error)
         if !result:
             assert_push_error_count(1)
             return
@@ -43,7 +74,7 @@ class TestLoad extends GutTest:
 
         save_file = FileAccess.open(FPATH, FileAccess.READ)
 
-        var result: SaveGame.SaveHeader = SaveGame.load_game(RESERVED_SAVE_INDEX)
+        var result: SaveGame.SaveHeader = SaveGame.load_game(RESERVED_SAVE_INDEX, [])
 
         var result_header: SaveGame.SaveHeader = SaveGame.SaveHeader.from_file(save_file)
         assert_true(result_header.eq(result))
@@ -56,7 +87,7 @@ class TestLoad extends GutTest:
             return
         assert_eq(SaveGame._data, buffer)
 
-
+# TODO: more thorough tests
 class TestSave extends GutTest:
     var FPATH: String = SaveGame.SAVE_FOLDER + str(RESERVED_SAVE_INDEX):
         set(a):
@@ -64,7 +95,7 @@ class TestSave extends GutTest:
 
 
     func before_each() -> void:
-        SaveGame.load_game(RESERVED_SAVE_INDEX)
+        SaveGame.load_game(RESERVED_SAVE_INDEX, [])
 
 
     func test_save_correct_flags() -> void:

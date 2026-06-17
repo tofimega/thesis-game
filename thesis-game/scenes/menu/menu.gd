@@ -28,7 +28,7 @@ func _ready() -> void:
 
 
 func switch_panel(panel: MenuPanel) -> void:
-    assert(panels.has(panel))
+    assert(panels.has(panel), "incorrect mode")
 
     if current_panel:
         current_panel.visible = false

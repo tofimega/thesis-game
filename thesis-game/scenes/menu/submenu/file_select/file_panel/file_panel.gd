@@ -147,7 +147,7 @@ func _evaluate_choicer() -> void:
 
 
 func _set_mode(mode: Mode) -> void:
-    assert(_panels.has(mode))
+    assert(_panels.has(mode), "Incorrect mode")
 
     if _panels.has(_current_mode):
         _panels[_current_mode].visible = false
@@ -165,7 +165,7 @@ func _set_mode(mode: Mode) -> void:
         Mode.FILE_OPTIONS:
             _select.grab_focus.call_deferred()
         Mode.COPY_CHOICER, Mode.DELETE_CHOICER:
-            assert(_choicer_text.has(_current_mode))
+            assert(_choicer_text.has(_current_mode), "No choicer text provided for this mode")
             _choicer_label.text = _choicer_text[_current_mode]
             _no.grab_focus.call_deferred()
         _: assert(false, "No action given")

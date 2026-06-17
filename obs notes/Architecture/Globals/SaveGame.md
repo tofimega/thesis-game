@@ -20,10 +20,10 @@
 		- emitted when a flag is changed via update_flag
 	- begin_save
 		- emitted from save_game when save operation begins
-	- finish_save
+	- finish_save(error: Error)
 		- emitted when save operation finishes
 	- begin_load
-	- finish_load
+	- finish_load(error: Error)
 # Interface
 
 - update_flag(flag: SaveFlag, value, int) -> void:
@@ -35,3 +35,5 @@
 - get_save_header(index: int) -> Dict(String, Variant):
 	- parse header of save file
 	- returns empty header if none exists at index
+
+
