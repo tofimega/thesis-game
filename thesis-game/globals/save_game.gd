@@ -85,7 +85,7 @@ static func _error_save(error: ErrorCode, info: String = "") -> Error:
 static func update_flag(flag: SaveFlag, value: int) -> void:
     assert(_save_index >= 0, "No save file loaded")
     assert(_data.size() == SaveFlag.size(), "Save data is invalid")
-
+    
     _data[flag] = value
     signals.state_updated.emit(flag, value)
 
@@ -117,6 +117,7 @@ static func save_game() -> ErrorCode:
         return _report_error(ErrorCode.SAVE_DATA_WRITE_FAILED, "Save flags could not be written")
 
     signals.save_finish.emit(ErrorCode.OK)
+    DirAccess.remove_absolute(path+".tmp")
     return ErrorCode.OK
 
 
@@ -158,7 +159,7 @@ static func _write_header(save_file: FileAccess) -> bool:
 
 static func _calc_completion() -> float:
     # TODO: do this
-    return 1
+    return 0
 
 
 static func delete_file(file: int) -> Error:

@@ -51,8 +51,7 @@
 		2. header (from file) is returned
 
 	- IF no file:
-		1. push error (ERR_FILE_NOT_FOUND)
-		2. NULL is returned
+		1. header (new) is returned
 
 	- IF parse error:
 		1. push relevant error

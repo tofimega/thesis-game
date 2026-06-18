@@ -86,8 +86,33 @@ class TestLoad extends GutTest:
             assert_push_error_count(1)
             return
         assert_eq(SaveGame._data, buffer)
+        assert_false(result.new_game)
+        assert_eq(result.completion, SaveGame._calc_completion())
+        assert_eq(result.playtime, SaveGame._last_saved_playtime)
 
-# TODO: more thorough tests
+
+    func test_load_new_game() -> void:
+        if FileAccess.file_exists(FPATH):
+            DirAccess.remove_absolute(FPATH)
+
+        var err: Array[SaveGame.ErrorCode]
+        var header: SaveGame.SaveHeader = SaveGame.load_game(RESERVED_SAVE_INDEX, err)
+        if err.is_empty():
+            assert_eq(SaveGame._calc_completion(), 0.0)
+            assert_eq(SaveGame._last_saved_playtime, 0)
+            assert_eq(SaveGame._save_index, RESERVED_SAVE_INDEX)
+            assert_not_null(header)
+            assert_true(header.new_game)
+            assert_eq(header.completion, SaveGame._calc_completion())
+            assert_eq(header.playtime, SaveGame._last_saved_playtime)
+            var _test_data: PackedByteArray
+            _test_data.resize(SaveGame.SaveFlag.size())
+            assert_eq(SaveGame._data, _test_data)
+        else:
+            assert_null(header)
+            assert_eq(SaveGame._save_index, -1)
+
+
 class TestSave extends GutTest:
     var FPATH: String = SaveGame.SAVE_FOLDER + str(RESERVED_SAVE_INDEX):
         set(a):
@@ -96,6 +121,40 @@ class TestSave extends GutTest:
 
     func before_each() -> void:
         SaveGame.load_game(RESERVED_SAVE_INDEX, [])
+
+
+    func test_save_signals() -> void:
+        watch_signals(SaveGame.signals)
+        SaveGame.save_game()
+        assert_signal_emit_count(SaveGame.signals.save_begin, 1)
+
+        assert_signal_emit_count(SaveGame.signals.save_finish, 1)
+        if get_errors().is_empty():
+            assert_signal_emitted_with_parameters(SaveGame.signals.save_finish, [SaveGame.ErrorCode.OK])
+            return
+
+
+    func test_backup_deleted_on_success() -> void:
+        var file_data: FileAccess = FileAccess.open(FPATH, FileAccess.READ)
+        var file_bytes: PackedByteArray = file_data.get_buffer(file_data.get_length())
+        file_data.close()
+        var err: SaveGame.ErrorCode = SaveGame.save_game()
+
+        match err:
+            SaveGame.ErrorCode.SAVE_RESTORE_BACKUP_FAILED:
+                assert_true(FileAccess.file_exists(FPATH + ".tmp"))
+            SaveGame.ErrorCode.OK:
+                assert_false(FileAccess.file_exists(FPATH + ".tmp"))
+            _:
+                assert_false(FileAccess.file_exists(FPATH + ".tmp"))
+                file_data = FileAccess.open(FPATH, FileAccess.READ)
+                assert_eq(file_data.get_buffer(file_data.get_length()), file_bytes)
+
+
+    func test_error_if_no_file() -> void:
+        SaveGame._save_index = -1
+        SaveGame.save_game()
+        assert_engine_error_count(1)
 
 
     func test_save_correct_flags() -> void:
@@ -108,3 +167,55 @@ class TestSave extends GutTest:
         assert_eq(file.get_64(), SaveGame.SaveFlag.size())
         var buffer: PackedByteArray = file.get_buffer(SaveGame.SaveFlag.size())
         assert_eq(SaveGame._data, buffer)
+
+
+class TestParse extends GutTest:
+
+    var FPATH: String = SaveGame.SAVE_FOLDER + str(RESERVED_SAVE_INDEX):
+        set(a):
+            pass
+
+
+    func before_all() -> void:
+        SaveGame.load_game(RESERVED_SAVE_INDEX, [])
+        SaveGame.save_game()
+
+
+    func test_parse_existing_file() -> void:
+        var header: SaveGame.SaveHeader = SaveGame.get_file_header(RESERVED_SAVE_INDEX)
+
+        if header == null:
+            assert_push_error_count(1)
+            return
+        assert_false(header.new_game)
+        var file_data: FileAccess = FileAccess.open(FPATH, FileAccess.READ)
+        assert_true(header.eq(SaveGame.SaveHeader.from_file(file_data)))
+
+
+    func test_parse_no_file() -> void:
+        var header: SaveGame.SaveHeader = SaveGame.get_file_header(RESERVED_SAVE_INDEX + 1)
+        assert_true(header.eq(SaveGame.SaveHeader.new()))
+
+
+class TestFlag extends GutTest:
+
+
+    func before_each() -> void:
+        SaveGame.load_game(RESERVED_SAVE_INDEX, [])
+
+
+    func test_set_flag() -> void:
+        var value: int = randi_range(0, 255)
+        var flag: SaveGame.SaveFlag = randi_range(0, SaveGame.SaveFlag.size()-1) as SaveGame.SaveFlag
+        watch_signals(SaveGame.signals)
+        SaveGame.update_flag(flag, value)
+        assert_signal_emit_count(SaveGame.signals.state_updated, 1)
+        assert_signal_emitted_with_parameters(SaveGame.signals.state_updated, [flag, value])
+
+        assert_eq(SaveGame._data[flag], value)
+
+
+    func test_no_file() -> void:
+        SaveGame._save_index = -1
+        SaveGame.update_flag(0 as SaveGame.SaveFlag, 0)
+        assert_engine_error_count(1)

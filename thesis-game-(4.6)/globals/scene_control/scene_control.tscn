@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://56ax0f0nnbmf"]
+
+[ext_resource type="Script" uid="uid://b0xkjwhq6fbad" path="res://globals/scene_control/scene_control.gd" id="1_rmhsi"]
+
+[node name="SceneControl" type="SubViewport" unique_id=2146920913]
+disable_3d = true
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(240, 180)
+script = ExtResource("1_rmhsi")

@@ -134,8 +134,8 @@ canvas_item_default_texture_filter = 0
 size = Vector2i(72, 20)
 
 [node name="ColorRect" type="ColorRect" parent="InfoTextBase" unique_id=1875300265]
-clip_contents = true
 custom_minimum_size = Vector2(0, 20)
+clip_contents = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

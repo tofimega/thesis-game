@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bj4ea3jsv4i1i"]
+
+[ext_resource type="Script" uid="uid://nd3pxiq1quvy" path="res://globals/audio/audio.gd" id="1_ly4qd"]
+
+[node name="Audio" type="Node" unique_id=659128007]
+script = ExtResource("1_ly4qd")
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=102534534]
+bus = &"Music"
+
+[node name="OneShot" type="Node" parent="." unique_id=398043620]
