@@ -18,9 +18,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+SceneControl="*uid://56ax0f0nnbmf"
 Audio="*uid://bj4ea3jsv4i1i"
 Overlay="*uid://cpwq3bcmdk2c0"
-SceneControl="*uid://56ax0f0nnbmf"
 
 [debug]
 

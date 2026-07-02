@@ -1,16 +1,16 @@
 extends Control
 
 @onready var loading: TextureRect = $Loading
-@onready var main_screen: ColorRect = $MainCRT/ColorRect
-@onready var info_text: ScrollingLabel = $InfoTextBase/ColorRect/Label
+
+@onready var viewport: TextureRect = $HBoxContainer/Viewport
+@onready var _info_text: TextureRect = $HBoxContainer/NinePatchRect/LeftPanel/VBoxContainer/InfoText
+@onready var info_text: ScrollingLabel = SceneControl.label
 
 
-func _input(event: InputEvent) -> void:
-    if !event.is_action_type():
-        return
-    SceneControl.push_input(event)
 
 
-func set_viewport(texture: Texture) -> void:
-    var mat: ShaderMaterial = main_screen.material
-    mat.set_shader_parameter(&"tex", texture)
+
+
+func _ready() -> void:
+    viewport.texture = SceneControl.game_view.get_texture()
+    _info_text.texture = SceneControl.info_text.get_texture()

@@ -1,11 +1,101 @@
 [gd_scene format=3 uid="uid://56ax0f0nnbmf"]
 
 [ext_resource type="Script" uid="uid://b0xkjwhq6fbad" path="res://globals/scene_control/scene_control.gd" id="1_rmhsi"]
+[ext_resource type="Shader" uid="uid://c5h0ok6hf0bv" path="res://addons/crt_shader/crt_shader_noscan.gdshader" id="2_tg413"]
+[ext_resource type="FontFile" uid="uid://dco61gxck188a" path="res://assets/fonts/dogica/TTF/dogicapixel.ttf" id="3_75m3m"]
+[ext_resource type="Script" uid="uid://cngwpf31ptsw6" path="res://addons/scrolling_text/scrolling_text.gd" id="4_hb684"]
 
-[node name="SceneControl" type="SubViewport" unique_id=2146920913]
+[sub_resource type="ViewportTexture" id="ViewportTexture_5smwh"]
+viewport_path = NodePath("GameRaw")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y5v3l"]
+resource_local_to_scene = true
+shader = ExtResource("2_tg413")
+shader_parameter/tex = SubResource("ViewportTexture_5smwh")
+shader_parameter/mask_type = 5
+shader_parameter/curve = 0.5
+shader_parameter/color_offset = -0.3409999924475
+shader_parameter/mask_brightness = 0.3550000168625
+shader_parameter/aspect = 0.9530000215175
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_o52li"]
+viewport_path = NodePath("TextRaw")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wfv0q"]
+resource_local_to_scene = true
+shader = ExtResource("2_tg413")
+shader_parameter/tex = SubResource("ViewportTexture_o52li")
+shader_parameter/mask_type = 1
+shader_parameter/curve = 0.16800000798
+shader_parameter/color_offset = -0.4489999975775
+shader_parameter/mask_brightness = 0.6270000297825
+shader_parameter/aspect = 1.0
+
+[node name="SceneControl" type="Node" unique_id=1014466701]
+script = ExtResource("1_rmhsi")
+
+[node name="GameRaw" type="SubViewport" parent="." unique_id=1845517046]
 disable_3d = true
 snap_2d_transforms_to_pixel = true
-snap_2d_vertices_to_pixel = true
-canvas_item_default_texture_filter = 0
 size = Vector2i(240, 180)
-script = ExtResource("1_rmhsi")
+
+[node name="GameView" type="SubViewport" parent="." unique_id=211576642]
+disable_3d = true
+transparent_bg = true
+snap_2d_transforms_to_pixel = true
+size = Vector2i(720, 540)
+
+[node name="ColorRect" type="ColorRect" parent="GameView" unique_id=954705909]
+material = SubResource("ShaderMaterial_y5v3l")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextRaw" type="SubViewport" parent="." unique_id=1403972627]
+disable_3d = true
+snap_2d_transforms_to_pixel = true
+size = Vector2i(72, 20)
+
+[node name="ColorRect" type="ColorRect" parent="TextRaw" unique_id=1648272644]
+custom_minimum_size = Vector2(0, 20)
+clip_contents = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.17641911, 0.17641908, 0.17641908, 1)
+
+[node name="Label" type="RichTextLabel" parent="TextRaw/ColorRect" unique_id=605832223]
+custom_minimum_size = Vector2(64, 20)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.88283396, 0.47867638, 0.20078021, 1)
+theme_override_fonts/normal_font = ExtResource("3_75m3m")
+text = "TEXT"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+script = ExtResource("4_hb684")
+scroll_speed = 30.0
+
+[node name="InfoText" type="SubViewport" parent="." unique_id=1036699913]
+disable_3d = true
+transparent_bg = true
+snap_2d_transforms_to_pixel = true
+size = Vector2i(144, 40)
+
+[node name="ColorRect" type="ColorRect" parent="InfoText" unique_id=1865362153]
+material = SubResource("ShaderMaterial_wfv0q")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
