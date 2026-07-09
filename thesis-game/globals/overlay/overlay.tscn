@@ -2,10 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cf3wt1njeo6wk" path="res://globals/overlay/overlay.gd" id="1_ynx6w"]
 [ext_resource type="Texture2D" uid="uid://d3n5ns2samxo" path="res://assets/images/ui/control_panel.png" id="2_7asm7"]
-[ext_resource type="FontFile" uid="uid://dco61gxck188a" path="res://assets/fonts/dogica/TTF/dogicapixel.ttf" id="3_co2uy"]
-[ext_resource type="Shader" uid="uid://c5h0ok6hf0bv" path="res://addons/crt_shader/crt_shader_noscan.gdshader" id="4_2klt3"]
-[ext_resource type="Script" uid="uid://cngwpf31ptsw6" path="res://addons/scrolling_text/scrolling_text.gd" id="4_co2uy"]
-[ext_resource type="Texture2D" uid="uid://bpni4m0cll4ky" path="res://icon.svg" id="6_wbmdg"]
 
 [sub_resource type="Gradient" id="Gradient_mpier"]
 colors = PackedColorArray(0.22803396, 0.47843033, 1, 1, 0.10881125, 0.7145951, 0.31119967, 1)
@@ -26,28 +22,6 @@ colors = PackedColorArray(0, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_wr0pm"]
 gradient = SubResource("Gradient_7asm7")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_wbmdg"]
-viewport_path = NodePath("InfoTextBase")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_h6nm0"]
-resource_local_to_scene = true
-shader = ExtResource("4_2klt3")
-shader_parameter/tex = SubResource("ViewportTexture_wbmdg")
-shader_parameter/mask_type = 1
-shader_parameter/curve = 0.16800000798
-shader_parameter/color_offset = -0.4489999975775
-shader_parameter/mask_brightness = 0.6270000297825
-shader_parameter/aspect = 1.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5smwh"]
-shader = ExtResource("4_2klt3")
-shader_parameter/tex = ExtResource("6_wbmdg")
-shader_parameter/mask_type = 5
-shader_parameter/curve = 0.5
-shader_parameter/color_offset = -0.3409999924475
-shader_parameter/mask_brightness = 0.3550000168625
-shader_parameter/aspect = 0.9530000215175
 
 [node name="Overlay" type="Control" unique_id=1897314556]
 layout_mode = 3
@@ -128,62 +102,3 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture1D_wr0pm")
-
-[node name="InfoTextBase" type="SubViewport" parent="." unique_id=1701961793]
-canvas_item_default_texture_filter = 0
-size = Vector2i(72, 20)
-
-[node name="ColorRect" type="ColorRect" parent="InfoTextBase" unique_id=1875300265]
-custom_minimum_size = Vector2(0, 20)
-clip_contents = true
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.17641911, 0.17641908, 0.17641908, 1)
-
-[node name="Label" type="RichTextLabel" parent="InfoTextBase/ColorRect" unique_id=956620818]
-custom_minimum_size = Vector2(64, 20)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/default_color = Color(0.88283396, 0.47867638, 0.20078021, 1)
-theme_override_fonts/normal_font = ExtResource("3_co2uy")
-text = "TEXT"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-vertical_alignment = 1
-script = ExtResource("4_co2uy")
-scroll_speed = 30.0
-
-[node name="InfoTextCRT" type="SubViewport" parent="." unique_id=624889459]
-transparent_bg = true
-canvas_item_default_texture_filter = 0
-size = Vector2i(144, 40)
-
-[node name="ColorRect" type="ColorRect" parent="InfoTextCRT" unique_id=2025118844]
-material = SubResource("ShaderMaterial_h6nm0")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MainCRT" type="SubViewport" parent="." unique_id=2081074381]
-disable_3d = true
-transparent_bg = true
-canvas_item_default_texture_filter = 0
-size = Vector2i(720, 540)
-
-[node name="ColorRect" type="ColorRect" parent="MainCRT" unique_id=1770836120]
-material = SubResource("ShaderMaterial_5smwh")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
