@@ -1,0 +1,112 @@
+[gd_scene format=3 uid="uid://ctnfjng6hqk8g"]
+
+[ext_resource type="Texture2D" uid="uid://bpni4m0cll4ky" path="res://icon.svg" id="1_kb8bl"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4ku41"]
+texture = ExtResource("1_kb8bl")
+texture_region_size = Vector2i(16, 20)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 2)
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, 2)
+2:0/0 = 0
+2:0/0/texture_origin = Vector2i(0, 2)
+3:0/0 = 0
+3:0/0/texture_origin = Vector2i(0, 2)
+4:0/0 = 0
+4:0/0/texture_origin = Vector2i(0, 2)
+5:0/0 = 0
+5:0/0/texture_origin = Vector2i(0, 2)
+6:0/0 = 0
+6:0/0/texture_origin = Vector2i(0, 2)
+7:0/0 = 0
+7:0/0/texture_origin = Vector2i(0, 2)
+0:1/0 = 0
+0:1/0/texture_origin = Vector2i(0, 2)
+1:1/0 = 0
+1:1/0/texture_origin = Vector2i(0, 2)
+2:1/0 = 0
+2:1/0/texture_origin = Vector2i(0, 2)
+3:1/0 = 0
+3:1/0/texture_origin = Vector2i(0, 2)
+4:1/0 = 0
+4:1/0/texture_origin = Vector2i(0, 2)
+5:1/0 = 0
+5:1/0/texture_origin = Vector2i(0, 2)
+6:1/0 = 0
+6:1/0/texture_origin = Vector2i(0, 2)
+7:1/0 = 0
+7:1/0/texture_origin = Vector2i(0, 2)
+0:2/0 = 0
+0:2/0/texture_origin = Vector2i(0, 2)
+1:2/0 = 0
+1:2/0/texture_origin = Vector2i(0, 2)
+2:2/0 = 0
+2:2/0/texture_origin = Vector2i(0, 2)
+3:2/0 = 0
+3:2/0/texture_origin = Vector2i(0, 2)
+4:2/0 = 0
+4:2/0/texture_origin = Vector2i(0, 2)
+5:2/0 = 0
+5:2/0/texture_origin = Vector2i(0, 2)
+6:2/0 = 0
+6:2/0/texture_origin = Vector2i(0, 2)
+7:2/0 = 0
+7:2/0/texture_origin = Vector2i(0, 2)
+0:3/0 = 0
+0:3/0/texture_origin = Vector2i(0, 2)
+1:3/0 = 0
+1:3/0/texture_origin = Vector2i(0, 2)
+2:3/0 = 0
+2:3/0/texture_origin = Vector2i(0, 2)
+3:3/0 = 0
+3:3/0/texture_origin = Vector2i(0, 2)
+4:3/0 = 0
+4:3/0/texture_origin = Vector2i(0, 2)
+5:3/0 = 0
+5:3/0/texture_origin = Vector2i(0, 2)
+6:3/0 = 0
+6:3/0/texture_origin = Vector2i(0, 2)
+7:3/0 = 0
+7:3/0/texture_origin = Vector2i(0, 2)
+0:4/0 = 0
+0:4/0/texture_origin = Vector2i(0, 2)
+1:4/0 = 0
+1:4/0/texture_origin = Vector2i(0, 2)
+2:4/0 = 0
+2:4/0/texture_origin = Vector2i(0, 2)
+3:4/0 = 0
+3:4/0/texture_origin = Vector2i(0, 2)
+4:4/0 = 0
+4:4/0/texture_origin = Vector2i(0, 2)
+5:4/0 = 0
+5:4/0/texture_origin = Vector2i(0, 2)
+6:4/0 = 0
+6:4/0/texture_origin = Vector2i(0, 2)
+7:4/0 = 0
+7:4/0/texture_origin = Vector2i(0, 2)
+
+[sub_resource type="TileSet" id="TileSet_sul5r"]
+sources/0 = SubResource("TileSetAtlasSource_4ku41")
+
+[node name="Room" type="Node2D" unique_id=577419168]
+position = Vector2(0, 4)
+
+[node name="ReferenceRect" type="ReferenceRect" parent="." unique_id=469234969]
+offset_top = -4.0
+offset_right = 240.0
+offset_bottom = 176.0
+
+[node name="Wall" type="TileMapLayer" parent="." unique_id=1717821148]
+tile_set = SubResource("TileSet_sul5r")
+navigation_enabled = false
+
+[node name="Background2" type="TileMapLayer" parent="." unique_id=1342311080]
+tile_set = SubResource("TileSet_sul5r")
+collision_enabled = false
+navigation_enabled = false
+
+[node name="Solid" type="TileMapLayer" parent="." unique_id=1031997263]
+tile_set = SubResource("TileSet_sul5r")
+
+[node name="Dynamic" type="Node2D" parent="." unique_id=881910093]

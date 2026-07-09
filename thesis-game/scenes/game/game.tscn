@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://6px8hpqxwfe2"]
 
+[ext_resource type="Script" uid="uid://506p3q3mukhd" path="res://scenes/game/game_scene.gd" id="1_sul5r"]
+
 [node name="Game" type="Node2D" unique_id=107932019]
+script = ExtResource("1_sul5r")
 
 [node name="ReferenceRect" type="ReferenceRect" parent="." unique_id=46021841]
 offset_right = 240.0

@@ -16,3 +16,4 @@ lazily load scene when switching (no need to keep PackedScenes around for both s
 	- await next frame
 	- instantiate MenuScene
 	- add_child
+

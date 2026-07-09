@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "soft req/SaveGame.md",
+                "file": "Architecture/1. Systems.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "SaveGame"
+              "title": "1. Systems"
             }
           },
           {
@@ -214,13 +214,16 @@
   },
   "active": "a5de66ea2555fc13",
   "lastOpenFiles": [
-    "soft req/Level Select (MenuScene).md",
-    "soft req/MenuScene.md",
-    "soft req/SaveGame.md",
-    "soft req/GameScene.md",
+    "Architecture/3. Levels.md",
     "Architecture/1. Systems.md",
     "Architecture/Scenes/GameScene.md",
+    "soft req/SceneControl.md",
+    "soft req/MenuScene.md",
     "Architecture/Scenes/MenuScene.md",
+    "Architecture/Globals/SceneControl.md",
+    "soft req/SaveGame.md",
+    "soft req/Level Select (MenuScene).md",
+    "soft req/GameScene.md",
     "Architecture/Shared components/Death handler.md",
     "Architecture/Globals/SaveGame.md",
     "soft req",
@@ -232,7 +235,6 @@
     "Architecture/Level/Spawned Scene.md",
     "Architecture/Level/Spawn Point.md",
     "Architecture/Player/Player script.md",
-    "Architecture/Globals/SceneControl.md",
     "Architecture/Resources/LevelData.md",
     "Architecture/Resources",
     "Architecture/Globals/Overlay.md",
@@ -242,8 +244,6 @@
     "Architecture/Enemy/EnemyState.md",
     "Architecture/Enemy/Hierarchy.canvas",
     "Architecture/Enemy/BehaviorDriver.md",
-    "Architecture/Shared components/Projectile Spawner.md",
-    "Architecture/Player/Movement state machine.md",
     "Architecture/Player/Hierarchy.canvas",
     "Architecture/Enemy",
     "Architecture/Level",
