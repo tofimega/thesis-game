@@ -26,6 +26,18 @@ func _input(event: InputEvent) -> void:
     game_raw.push_input(event)
 
 
+func begin_game(level_index: int) -> void:
+    await _scene_switch(GAME)
+    var game_scene: GameScene = current_scene
+    game_scene.initialize_game(level_index)
+
+
+func back_to_menu(panel: MenuScene.MenuPanel = MenuScene.MenuPanel.LEVEL_SCELECT) -> void:
+    await _scene_switch(MENU)
+    var menu_scene: MenuScene = current_scene
+    menu_scene.switch_panel(panel)
+
+
 func _scene_switch(new: String) -> void:
     var new_scene: PackedScene = load(new)
     if !new_scene.can_instantiate():
@@ -34,17 +46,8 @@ func _scene_switch(new: String) -> void:
     if current_scene != null: current_scene.queue_free()
     await get_tree().process_frame
     var root: Node = new_scene.instantiate()
+    #TODO: fade out
     game_raw.add_child(root)
     current_scene = root
     loaded_file = new
-
-
-func begin_game(level_index: int)->void:
-    await _scene_switch(GAME)
-    var game_scene: GameScene = current_scene
-    game_scene.load_level(level_index)
-
-func back_to_menu(panel: MenuScene.MenuPanel = MenuScene.MenuPanel.LEVEL_SCELECT)->void:
-    await _scene_switch(MENU)
-    var menu_scene: MenuScene = current_scene
-    menu_scene.switch_panel(panel)
+    #TODO: fade in

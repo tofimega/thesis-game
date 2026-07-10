@@ -2,11 +2,18 @@
 
 [ext_resource type="Script" uid="uid://506p3q3mukhd" path="res://scenes/game/game_scene.gd" id="1_sul5r"]
 [ext_resource type="Resource" uid="uid://dws781cajxk7e" path="res://assets/resources/level_map/default_level_map.tres" id="2_7h61r"]
+[ext_resource type="PackedScene" uid="uid://86ruhs3hrnbv" path="res://scenes/actors/player/player.tscn" id="3_0sr1o"]
 
 [node name="Game" type="Node2D" unique_id=107932019]
+y_sort_enabled = true
 script = ExtResource("1_sul5r")
 level_map = ExtResource("2_7h61r")
 
 [node name="ReferenceRect" type="ReferenceRect" parent="." unique_id=46021841]
 offset_right = 240.0
 offset_bottom = 180.0
+
+[node name="LevelHolder" type="Node2D" parent="." unique_id=1116380137]
+y_sort_enabled = true
+
+[node name="Player" parent="." unique_id=1211348581 instance=ExtResource("3_0sr1o")]

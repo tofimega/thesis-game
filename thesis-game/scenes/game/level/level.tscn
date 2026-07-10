@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://b6vljua1r0h2q" path="res://scenes/game/level/level.gd" id="1_cbo8h"]
 
 [node name="Level" type="Node2D" unique_id=440849579]
+y_sort_enabled = true
 script = ExtResource("1_cbo8h")
 
 [node name="Rooms" type="Node2D" parent="." unique_id=791553573]
+y_sort_enabled = true
