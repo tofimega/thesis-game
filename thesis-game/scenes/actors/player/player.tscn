@@ -1,11 +1,34 @@
 [gd_scene format=3 uid="uid://86ruhs3hrnbv"]
 
 [ext_resource type="Script" uid="uid://buyqecp1yu3om" path="res://scenes/actors/player/player.gd" id="1_wmv1v"]
-[ext_resource type="Texture2D" uid="uid://bpni4m0cll4ky" path="res://icon.svg" id="2_l17oj"]
+[ext_resource type="Texture2D" uid="uid://cyg1uf1waphiy" path="res://assets/images/sprites/player/player (edit).png" id="2_l17oj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l17oj"]
+atlas = ExtResource("2_l17oj")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oj104"]
+atlas = ExtResource("2_l17oj")
+region = Rect2(16, 0, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j2q5q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l17oj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oj104")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Player" type="CharacterBody2D" unique_id=1211348581]
 script = ExtResource("1_wmv1v")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=303219365]
-scale = Vector2(0.125, 0.125)
-texture = ExtResource("2_l17oj")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=825897239]
+sprite_frames = SubResource("SpriteFrames_j2q5q")
+autoplay = "default"
+frame_progress = 0.9671862
