@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="PlayerWalkState" format=3 uid="uid://bb4xklvn2jr62"]
+
+[ext_resource type="Script" uid="uid://dt3pnj8stwp1w" path="res://scenes/actors/player/movement/walk_state.gd" id="1_mt63k"]
+
+[resource]
+script = ExtResource("1_mt63k")
+metadata/_custom_type_script = "uid://dt3pnj8stwp1w"

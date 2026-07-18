@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" uid="uid://buyqecp1yu3om" path="res://scenes/actors/player/player.gd" id="1_wmv1v"]
 [ext_resource type="Texture2D" uid="uid://cyg1uf1waphiy" path="res://assets/images/sprites/player/player (edit).png" id="2_l17oj"]
+[ext_resource type="Script" uid="uid://dkumwt15yafqn" path="res://scenes/actors/player/movement/player_movement_state.gd" id="2_mpktj"]
+[ext_resource type="Script" uid="uid://u0pxxecx1kk5" path="res://scenes/actors/player/animation_handler.gd" id="3_oj104"]
+[ext_resource type="Resource" uid="uid://bb4xklvn2jr62" path="res://assets/resources/player_movement/player_walk.tres" id="3_qdyt2"]
+[ext_resource type="Resource" uid="uid://pr8881v6xd2x" path="res://assets/resources/player_movement/player_idle.tres" id="4_g2g7f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l17oj"]
 atlas = ExtResource("2_l17oj")
@@ -25,10 +29,38 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D" unique_id=1211348581]
-script = ExtResource("1_wmv1v")
+[sub_resource type="CircleShape2D" id="CircleShape2D_mgg8m"]
+radius = 7.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=825897239]
+[node name="Player" type="CharacterBody2D" unique_id=1211348581]
+collision_layer = 2
+script = ExtResource("1_wmv1v")
+movement_states = Array[ExtResource("2_mpktj")]([ExtResource("3_qdyt2"), ExtResource("4_g2g7f")])
+
+[node name="AnimationHandler" type="AnimatedSprite2D" parent="." unique_id=825897239]
+position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_j2q5q")
 autoplay = "default"
-frame_progress = 0.9671862
+frame = 1
+frame_progress = 0.6826358
+script = ExtResource("3_oj104")
+animations = Dictionary[int, StringName]({
+0: &"idle",
+1: &"walk",
+2: &"hurt",
+3: &"spawn",
+4: &"despawn",
+5: &"throw",
+6: &"lift"
+})
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=920848685]
+shape = SubResource("CircleShape2D_mgg8m")
+
+[node name="DamageTaker" type="Area2D" parent="." unique_id=306065403]
+collision_layer = 0
+collision_mask = 56
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageTaker" unique_id=988431079]
+shape = SubResource("CircleShape2D_mgg8m")
