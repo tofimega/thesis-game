@@ -4,4 +4,6 @@
 
 [resource]
 script = ExtResource("1_mt63k")
+movement_speed = 60.0
+carry_movement_speed = 40.0
 metadata/_custom_type_script = "uid://dt3pnj8stwp1w"

@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://506p3q3mukhd" path="res://scenes/game/game_scene.gd" id="1_sul5r"]
 [ext_resource type="Resource" uid="uid://dws781cajxk7e" path="res://assets/resources/level_map/default_level_map.tres" id="2_7h61r"]
 [ext_resource type="PackedScene" uid="uid://86ruhs3hrnbv" path="res://scenes/actors/player/player.tscn" id="3_0sr1o"]
+[ext_resource type="Script" uid="uid://bn5hof08cvlps" path="res://scenes/game/carry_controller.gd" id="3_lfrn8"]
+[ext_resource type="PackedScene" uid="uid://duufvf2275q3y" path="res://scenes/actors/bomb/bomb.tscn" id="5_5i0tg"]
 
 [node name="Game" type="Node2D" unique_id=107932019]
 y_sort_enabled = true
@@ -16,4 +18,15 @@ offset_bottom = 180.0
 [node name="LevelHolder" type="Node2D" parent="." unique_id=1116380137]
 y_sort_enabled = true
 
-[node name="Player" parent="." unique_id=1211348581 instance=ExtResource("3_0sr1o")]
+[node name="CarryController" type="Node2D" parent="." unique_id=684975796]
+y_sort_enabled = true
+script = ExtResource("3_lfrn8")
+
+[node name="Player" parent="CarryController" unique_id=1211348581 instance=ExtResource("3_0sr1o")]
+unique_name_in_owner = true
+
+[node name="Bomb" parent="CarryController" unique_id=194360528 instance=ExtResource("5_5i0tg")]
+
+[connection signal="want_carry" from="CarryController/Player" to="CarryController" method="try_carry"]
+[connection signal="want_throw" from="CarryController/Player" to="CarryController" method="try_throw"]
+[connection signal="exploded" from="CarryController/Bomb" to="CarryController" method="on_explosion"]

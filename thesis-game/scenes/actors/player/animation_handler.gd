@@ -11,16 +11,16 @@ enum AnimationState {
     LIFT,
 }
 
-@export var animations: Dictionary[AnimationState, StringName]
+@export var animations: Dictionary[Player.State, StringName]
 
-var _current_state: AnimationState = AnimationState.SPAWN
+var _current_state: Player.State = Player.State.SPAWN
 
 
-func switch_anim(state: AnimationState) -> void:
+func switch_anim(state: Player.State) -> void:
     _current_state = state
     var anim_name: StringName = _get_anim_name(_current_state)
     play(anim_name)
 
 
-func _get_anim_name(state: AnimationState) -> StringName:
+func _get_anim_name(state: Player.State) -> StringName:
     return animations[state]

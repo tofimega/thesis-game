@@ -1,0 +1,32 @@
+
+Modes
+- Inactive:
+	- no collision
+	- no timers
+	- invisible
+	- out of tree
+- Spawned (Carry):
+	- No collison
+	- conneted to player's remoteTransform
+	- Timer ticks
+	- can explode
+- Thrown:
+	- No collision (detects walls)
+	- move x units (or until wall)
+	- Timer ticks
+	- cannot explode (wait until grounded)
+- Grounded:
+	- Collision
+	- Timer ticks
+	- Can explode
+Fuse state:
+- Unlit:
+	- nothing
+	- invisible
+- Lit:
+	- animation: default
+- Short:
+	- animation: flash
+- Explode: 
+	- spawn explosion
+	- invisble

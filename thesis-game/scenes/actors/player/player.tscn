@@ -3,9 +3,43 @@
 [ext_resource type="Script" uid="uid://buyqecp1yu3om" path="res://scenes/actors/player/player.gd" id="1_wmv1v"]
 [ext_resource type="Texture2D" uid="uid://cyg1uf1waphiy" path="res://assets/images/sprites/player/player (edit).png" id="2_l17oj"]
 [ext_resource type="Script" uid="uid://dkumwt15yafqn" path="res://scenes/actors/player/movement/player_movement_state.gd" id="2_mpktj"]
+[ext_resource type="Script" uid="uid://bjwlw7wwq3ad0" path="res://scenes/actors/player/movement/dummy_state.gd" id="3_8bj4u"]
 [ext_resource type="Script" uid="uid://u0pxxecx1kk5" path="res://scenes/actors/player/animation_handler.gd" id="3_oj104"]
 [ext_resource type="Resource" uid="uid://bb4xklvn2jr62" path="res://assets/resources/player_movement/player_walk.tres" id="3_qdyt2"]
 [ext_resource type="Resource" uid="uid://pr8881v6xd2x" path="res://assets/resources/player_movement/player_idle.tres" id="4_g2g7f"]
+[ext_resource type="Script" uid="uid://c57i14wd82g2p" path="res://scenes/actors/player/movement/animation_timeout_state.gd" id="4_inh5e"]
+[ext_resource type="Script" uid="uid://b5ofmh2rfq14f" path="res://scenes/actors/general/direction.gd" id="7_g2g7f"]
+[ext_resource type="Script" uid="uid://mb8x5tek235p" path="res://scenes/actors/player/carry_handler.gd" id="8_fp13k"]
+[ext_resource type="Script" uid="uid://by3emb6fcj3rt" path="res://scenes/actors/general/damage_taker.gd" id="8_i174x"]
+[ext_resource type="Script" uid="uid://qphgmkvrhto2" path="res://scenes/actors/general/knockback_handler.gd" id="10_i174x"]
+
+[sub_resource type="Resource" id="Resource_fp13k"]
+script = ExtResource("3_8bj4u")
+metadata/_custom_type_script = "uid://bjwlw7wwq3ad0"
+
+[sub_resource type="Resource" id="Resource_5bhx7"]
+script = ExtResource("3_8bj4u")
+metadata/_custom_type_script = "uid://bjwlw7wwq3ad0"
+
+[sub_resource type="Resource" id="Resource_i174x"]
+script = ExtResource("3_8bj4u")
+metadata/_custom_type_script = "uid://bjwlw7wwq3ad0"
+
+[sub_resource type="Resource" id="Resource_8bj4u"]
+script = ExtResource("3_8bj4u")
+metadata/_custom_type_script = "uid://bjwlw7wwq3ad0"
+
+[sub_resource type="Resource" id="Resource_inh5e"]
+script = ExtResource("4_inh5e")
+timer_node = NodePath("ThrowTimer")
+animation_name = &"throw"
+metadata/_custom_type_script = "uid://c57i14wd82g2p"
+
+[sub_resource type="Resource" id="Resource_4iwnj"]
+script = ExtResource("4_inh5e")
+timer_node = NodePath("PickupTimer")
+animation_name = &"lift"
+metadata/_custom_type_script = "uid://c57i14wd82g2p"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l17oj"]
 atlas = ExtResource("2_l17oj")
@@ -34,15 +68,24 @@ radius = 7.0
 
 [node name="Player" type="CharacterBody2D" unique_id=1211348581]
 collision_layer = 2
+motion_mode = 1
 script = ExtResource("1_wmv1v")
-movement_states = Array[ExtResource("2_mpktj")]([ExtResource("3_qdyt2"), ExtResource("4_g2g7f")])
+movement_states = Dictionary[int, ExtResource("2_mpktj")]({
+0: SubResource("Resource_fp13k"),
+1: SubResource("Resource_5bhx7"),
+2: SubResource("Resource_i174x"),
+3: SubResource("Resource_8bj4u"),
+4: SubResource("Resource_inh5e"),
+5: SubResource("Resource_4iwnj"),
+6: ExtResource("3_qdyt2"),
+7: ExtResource("4_g2g7f")
+})
 
 [node name="AnimationHandler" type="AnimatedSprite2D" parent="." unique_id=825897239]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_j2q5q")
 autoplay = "default"
-frame = 1
-frame_progress = 0.6826358
+frame_progress = 0.6476097
 script = ExtResource("3_oj104")
 animations = Dictionary[int, StringName]({
 0: &"idle",
@@ -57,10 +100,43 @@ animations = Dictionary[int, StringName]({
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=920848685]
 shape = SubResource("CircleShape2D_mgg8m")
 
-[node name="DamageTaker" type="Area2D" parent="." unique_id=306065403]
-collision_layer = 0
-collision_mask = 56
-monitorable = false
+[node name="Direction" type="Node" parent="." unique_id=1874156594]
+script = ExtResource("7_g2g7f")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageTaker" unique_id=988431079]
+[node name="KnockBackHandler" type="Node" parent="." unique_id=1549154095 node_paths=PackedStringArray("knockback_body", "knockback_timer")]
+script = ExtResource("10_i174x")
+knockback_body = NodePath("..")
+knockback_speed = 3.0
+knockback_timer = NodePath("../KnockbackTimer")
+metadata/_custom_type_script = "uid://qphgmkvrhto2"
+
+[node name="DamageTaker" type="Area2D" parent="." unique_id=1205574186 node_paths=PackedStringArray("invincibility_timer")]
+script = ExtResource("8_i174x")
+invincibility_timer = NodePath("../InvinTimer")
+metadata/_custom_type_script = "uid://by3emb6fcj3rt"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageTaker" unique_id=460364455]
 shape = SubResource("CircleShape2D_mgg8m")
+
+[node name="CarryHandler" type="RemoteTransform2D" parent="." unique_id=1913388303]
+position = Vector2(0, -19)
+update_rotation = false
+update_scale = false
+script = ExtResource("8_fp13k")
+metadata/_custom_type_script = "uid://mb8x5tek235p"
+
+[node name="PickupTimer" type="Timer" parent="." unique_id=227486486]
+one_shot = true
+
+[node name="ThrowTimer" type="Timer" parent="." unique_id=1029622206]
+one_shot = true
+
+[node name="KnockbackTimer" type="Timer" parent="." unique_id=1703618359]
+one_shot = true
+
+[node name="InvinTimer" type="Timer" parent="." unique_id=762141545]
+one_shot = true
+
+[connection signal="hit" from="DamageTaker" to="KnockBackHandler" method="start_knockback"]
+[connection signal="try_carry" from="CarryHandler" to="." method="try_carry"]
+[connection signal="try_throw" from="CarryHandler" to="." method="try_throw"]

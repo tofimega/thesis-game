@@ -25,14 +25,17 @@
             "id": "a5de66ea2555fc13",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "Architecture/Player/Movement state machine.md",
-                "mode": "source",
-                "source": false
+                "file": "Architecture/Bomb/Hierarchy.canvas",
+                "viewState": {
+                  "x": 0,
+                  "y": 0,
+                  "zoom": 0
+                }
               },
-              "icon": "lucide-file",
-              "title": "Movement state machine"
+              "icon": "lucide-layout-dashboard",
+              "title": "Hierarchy"
             }
           },
           {
@@ -70,7 +73,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
               "title": "Fájlkezelő"
@@ -214,7 +219,16 @@
   },
   "active": "a5de66ea2555fc13",
   "lastOpenFiles": [
+    "Architecture/Player/Hierarchy.canvas",
+    "Architecture/Bomb/Hierarchy.canvas",
+    "Architecture/Bomb",
+    "soft req/Bomb.md",
+    "soft req/player/Carry handler.md",
+    "soft req/player/Movement.md",
+    "Architecture/Player/Movement state machine.md",
+    "Architecture/Player/Player script.md",
     "Architecture/Player/Carry handler.md",
+    "soft req/player",
     "Architecture/1. Systems.md",
     "Architecture/3. Levels.md",
     "Architecture/Scenes/GameScene.md",
@@ -235,16 +249,9 @@
     "Architecture/Level/Player Spawn.md",
     "Architecture/Level/Spawned Scene.md",
     "Architecture/Level/Spawn Point.md",
-    "Architecture/Player/Player script.md",
     "Architecture/Resources/LevelData.md",
     "Architecture/Resources",
-    "Architecture/Globals/Overlay.md",
-    "Architecture/Globals/GameState.md",
-    "Architecture/Globals/Audio.md",
-    "Architecture/Enemy/Player Detector.md",
-    "Architecture/Enemy/EnemyState.md",
     "Architecture/Enemy/Hierarchy.canvas",
-    "Architecture/Player/Hierarchy.canvas",
     "Architecture/Enemy",
     "Architecture/Level",
     "Architecture/Globals",
@@ -253,8 +260,6 @@
     "Architecture/Player",
     "vb ötletek/ellenség ötletek.drawio.png",
     "Névtelen 1.canvas",
-    "Névtelen.canvas",
-    "Architecture",
-    "GDD"
+    "Névtelen.canvas"
   ]
 }

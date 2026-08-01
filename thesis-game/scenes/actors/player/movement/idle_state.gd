@@ -2,11 +2,9 @@ class_name PlayerIdleState
 extends PlayerMovementState
 
 
-
-func is_valid() -> bool:
+func is_valid(_player: Player) -> bool:
     return true
-    
-func process_movement(player: Player) -> void:
-    #player.animation_handler.switch_anim()
+
+
+func process_movement(_player: Player) -> void:
     pass
-    

@@ -1,0 +1,16 @@
+{
+	"nodes":[
+		{"id":"b833ab69c5b13814","x":172,"y":-122,"width":250,"height":60,"type":"text","text":"CarryHandler"},
+		{"id":"80d53df33c375049","x":-140,"y":-122,"width":250,"height":60,"type":"text","text":"Player"},
+		{"id":"c28559899f115b2a","x":-340,"y":-260,"width":250,"height":60,"type":"text","text":"CarryController"},
+		{"id":"e861a16a4e6d9487","x":-140,"y":-40,"width":250,"height":60,"type":"text","text":"Bomb"},
+		{"id":"1d15166cb17c5231","x":-140,"y":40,"width":250,"height":60,"type":"text","text":"Explosion"}
+	],
+	"edges":[
+		{"id":"6ac998c52eead344","fromNode":"c28559899f115b2a","fromSide":"bottom","toNode":"80d53df33c375049","toSide":"left"},
+		{"id":"f9bd3b9eaebb423c","fromNode":"80d53df33c375049","fromSide":"right","toNode":"b833ab69c5b13814","toSide":"left"},
+		{"id":"a2be0c8f57e9a852","fromNode":"c28559899f115b2a","fromSide":"right","toNode":"b833ab69c5b13814","toSide":"top"},
+		{"id":"87f268acc73abc22","fromNode":"c28559899f115b2a","fromSide":"bottom","toNode":"e861a16a4e6d9487","toSide":"left"},
+		{"id":"215348593abf9084","fromNode":"c28559899f115b2a","fromSide":"bottom","toNode":"1d15166cb17c5231","toSide":"left"}
+	]
+}

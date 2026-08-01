@@ -1,0 +1,12 @@
+
+- when carry input:
+	- if not carrying:
+		- spawn bomb
+		- start carrying
+		- play pickup animation
+		- return to normal
+	- if carrying:
+		- detach bomb from remote transform
+		- play throw animation
+		- stop carrying
+		- return to normal

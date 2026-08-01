@@ -1,18 +1,63 @@
 class_name Player
 extends CharacterBody2D
 
-@export var movement_states: Array[PlayerMovementState] = []
+signal want_throw
+signal want_carry
+
+enum State {
+    SPAWN,
+    DESPAWN,
+    DEAD,
+    HURT,
+    THROW,
+    PICKUP,
+    WALK,
+    IDLE,
+}
+
+@export var movement_states: Dictionary[State, PlayerMovementState] = {}
 
 @onready var animation_handler: AnimationHandler = $AnimationHandler
 @onready var damage_taker: Area2D = $DamageTaker
+@onready var direction: Direction = $Direction
+@onready var carry_handler: CarryHandler = $CarryHandler
 
 
 func _physics_process(_delta: float) -> void:
-    _get_movement_state().process_movement(self)
+    movement_states[_get_movement_state()].process_state(self)
 
 
-func _get_movement_state() -> PlayerMovementState:
-    for m: PlayerMovementState in movement_states:
-        if m.is_valid(): return m
+func do_carry(bomb: Bomb) -> void:
+    bomb.bomb_mode = Bomb.BombMode.CARRIED
+    carry_handler.set_carry(bomb)
 
-    return movement_states[-1]
+
+func do_throw() -> void:
+    var bomb: Bomb = get_node(carry_handler.remote_path)
+    carry_handler.clear_carry()
+    bomb.setup_throw(direction.get_vector())
+
+
+func try_throw() -> void:
+    match _get_movement_state():
+        State.WALK, State.IDLE: want_throw.emit()
+
+
+func reset_carry_state() -> void:
+    carry_handler.clear_carry()
+
+
+func try_carry() -> void:
+    match _get_movement_state():
+        State.WALK, State.IDLE: want_carry.emit()
+        _: return
+
+
+func _get_movement_state() -> State:
+
+    for m: String in State:
+        var s: State = State.get(m)
+        assert(movement_states.has(s))
+        if movement_states[s].is_valid(self): return s
+
+    return State.IDLE

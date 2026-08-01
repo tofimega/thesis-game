@@ -1,4 +1,4 @@
-- Requires (states, [[Damage Taker]], [[Carry handler]])
+- Requires (states, [[Damage Taker]], [[Architecture/Player/Carry handler]])
 
 ## Notes
 - Handles movement states and associated animation states

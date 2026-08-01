@@ -6,7 +6,7 @@ extends Node2D
 var _level_index: int = -1
 var _current_level: Level = null
 
-@onready var _player: Player = $Player
+@onready var _player: Player = %Player
 @onready var _level_holder: Node2D = $LevelHolder
 
 
