@@ -11,8 +11,9 @@ enum Dir {
 @export var face_direction: Dir = Dir.DOWN
 
 
-func get_vector() -> Vector2:
-    match face_direction:
+func get_vector(dir: Dir = -1) -> Vector2:
+    var f: Dir = face_direction if dir==-1 else dir
+    match f:
         Dir.UP: return Vector2.UP
         Dir.DOWN: return Vector2.DOWN
         Dir.LEFT: return Vector2.LEFT
@@ -21,10 +22,9 @@ func get_vector() -> Vector2:
 
 
 func set_dir_from_vector(vec: Vector2) -> Dir:
-    var longest_axis: Vector2.Axis = vec.abs().max_axis_index() as Vector2.Axis
-    var s: int = sign(vec[longest_axis])
-    if s == 0: return face_direction
-    s = min(s, 0)
-    face_direction = (longest_axis * 2 + s) as Dir
-
+    var a: Array[float]
+    a.resize(Dir.size())
+    for f: Dir in Dir.values():
+        a[f] = abs(get_vector(f).angle_to(vec))
+    face_direction = a.find(a.min()) as Dir
     return face_direction
