@@ -35,6 +35,7 @@ func do_carry(bomb: Bomb) -> void:
 func do_throw() -> void:
     var bomb: Bomb = get_node(carry_handler.remote_path)
     carry_handler.clear_carry()
+    bomb.global_position = global_position
     bomb.setup_throw(direction.get_vector())
 
 

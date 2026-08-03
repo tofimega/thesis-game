@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dcikvaw0p266" path="res://scenes/actors/bomb/bomb.gd" id="1_bkw70"]
 [ext_resource type="Texture2D" uid="uid://bqumgaw7oq038" path="res://assets/images/sprites/bomb/bomb.png" id="1_ei48f"]
+[ext_resource type="Texture2D" uid="uid://cxysss2857v3e" path="res://assets/images/sprites/shadow.png" id="3_2frx6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bkw70"]
 atlas = ExtResource("1_ei48f")
@@ -38,23 +39,31 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mgg8m"]
-radius = 8.062258
+radius = 7.0
 
 [node name="Bomb" type="CharacterBody2D" unique_id=194360528]
 collision_layer = 4
 motion_mode = 1
 script = ExtResource("1_bkw70")
+throw_speed = 100.0
+visual_offset_mult = 10.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2032228585]
-position = Vector2(0, -6)
+position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_mgg8m")
 
+[node name="Sprite2D" type="Sprite2D" parent="AnimatedSprite2D" unique_id=1506567284]
+modulate = Color(0.5529556, 0.55295557, 0.55295557, 1)
+z_index = -1
+position = Vector2(0, 9)
+texture = ExtResource("3_2frx6")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2018837234]
-position = Vector2(0, -4)
+position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_mgg8m")
 
 [node name="Fuse1" type="Timer" parent="." unique_id=835242506]
-wait_time = 5.0
+wait_time = 1.5
 one_shot = true
 
 [node name="ShortFuse" type="Timer" parent="." unique_id=769286796]

@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://b5ofmh2rfq14f" path="res://scenes/actors/general/direction.gd" id="7_g2g7f"]
 [ext_resource type="Script" uid="uid://mb8x5tek235p" path="res://scenes/actors/player/carry_handler.gd" id="8_fp13k"]
 [ext_resource type="Script" uid="uid://by3emb6fcj3rt" path="res://scenes/actors/general/damage_taker.gd" id="8_i174x"]
+[ext_resource type="Texture2D" uid="uid://cxysss2857v3e" path="res://assets/images/sprites/shadow.png" id="9_hcvpp"]
 [ext_resource type="Script" uid="uid://qphgmkvrhto2" path="res://scenes/actors/general/knockback_handler.gd" id="10_i174x"]
 
 [sub_resource type="Resource" id="Resource_fp13k"]
@@ -96,6 +97,12 @@ animations = Dictionary[int, StringName]({
 5: &"throw",
 6: &"lift"
 })
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimationHandler" unique_id=1339143295]
+modulate = Color(0.5529556, 0.55295557, 0.55295557, 1)
+z_index = -1
+position = Vector2(0, 12)
+texture = ExtResource("9_hcvpp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=920848685]
 shape = SubResource("CircleShape2D_mgg8m")

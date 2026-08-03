@@ -16,7 +16,7 @@ enum BombMode {
 @export var max_throw_distance: float = 3 * 16
 @export var drop_speed: float = 3
 @export var max_drop_distance: float = 1 * 16
-
+@export var visual_offset_mult: float = 3
 var bomb_mode: BombMode = BombMode.INACTIVE:
     set = set_bomb_mode
 
@@ -33,11 +33,14 @@ var _traveled: float = 0
 func _physics_process(delta: float) -> void:
     if bomb_mode != BombMode.AIRBORNE: return
     velocity = _chosen_dir * _chosen_speed
+    
     if _traveled >= _chosen_distance or move_and_slide():
         bomb_mode = BombMode.GROUNDED
+        animated_sprite_2d.offset.y = 0
         _bomb_hit_ground.emit()
         return
     _traveled += _chosen_speed * delta
+    animated_sprite_2d.offset.y = -sin(remap(_traveled, 0, _chosen_distance, 0, PI)) * visual_offset_mult
 
 func _ready() -> void:
     bomb_mode = BombMode.INACTIVE
