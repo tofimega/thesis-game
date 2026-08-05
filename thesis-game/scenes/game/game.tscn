@@ -29,6 +29,7 @@ unique_name_in_owner = true
 [node name="Bomb" parent="CarryController" unique_id=194360528 instance=ExtResource("5_5i0tg")]
 
 [node name="Explosion" parent="CarryController" unique_id=239094462 instance=ExtResource("6_5i0tg")]
+z_index = 1
 
 [connection signal="want_carry" from="CarryController/Player" to="CarryController" method="try_carry"]
 [connection signal="want_throw" from="CarryController/Player" to="CarryController" method="try_throw"]

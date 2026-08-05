@@ -24,7 +24,9 @@ enum State {
 
 
 func _physics_process(_delta: float) -> void:
-    movement_states[_get_movement_state()].process_state(self)
+    var ms: PlayerMovementState = movement_states[_get_movement_state()]
+    ms.process_state(self)
+    animation_handler.switch_anim(_get_movement_state())
 
 
 func do_carry(bomb: Bomb) -> void:

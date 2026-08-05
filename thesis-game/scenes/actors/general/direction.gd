@@ -11,8 +11,9 @@ enum Dir {
 @export var face_direction: Dir = Dir.DOWN
 
 
+@warning_ignore("int_as_enum_without_cast", "int_as_enum_without_match")
 func get_vector(dir: Dir = -1) -> Vector2:
-    var f: Dir = face_direction if dir==-1 else dir
+    var f: Dir = face_direction if dir == -1 else dir
     match f:
         Dir.UP: return Vector2.UP
         Dir.DOWN: return Vector2.DOWN

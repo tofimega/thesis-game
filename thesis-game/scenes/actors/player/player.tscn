@@ -50,6 +50,22 @@ region = Rect2(0, 0, 16, 24)
 atlas = ExtResource("2_l17oj")
 region = Rect2(16, 0, 16, 24)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_hcvpp"]
+atlas = ExtResource("2_l17oj")
+region = Rect2(0, 0, 17, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4iwnj"]
+atlas = ExtResource("2_l17oj")
+region = Rect2(51, 0, 17, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_068wj"]
+atlas = ExtResource("2_l17oj")
+region = Rect2(34, 0, 17, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xducv"]
+atlas = ExtResource("2_l17oj")
+region = Rect2(17, 0, 17, 24)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_j2q5q"]
 animations = [{
 "frames": [{
@@ -61,6 +77,38 @@ animations = [{
 }],
 "loop": 1,
 "name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hcvpp")
+}],
+"loop": 1,
+"name": &"stand_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4iwnj")
+}],
+"loop": 1,
+"name": &"stand_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_068wj")
+}],
+"loop": 1,
+"name": &"stand_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xducv")
+}],
+"loop": 1,
+"name": &"stand_up",
 "speed": 5.0
 }]
 
@@ -88,11 +136,12 @@ modulate = Color(0.5529556, 0.55295557, 0.55295557, 1)
 z_index = -1
 texture = ExtResource("9_hcvpp")
 
+[node name="Direction" type="Node" parent="." unique_id=1874156594]
+script = ExtResource("7_g2g7f")
+
 [node name="AnimationHandler" type="AnimatedSprite2D" parent="." unique_id=825897239]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_j2q5q")
-autoplay = "default"
-frame_progress = 0.6476097
 script = ExtResource("3_oj104")
 animations = Dictionary[int, StringName]({
 0: &"idle",
@@ -101,14 +150,12 @@ animations = Dictionary[int, StringName]({
 3: &"spawn",
 4: &"despawn",
 5: &"throw",
-6: &"lift"
+6: &"lift",
+7: &"stand"
 })
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=920848685]
 shape = SubResource("CircleShape2D_mgg8m")
-
-[node name="Direction" type="Node" parent="." unique_id=1874156594]
-script = ExtResource("7_g2g7f")
 
 [node name="KnockBackHandler" type="Node" parent="." unique_id=1549154095 node_paths=PackedStringArray("knockback_body", "knockback_timer")]
 script = ExtResource("10_i174x")

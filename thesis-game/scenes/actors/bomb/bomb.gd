@@ -44,6 +44,7 @@ func _physics_process(delta: float) -> void:
     if _traveled >= _chosen_distance or move_and_slide():
         bomb_mode = BombMode.GROUNDED
         animated_sprite_2d.offset.y = 0
+        spark.offset.y = 0
         _bomb_hit_ground.emit()
         return
     _traveled += _chosen_speed * delta

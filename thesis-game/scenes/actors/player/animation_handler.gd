@@ -12,6 +12,7 @@ enum AnimationState {
 }
 
 @export var animations: Dictionary[Player.State, StringName]
+@onready var direction: Direction = $"../Direction"
 
 var _current_state: Player.State = Player.State.SPAWN
 
@@ -19,7 +20,7 @@ var _current_state: Player.State = Player.State.SPAWN
 func switch_anim(state: Player.State) -> void:
     _current_state = state
     var anim_name: StringName = _get_anim_name(_current_state)
-    play(anim_name)
+    play("stand_"+direction.Dir.find_key(direction.face_direction).to_lower())
 
 
 func _get_anim_name(state: Player.State) -> StringName:
