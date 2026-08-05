@@ -3,7 +3,7 @@ extends Node2D
 
 @onready var player: Player = $Player
 @onready var bomb: Bomb = $Bomb
-@onready var explosion: Area2D = null
+@onready var explosion: Explosion = $Explosion
 
 
 func try_carry() -> void:
@@ -20,4 +20,4 @@ func try_throw() -> void:
 
 func on_explosion() -> void:
     player.reset_carry_state()
-    #explosion.spawn(bomb.global_position)
+    explosion.spawn(bomb.global_position)

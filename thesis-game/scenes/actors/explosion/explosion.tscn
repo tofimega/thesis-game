@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dvuhoen5pcmd"]
+
+[ext_resource type="Script" uid="uid://bcq11tel45qgh" path="res://scenes/actors/explosion/explosion.gd" id="1_8tsui"]
+[ext_resource type="Texture2D" uid="uid://c0ofnv617opuw" path="res://assets/images/sprites/PH_explosion.png" id="1_jxfaq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mgg8m"]
+radius = 24.0
+
+[node name="Explosion" type="Area2D" unique_id=239094462]
+visible = false
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_8tsui")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=403300774]
+texture = ExtResource("1_jxfaq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=778007590]
+shape = SubResource("CircleShape2D_mgg8m")
+
+[node name="Timer" type="Timer" parent="." unique_id=1584025466]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

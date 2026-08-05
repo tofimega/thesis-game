@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dcikvaw0p266" path="res://scenes/actors/bomb/bomb.gd" id="1_bkw70"]
 [ext_resource type="Texture2D" uid="uid://bqumgaw7oq038" path="res://assets/images/sprites/bomb/bomb.png" id="1_ei48f"]
 [ext_resource type="Texture2D" uid="uid://cxysss2857v3e" path="res://assets/images/sprites/shadow.png" id="3_2frx6"]
+[ext_resource type="Texture2D" uid="uid://d1sqssrp25tpd" path="res://assets/images/sprites/spark.png" id="4_nc5uk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bkw70"]
 atlas = ExtResource("1_ei48f")
@@ -38,6 +39,28 @@ animations = [{
 "speed": 15.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_vuc4h"]
+atlas = ExtResource("4_nc5uk")
+region = Rect2(0, 0, 3, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u045y"]
+atlas = ExtResource("4_nc5uk")
+region = Rect2(3, 0, 3, 3)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hcvpp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vuc4h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u045y")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 7.0
+}]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_mgg8m"]
 radius = 7.0
 
@@ -48,15 +71,21 @@ script = ExtResource("1_bkw70")
 throw_speed = 100.0
 visual_offset_mult = 10.0
 
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1506567284]
+modulate = Color(0.5529556, 0.55295557, 0.55295557, 1)
+position = Vector2(0, 1)
+texture = ExtResource("3_2frx6")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2032228585]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_mgg8m")
 
-[node name="Sprite2D" type="Sprite2D" parent="AnimatedSprite2D" unique_id=1506567284]
-modulate = Color(0.5529556, 0.55295557, 0.55295557, 1)
-z_index = -1
-position = Vector2(0, 9)
-texture = ExtResource("3_2frx6")
+[node name="Spark" type="AnimatedSprite2D" parent="." unique_id=634066349]
+position = Vector2(4, -17)
+sprite_frames = SubResource("SpriteFrames_hcvpp")
+autoplay = "default"
+frame_progress = 0.5070601
+centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2018837234]
 position = Vector2(0, -6)

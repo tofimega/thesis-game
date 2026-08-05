@@ -17,6 +17,7 @@ enum BombMode {
 @export var drop_speed: float = 3
 @export var max_drop_distance: float = 1 * 16
 @export var visual_offset_mult: float = 3
+
 var bomb_mode: BombMode = BombMode.INACTIVE:
     set = set_bomb_mode
 
@@ -25,28 +26,35 @@ var _chosen_speed: float
 var _chosen_distance: float
 var _traveled: float = 0
 
+@onready var shadow: Sprite2D = $Shadow
 @onready var fuse_1: Timer = $Fuse1
 @onready var short_fuse: Timer = $ShortFuse
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var spark: AnimatedSprite2D = $Spark
+
+
+func _ready() -> void:
+    bomb_mode = BombMode.INACTIVE
 
 
 func _physics_process(delta: float) -> void:
     if bomb_mode != BombMode.AIRBORNE: return
     velocity = _chosen_dir * _chosen_speed
-    
+
     if _traveled >= _chosen_distance or move_and_slide():
         bomb_mode = BombMode.GROUNDED
         animated_sprite_2d.offset.y = 0
         _bomb_hit_ground.emit()
         return
     _traveled += _chosen_speed * delta
-    animated_sprite_2d.offset.y = -sin(remap(_traveled, 0, _chosen_distance, 0, PI)) * visual_offset_mult
+    var offset: float = -sin(remap(_traveled, 0, _chosen_distance, 0, PI)) * visual_offset_mult
+    animated_sprite_2d.offset.y = offset
+    spark.offset.y = offset
 
-func _ready() -> void:
-    bomb_mode = BombMode.INACTIVE
 
 func set_bomb_mode(b: BombMode) -> void:
     bomb_mode = b
+    shadow.visible = true
     match bomb_mode:
         BombMode.INACTIVE:
             z_index = 0
@@ -57,6 +65,7 @@ func set_bomb_mode(b: BombMode) -> void:
             set_physics_process(false)
             visible = false
         BombMode.CARRIED:
+            shadow.visible = false
             z_index = 1
             fuse_1.start()
             visible = true
