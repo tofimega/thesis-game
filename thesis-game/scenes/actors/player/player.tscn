@@ -33,13 +33,11 @@ metadata/_custom_type_script = "uid://bjwlw7wwq3ad0"
 [sub_resource type="Resource" id="Resource_inh5e"]
 script = ExtResource("4_inh5e")
 timer_node = NodePath("ThrowTimer")
-animation_name = &"throw"
 metadata/_custom_type_script = "uid://c57i14wd82g2p"
 
-[sub_resource type="Resource" id="Resource_4iwnj"]
+[sub_resource type="Resource" id="Resource_hcvpp"]
 script = ExtResource("4_inh5e")
 timer_node = NodePath("PickupTimer")
-animation_name = &"lift"
 metadata/_custom_type_script = "uid://c57i14wd82g2p"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l17oj"]
@@ -126,7 +124,7 @@ movement_states = Dictionary[int, ExtResource("2_mpktj")]({
 2: SubResource("Resource_i174x"),
 3: SubResource("Resource_8bj4u"),
 4: SubResource("Resource_inh5e"),
-5: SubResource("Resource_4iwnj"),
+5: SubResource("Resource_hcvpp"),
 6: ExtResource("3_qdyt2"),
 7: ExtResource("4_g2g7f")
 })
@@ -142,15 +140,16 @@ script = ExtResource("7_g2g7f")
 [node name="AnimationHandler" type="AnimatedSprite2D" parent="." unique_id=825897239]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_j2q5q")
+animation = &"stand_left"
 script = ExtResource("3_oj104")
 animations = Dictionary[int, StringName]({
-0: &"idle",
-1: &"walk",
-2: &"hurt",
-3: &"spawn",
-4: &"despawn",
-5: &"throw",
-6: &"lift",
+0: &"stand",
+1: &"stand",
+2: &"stand",
+3: &"stand",
+4: &"stand",
+5: &"stand",
+6: &"stand",
 7: &"stand"
 })
 
@@ -180,9 +179,11 @@ script = ExtResource("8_fp13k")
 metadata/_custom_type_script = "uid://mb8x5tek235p"
 
 [node name="PickupTimer" type="Timer" parent="." unique_id=227486486]
+wait_time = 0.3
 one_shot = true
 
 [node name="ThrowTimer" type="Timer" parent="." unique_id=1029622206]
+wait_time = 0.3
 one_shot = true
 
 [node name="KnockbackTimer" type="Timer" parent="." unique_id=1703618359]

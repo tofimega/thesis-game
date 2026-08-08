@@ -21,6 +21,11 @@ enum State {
 @onready var damage_taker: Area2D = $DamageTaker
 @onready var direction: Direction = $Direction
 @onready var carry_handler: CarryHandler = $CarryHandler
+@onready var pickup_timer: Timer = $PickupTimer
+@onready var throw_timer: Timer = $ThrowTimer
+@onready var invin_timer: Timer = $InvinTimer
+@onready var knockback_timer: Timer = $KnockbackTimer
+
 
 
 func _physics_process(_delta: float) -> void:
@@ -32,6 +37,7 @@ func _physics_process(_delta: float) -> void:
 func do_carry(bomb: Bomb) -> void:
     bomb.bomb_mode = Bomb.BombMode.CARRIED
     carry_handler.set_carry(bomb)
+    pickup_timer.start()
 
 
 func do_throw() -> void:
@@ -39,6 +45,7 @@ func do_throw() -> void:
     carry_handler.clear_carry()
     bomb.global_position = global_position
     bomb.setup_throw(direction.get_vector())
+    throw_timer.start()
 
 
 func try_throw() -> void:
