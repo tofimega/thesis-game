@@ -41,7 +41,8 @@ func _physics_process(delta: float) -> void:
     if bomb_mode != BombMode.AIRBORNE: return
     velocity = _chosen_dir * _chosen_speed
 
-    if _traveled >= _chosen_distance or move_and_slide():
+    move_and_slide()
+    if _traveled >= _chosen_distance:
         bomb_mode = BombMode.GROUNDED
         animated_sprite_2d.offset.y = 0
         spark.offset.y = 0
@@ -56,6 +57,7 @@ func _physics_process(delta: float) -> void:
 func set_bomb_mode(b: BombMode) -> void:
     bomb_mode = b
     shadow.visible = true
+
     match bomb_mode:
         BombMode.INACTIVE:
             z_index = 0
