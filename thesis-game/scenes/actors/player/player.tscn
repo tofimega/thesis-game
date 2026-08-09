@@ -129,18 +129,13 @@ movement_states = Dictionary[int, ExtResource("2_mpktj")]({
 7: ExtResource("4_g2g7f")
 })
 
-[node name="Shadow" type="Sprite2D" parent="." unique_id=1339143295]
-modulate = Color(0.5529556, 0.55295557, 0.55295557, 1)
-z_index = -1
-texture = ExtResource("9_hcvpp")
-
 [node name="Direction" type="Node" parent="." unique_id=1874156594]
 script = ExtResource("7_g2g7f")
 
 [node name="AnimationHandler" type="AnimatedSprite2D" parent="." unique_id=825897239]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_j2q5q")
-animation = &"stand_left"
+animation = &"stand_down"
 script = ExtResource("3_oj104")
 animations = Dictionary[int, StringName]({
 0: &"stand",
@@ -177,6 +172,12 @@ update_rotation = false
 update_scale = false
 script = ExtResource("8_fp13k")
 metadata/_custom_type_script = "uid://mb8x5tek235p"
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1339143295]
+modulate = Color(0.5529556, 0.55295557, 0.55295557, 1)
+show_behind_parent = true
+position = Vector2(-1, 0)
+texture = ExtResource("9_hcvpp")
 
 [node name="PickupTimer" type="Timer" parent="." unique_id=227486486]
 wait_time = 0.3
