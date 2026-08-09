@@ -8,8 +8,11 @@ signal iframes_over
 
 @export var invincible_time: float = 0
 @export var invincibility_timer: Timer = null
+@export_group("Direction")
 @export var directional_exlucions: Array[Vector2]
-
+@export var direction_source: Direction
+@export var draw_color: Color = Color(1, 0, 0, .3)
+@export var draw_radius: float = 8
 
 func _ready() -> void:
 
@@ -28,7 +31,9 @@ func _draw() -> void:
     for v: Vector2 in directional_exlucions:
         var x: float = deg_to_rad(v.x)
         var y: float = deg_to_rad(v.y)
-        draw_ellipse_arc(Vector2.ZERO, 8, 8, x - y, x + y, 100, Color(1, 0, 0, .3), 16)
+        var direction_offset: float = direction_source.get_vector().angle() if direction_source else 0
+        x+= direction_offset
+        draw_ellipse_arc(Vector2.ZERO, draw_radius, draw_radius, x - y, x + y, 100, draw_color, draw_radius*2)
 
 
 func _handle_hit(other: Node2D) -> void:
@@ -38,6 +43,8 @@ func _handle_hit(other: Node2D) -> void:
     for v: Vector2 in directional_exlucions:
         var x: float = deg_to_rad(v.x)
         var y: float = deg_to_rad(v.y)
+        var direction_offset: float = direction_source.get_vector().angle() if direction_source else 0
+        x+= direction_offset
         if angle_vec.angle() >= x - y and angle_vec.angle() <= x + y:
             hit_blocked.emit(angle_vec)
             return
