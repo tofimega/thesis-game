@@ -23,7 +23,7 @@ func _ready() -> void:
     invincibility_timer.timeout.connect(iframes_over.emit)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
     queue_redraw()
 
 
