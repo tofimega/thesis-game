@@ -45,7 +45,7 @@ func load_next_room() -> Marker2D:
 
 func advance_room() -> void:
     unload_room()
-    if last_room:
+    if last_room():
         level_clear.emit()
         return
     room_over.emit()

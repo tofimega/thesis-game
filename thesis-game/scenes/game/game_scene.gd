@@ -51,7 +51,8 @@ func clear_level() -> void:
 func next_room() -> void:
     carry_controller.stop()
     # move camera to next room   
-    var room_pos: float = (_current_level._room_index + 1) * -180
+    var room_pos: float = (_current_level._room_index + 1) * -176
+    
     await create_tween().tween_property(camera_2d, "position", Vector2(0, room_pos), abs(room_pos - camera_2d.position.y) / camera_scroll_speed).finished
     #load next room
     var spawn_point: Vector2 = _current_level.load_next_room().global_position

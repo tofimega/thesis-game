@@ -33,6 +33,9 @@ tile_set = SubResource("TileSet_s8va5")
 [node name="Solid" parent="Rooms/Room/Offset" parent_id_path=PackedInt32Array(577419168, 2147154176) index="2" unique_id=1031997263]
 tile_map_data = PackedByteArray("AAAFAAMAAAADAAIAAAAHAAQAAAADAAIAAAALAAMAAAADAAIAAAAEAAYAAAADAAIAAAAEAAcAAAADAAIAAAAFAAcAAAADAAIAAAAGAAcAAAADAAIAAAAHAAcAAAADAAIAAAAIAAcAAAADAAIAAAAJAAcAAAADAAIAAAAKAAcAAAADAAIAAAALAAYAAAADAAIAAAAMAAYAAAADAAIAAAAMAAUAAAADAAIAAAA=")
 
+[node name="Chaser_1" parent="Rooms/Room/Offset/Dynamic" parent_id_path=PackedInt32Array(577419168, 881910093) index="0" unique_id=656223141 instance_placeholder="res://scenes/actors/enemy/chaser/type_1/NME_chaser_1.tscn"]
+position = Vector2(40, 56)
+
 [node name="PlayerSpawn" parent="Rooms/Room/Offset" parent_id_path=PackedInt32Array(577419168, 2147154176) index="5" unique_id=1866701011]
 position = Vector2(136, 56)
 
@@ -44,7 +47,7 @@ script = ExtResource("5_6761a")
 face_direction = 1
 metadata/_custom_type_script = "uid://b5ofmh2rfq14f"
 
-[node name="Chaser_1" parent="Rooms/Room2/Offset/Dynamic" parent_id_path=PackedInt32Array(761868479, 881910093) index="0" unique_id=656223141 node_paths=PackedStringArray("direction_override") instance_placeholder="res://scenes/actors/enemy/chaser/type_1/NME_chaser_1.tscn"]
+[node name="Chaser_1" parent="Rooms/Room2/Offset/Dynamic" parent_id_path=PackedInt32Array(761868479, 881910093) index="0" unique_id=376092202 node_paths=PackedStringArray("direction_override") instance_placeholder="res://scenes/actors/enemy/chaser/type_1/NME_chaser_1.tscn"]
 position = Vector2(136, 88)
 direction_override = NodePath("../../../Chaser_1_Direction2")
 

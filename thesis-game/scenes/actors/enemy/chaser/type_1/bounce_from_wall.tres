@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_2l4ec")
+distance = 8.0
 timer = NodePath("BounceTimer")
 signal_switches = Dictionary[StringName, int]({
 &"time_over": 5
