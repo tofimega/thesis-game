@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="TurnState" format=3 uid="uid://b23qceaf571n2"]
+
+[ext_resource type="Script" uid="uid://ct0ux2q15g2j1" path="res://scenes/actors/enemy/chaser/states/turn_state.gd" id="2_na50x"]
+
+[resource]
+script = ExtResource("2_na50x")
+animation_end_switch = 0
+metadata/_custom_type_script = "uid://ct0ux2q15g2j1"

@@ -31,6 +31,9 @@ unique_name_in_owner = true
 [node name="Explosion" parent="CarryController" unique_id=239094462 instance=ExtResource("6_5i0tg")]
 z_index = 1
 
+[node name="Camera2D" type="Camera2D" parent="." unique_id=873286340]
+anchor_mode = 0
+
 [connection signal="want_carry" from="CarryController/Player" to="CarryController" method="try_carry"]
 [connection signal="want_throw" from="CarryController/Player" to="CarryController" method="try_throw"]
 [connection signal="exploded" from="CarryController/Bomb" to="CarryController" method="on_explosion"]

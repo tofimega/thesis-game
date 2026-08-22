@@ -2,6 +2,9 @@
 class_name Level
 extends Node2D
 
+signal room_over
+signal level_clear
+
 @export_tool_button("Reorder Rooms") var reorder: Callable = reorder_rooms
 
 @export var completion_flags: Array[SaveGame.SaveFlag] = []
@@ -23,7 +26,7 @@ func reorder_rooms() -> void:
 
 
 func unload_room() -> void:
-    if _current_room: _current_room.remove_actors()
+    if _current_room: _current_room.clear_room()
 
 
 func load_next_room() -> Marker2D:
@@ -34,9 +37,18 @@ func load_next_room() -> Marker2D:
         return null
 
     _current_room = _rooms.get_child(_room_index)
+    _current_room.room_cleared.connect(advance_room, CONNECT_ONE_SHOT)
     _current_room.spawn_actors()
 
     return _current_room.player_spawn
+
+
+func advance_room() -> void:
+    unload_room()
+    if last_room:
+        level_clear.emit()
+        return
+    room_over.emit()
 
 
 func last_room() -> bool:

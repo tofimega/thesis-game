@@ -14,7 +14,7 @@ func is_valid(_player: Player) -> bool:
 
 
 func process_movement(player: Player) -> void:
-    player.velocity = _input_vec.normalized() * movement_speed # TODO: carry handler
+    player.velocity = _input_vec.normalized() * (movement_speed if player.carry_handler.get_carry_state()==CarryHandler.CarryState.FREE else carry_movement_speed)
     player.direction.set_dir_from_vector(player.velocity)
     player.move_and_slide()
     

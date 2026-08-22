@@ -107,3 +107,6 @@ func explode() -> void:
     if bomb_mode == BombMode.AIRBORNE: await _bomb_hit_ground
     exploded.emit()
     bomb_mode = BombMode.INACTIVE
+
+func cancel_explosion()->void:
+    bomb_mode=BombMode.INACTIVE

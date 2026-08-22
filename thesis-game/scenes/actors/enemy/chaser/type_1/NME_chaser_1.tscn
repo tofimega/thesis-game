@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://5psv0to4oigy"]
+
+[ext_resource type="PackedScene" uid="uid://c4fp3up3t84pd" path="res://scenes/actors/enemy/base/enemy.tscn" id="1_l1883"]
+[ext_resource type="Script" uid="uid://d38l3406whcop" path="res://scenes/actors/enemy/base/enemy_state.gd" id="2_wc1rh"]
+[ext_resource type="Resource" uid="uid://du6r32o2onx7f" path="res://scenes/actors/enemy/chaser/type_1/patrol_state.tres" id="3_86ddo"]
+[ext_resource type="Resource" uid="uid://b23qceaf571n2" path="res://scenes/actors/enemy/chaser/type_1/turn_state.tres" id="4_k3usr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mgg8m"]
+radius = 8.0
+
+[node name="Chaser_1" unique_id=656223141 instance=ExtResource("1_l1883")]
+states = Array[ExtResource("2_wc1rh")]([ExtResource("3_86ddo"), ExtResource("4_k3usr")])
+counted = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageTaker" parent_id_path=PackedInt32Array(1397366735) index="0" unique_id=1917954894]
+shape = SubResource("CircleShape2D_mgg8m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BombDamageTaker" parent_id_path=PackedInt32Array(2119286083) index="0" unique_id=263019094]
+shape = SubResource("CircleShape2D_mgg8m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="5" unique_id=1764313750]
+shape = SubResource("CircleShape2D_mgg8m")
+
+[node name="PlayerDetection" type="RayCast2D" parent="." index="8" unique_id=1815380233]
+target_position = Vector2(64, 0)
+collision_mask = 2

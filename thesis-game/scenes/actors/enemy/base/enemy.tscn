@@ -4,8 +4,30 @@
 [ext_resource type="Script" uid="uid://dlyvegrsfhjry" path="res://scripts/actors_components/health.gd" id="1_vi16i"]
 [ext_resource type="Script" uid="uid://by3emb6fcj3rt" path="res://scenes/actors/general/damage_taker.gd" id="2_tn3i4"]
 [ext_resource type="Script" uid="uid://b5ofmh2rfq14f" path="res://scenes/actors/general/direction.gd" id="3_xfx7f"]
+[ext_resource type="Texture2D" uid="uid://b0bqpl13p1qmi" path="res://assets/images/sprites/PH-enemy.png" id="5_q6631"]
+[ext_resource type="Texture2D" uid="uid://cxysss2857v3e" path="res://assets/images/sprites/shadow.png" id="5_vx4jr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vx4jr"]
+atlas = ExtResource("5_q6631")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6f51t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vx4jr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vx4jr")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Enemy" type="CharacterBody2D" unique_id=656223141]
+collision_layer = 8
+collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_a0au8")
 
@@ -35,4 +57,15 @@ metadata/_custom_type_script = "uid://by3emb6fcj3rt"
 script = ExtResource("3_xfx7f")
 metadata/_custom_type_script = "uid://b5ofmh2rfq14f"
 
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1552092155]
+position = Vector2(0, 7)
+texture = ExtResource("5_vx4jr")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1227982333]
+sprite_frames = SubResource("SpriteFrames_6f51t")
+
+[connection signal="health_depleted" from="Health" to="." method="_on_health_depleted"]
+[connection signal="hit" from="DamageTaker" to="." method="_on_damage_taker_hit"]
+[connection signal="hit" from="BombDamageTaker" to="." method="_on_bomb_damage_taker_hit"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_animation_over"]
+[connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_animation_over"]

@@ -13,5 +13,8 @@ func spawn(pos: Vector2)->void:
 
 
 func _on_timer_timeout() -> void:
+    stop()
+
+func stop()->void:
     visible = false
     set_collision_layer_value(5, false)
