@@ -15,7 +15,7 @@ var raycast_node: RayCast2D
 
 func check_switch(enemy: Enemy) -> void:
     if raycast_node:
-        raycast_node.target_position = enemy.direction.get_vector()*player_detection_range
+        raycast_node.target_position = enemy.direction.get_vector() * player_detection_range
         raycast_node.force_raycast_update()
         if raycast_node.is_colliding(): player_detected.emit()
 
@@ -27,12 +27,12 @@ func process_enemy(enemy: Enemy, _delta: float) -> void:
 
 
 func init_state(enemy: Enemy) -> void:
-    raycast_node = enemy.get_node(raycast)
+    raycast_node = enemy.get_node_or_null(raycast)
 
 
-func enter_state(enemy: Enemy) -> void:
+func enter_state(_enemy: Enemy) -> void:
     pass
 
 
-func exit_state(enemy: Enemy) -> void:
+func exit_state(_enemy: Enemy) -> void:
     pass

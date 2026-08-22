@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BounceState" format=3 uid="uid://c4r1j7quonk0b"]
+
+[ext_resource type="Script" uid="uid://burusmb7lccmc" path="res://scenes/actors/enemy/chaser/states/bounce_state.gd" id="1_2l4ec"]
+
+[resource]
+script = ExtResource("1_2l4ec")
+timer = NodePath("BounceTimer")
+signal_switches = Dictionary[StringName, int]({
+&"time_over": 5
+})
+can_explode = true
+metadata/_custom_type_script = "uid://burusmb7lccmc"

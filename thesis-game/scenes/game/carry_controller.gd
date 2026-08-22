@@ -9,7 +9,6 @@ extends Node2D
 func try_carry() -> void:
     if bomb.bomb_mode != Bomb.BombMode.INACTIVE: return
     player.do_carry(bomb)
-    
 
 
 func try_throw() -> void:
@@ -25,7 +24,7 @@ func on_explosion() -> void:
 func stop() -> void:
     player.reset_carry_state()
     player.set_physics_process(false)
-    player.visible=false
+    player.visible = false
     bomb.cancel_explosion()
     explosion.stop()
 
@@ -33,4 +32,4 @@ func stop() -> void:
 func start() -> void:
     #TODO: player's spawn state (animation)
     player.set_physics_process(true)
-    player.visible=true
+    player.visible = true

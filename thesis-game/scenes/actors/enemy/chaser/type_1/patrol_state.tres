@@ -7,6 +7,7 @@ script = ExtResource("1_r56sx")
 velocity = 15.0
 raycast = NodePath("PlayerDetection")
 signal_switches = Dictionary[StringName, int]({
+&"player_detected": 2,
 &"wall_hit": 1
 })
 metadata/_custom_type_script = "uid://cjyy862upicdc"

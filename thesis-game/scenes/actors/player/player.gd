@@ -27,7 +27,6 @@ enum State {
 @onready var knockback_timer: Timer = $KnockbackTimer
 
 
-
 func _physics_process(_delta: float) -> void:
     var ms: PlayerMovementState = movement_states[_get_movement_state()]
     ms.process_state(self)

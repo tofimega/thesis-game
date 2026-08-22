@@ -18,7 +18,7 @@ func spawn_actors() -> void:
 func clear_room() -> void:
     for n: Node in dynamic.get_children():
         n.queue_free()
-    enemy_count =0
+    enemy_count = 0
 
 
 func register_enemy(e: Enemy) -> void:

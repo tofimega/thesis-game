@@ -8,6 +8,7 @@ extends Resource
 @export var can_hurt: bool = true
 @export var animation_end_switch: int = -1
 
+
 @abstract func check_switch(enemy: Enemy) -> void
 
 

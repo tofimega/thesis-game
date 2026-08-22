@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="HopState" format=3 uid="uid://dp6tegv0r5sum"]
+
+[ext_resource type="Script" uid="uid://u2y7k0m5uym4" path="res://scenes/actors/enemy/chaser/states/hop_state.gd" id="1_6wkv0"]
+
+[resource]
+script = ExtResource("1_6wkv0")
+timer = NodePath("HopTimer")
+signal_switches = Dictionary[StringName, int]({
+&"time_over": 3
+})
+metadata/_custom_type_script = "uid://u2y7k0m5uym4"

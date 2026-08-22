@@ -108,5 +108,6 @@ func explode() -> void:
     exploded.emit()
     bomb_mode = BombMode.INACTIVE
 
-func cancel_explosion()->void:
-    bomb_mode=BombMode.INACTIVE
+
+func cancel_explosion() -> void:
+    bomb_mode = BombMode.INACTIVE

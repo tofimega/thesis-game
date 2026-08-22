@@ -6,6 +6,7 @@ signal kill_me
 @export var states: Array[EnemyState]
 @export var counted: bool = false
 @export var direction_override: Direction
+
 var switches: Dictionary[StringName, Callable]
 var current_state: EnemyState
 
@@ -26,7 +27,7 @@ func _ready() -> void:
         s.init_state(self)
         for sw: StringName in s.signal_switches:
             assert(s.has_signal(sw), "State " + str(i) + " has no signal with name " + sw)
-           # assert(states.has(s.signal_switches[sw]), "State machine does not have this state registered")
+    # assert(states.has(s.signal_switches[sw]), "State machine does not have this state registered")
     _switch_state(0)
 
 

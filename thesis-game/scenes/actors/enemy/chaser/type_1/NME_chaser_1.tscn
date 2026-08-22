@@ -4,12 +4,17 @@
 [ext_resource type="Script" uid="uid://d38l3406whcop" path="res://scenes/actors/enemy/base/enemy_state.gd" id="2_wc1rh"]
 [ext_resource type="Resource" uid="uid://du6r32o2onx7f" path="res://scenes/actors/enemy/chaser/type_1/patrol_state.tres" id="3_86ddo"]
 [ext_resource type="Resource" uid="uid://b23qceaf571n2" path="res://scenes/actors/enemy/chaser/type_1/turn_state.tres" id="4_k3usr"]
+[ext_resource type="Resource" uid="uid://dp6tegv0r5sum" path="res://scenes/actors/enemy/chaser/type_1/hop_before_dash.tres" id="5_p5tfw"]
+[ext_resource type="Resource" uid="uid://ciiidjavv2qqe" path="res://scenes/actors/enemy/chaser/type_1/dash_state.tres" id="6_07s2y"]
+[ext_resource type="Resource" uid="uid://c4r1j7quonk0b" path="res://scenes/actors/enemy/chaser/type_1/bounce_from_wall.tres" id="7_me4i1"]
+[ext_resource type="Resource" uid="uid://l7kdg1o5mhnw" path="res://scenes/actors/enemy/chaser/type_1/dizzy_state.tres" id="8_hwvj8"]
+[ext_resource type="Resource" uid="uid://dqhg3jfhlku8h" path="res://scenes/actors/enemy/chaser/type_1/dizzy_recovery.tres" id="9_00esy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mgg8m"]
 radius = 8.0
 
 [node name="Chaser_1" unique_id=656223141 instance=ExtResource("1_l1883")]
-states = Array[ExtResource("2_wc1rh")]([ExtResource("3_86ddo"), ExtResource("4_k3usr")])
+states = Array[ExtResource("2_wc1rh")]([ExtResource("3_86ddo"), ExtResource("4_k3usr"), ExtResource("5_p5tfw"), ExtResource("6_07s2y"), ExtResource("7_me4i1"), ExtResource("8_hwvj8"), ExtResource("9_00esy")])
 counted = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageTaker" parent_id_path=PackedInt32Array(1397366735) index="0" unique_id=1917954894]
@@ -24,3 +29,13 @@ shape = SubResource("CircleShape2D_mgg8m")
 [node name="PlayerDetection" type="RayCast2D" parent="." index="8" unique_id=1815380233]
 target_position = Vector2(64, 0)
 collision_mask = 2
+
+[node name="HopTimer" type="Timer" parent="." index="9" unique_id=20551572]
+wait_time = 0.5
+one_shot = true
+
+[node name="BounceTimer" type="Timer" parent="." index="10" unique_id=2133184319]
+wait_time = 0.5
+
+[node name="DizzyTimer" type="Timer" parent="." index="11" unique_id=1733681963]
+wait_time = 3.0

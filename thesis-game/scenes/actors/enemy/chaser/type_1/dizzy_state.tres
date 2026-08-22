@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="AnimateState" format=3 uid="uid://l7kdg1o5mhnw"]
+
+[ext_resource type="Script" uid="uid://dh6exbwf7pf8n" path="res://scenes/actors/enemy/chaser/states/animate_state.gd" id="1_8dtr3"]
+
+[resource]
+script = ExtResource("1_8dtr3")
+timer = NodePath("DizzyTimer")
+signal_switches = Dictionary[StringName, int]({
+&"time_over": 6
+})
+can_explode = true
+metadata/_custom_type_script = "uid://dh6exbwf7pf8n"
