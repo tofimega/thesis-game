@@ -43,11 +43,10 @@ invincibility_timer = NodePath("../InvinTimer")
 direction_source = NodePath("../Direction")
 metadata/_custom_type_script = "uid://by3emb6fcj3rt"
 
-[node name="BombDamageTaker" type="Area2D" parent="." unique_id=2119286083 node_paths=PackedStringArray("invincibility_timer", "direction_source")]
+[node name="BombDamageTaker" type="Area2D" parent="." unique_id=2119286083 node_paths=PackedStringArray("direction_source")]
 collision_layer = 0
 collision_mask = 16
 script = ExtResource("2_tn3i4")
-invincibility_timer = NodePath("../InvinTimer")
 direction_source = NodePath("../Direction")
 metadata/_custom_type_script = "uid://by3emb6fcj3rt"
 

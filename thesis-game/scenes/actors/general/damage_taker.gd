@@ -20,7 +20,7 @@ func _ready() -> void:
     if !Engine.is_editor_hint(): set_process(false)
     area_entered.connect(_handle_hit)
     body_entered.connect(_handle_hit)
-    invincibility_timer.timeout.connect(iframes_over.emit)
+    if invincibility_timer: invincibility_timer.timeout.connect(iframes_over.emit)
 
 
 func _process(_delta: float) -> void:
@@ -37,7 +37,10 @@ func _draw() -> void:
 
 
 func _handle_hit(other: Node2D) -> void:
-    if !invincibility_timer.is_stopped(): return
+    print("hitbox touched")
+    if invincibility_timer and !invincibility_timer.is_stopped():
+        print("invincible")
+        return
     var incoming_pos: Vector2 = other.global_position
     var angle_vec: Vector2 = global_position.direction_to(incoming_pos)
     for v: Vector2 in directional_exlucions:
@@ -45,9 +48,11 @@ func _handle_hit(other: Node2D) -> void:
         var y: float = deg_to_rad(v.y)
         var direction_offset: float = direction_source.get_vector().angle() if direction_source else 0.0
         x+= direction_offset
+        print("hit blocked")
         if angle_vec.angle() >= x - y and angle_vec.angle() <= x + y:
             hit_blocked.emit(angle_vec)
             return
 
+    print("hit valid")
     hit.emit(angle_vec)
-    invincibility_timer.start(invincible_time)
+    if invincibility_timer: invincibility_timer.start(invincible_time)

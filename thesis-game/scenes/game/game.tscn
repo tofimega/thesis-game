@@ -30,6 +30,8 @@ unique_name_in_owner = true
 
 [node name="Explosion" parent="CarryController" unique_id=239094462 instance=ExtResource("6_5i0tg")]
 z_index = 1
+monitoring = false
+monitorable = false
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=873286340]
 anchor_mode = 0

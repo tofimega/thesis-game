@@ -52,6 +52,7 @@ func _switch_state(state: int) -> void:
 
     animated_sprite_2d.play(current_state.anim_name)
     current_state.enter_state(self)
+    print(current_state.resource_path+" | explodable: "+str(current_state.can_explode))
 
 
 func _on_damage_taker_hit(_from: Vector2) -> void:
@@ -60,6 +61,7 @@ func _on_damage_taker_hit(_from: Vector2) -> void:
 
 
 func _on_bomb_damage_taker_hit(_from: Vector2) -> void:
+    print("explosion hit")
     if !current_state.can_explode: return
     kill_me.emit()
 

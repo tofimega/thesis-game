@@ -13,15 +13,23 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_mgg8m"]
 radius = 8.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_p5tfw"]
+
 [node name="Chaser_1" unique_id=656223141 instance=ExtResource("1_l1883")]
 states = Array[ExtResource("2_wc1rh")]([ExtResource("3_86ddo"), ExtResource("4_k3usr"), ExtResource("5_p5tfw"), ExtResource("6_07s2y"), ExtResource("7_me4i1"), ExtResource("8_hwvj8"), ExtResource("9_00esy")])
 counted = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageTaker" parent_id_path=PackedInt32Array(1397366735) index="0" unique_id=1917954894]
+[node name="DamageTaker" parent="." index="1" unique_id=1397366735]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageTaker" index="0" unique_id=1917954894]
 shape = SubResource("CircleShape2D_mgg8m")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BombDamageTaker" parent_id_path=PackedInt32Array(2119286083) index="0" unique_id=263019094]
-shape = SubResource("CircleShape2D_mgg8m")
+[node name="BombDamageTaker" parent="." index="2" unique_id=2119286083]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BombDamageTaker" index="0" unique_id=263019094]
+shape = SubResource("CircleShape2D_p5tfw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="5" unique_id=1764313750]
 shape = SubResource("CircleShape2D_mgg8m")
@@ -38,4 +46,4 @@ one_shot = true
 wait_time = 0.5
 
 [node name="DizzyTimer" type="Timer" parent="." index="11" unique_id=1733681963]
-wait_time = 3.0
+wait_time = 5.0

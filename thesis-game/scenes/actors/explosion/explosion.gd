@@ -7,13 +7,13 @@ extends Area2D
 func spawn(pos: Vector2) -> void:
     global_position = pos
     visible = true
-    set_collision_layer_value(5, true)
+    set_deferred("monitorable", true)
     timer.start()
 
 
 func stop() -> void:
     visible = false
-    set_collision_layer_value(5, false)
+    set_deferred("monitorable", false)
 
 
 func _on_timer_timeout() -> void:
