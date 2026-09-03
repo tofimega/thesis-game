@@ -24,7 +24,7 @@ func _ready() -> void:
     for p: Submenu in panels.values():
         p.visible = false
         p.set_process_input(false)
-    switch_panel(MenuPanel.TITLE)
+    
 
 
 func switch_panel(panel: MenuPanel) -> void:

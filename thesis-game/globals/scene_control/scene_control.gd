@@ -17,7 +17,7 @@ var loaded_file: String
 
 
 func _ready() -> void:
-    _scene_switch(START_SCENE_UID)
+    back_to_menu(MenuScene.MenuPanel.TITLE)
 
 
 func _input(event: InputEvent) -> void:

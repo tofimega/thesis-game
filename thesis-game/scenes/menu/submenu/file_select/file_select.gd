@@ -58,11 +58,11 @@ func _copy_file(file: int) -> void:
 func _load_file(file: int) -> void:
     var load_error: Array[SaveGame.ErrorCode] = []
     var header: SaveGame.SaveHeader = SaveGame.load_game(file, load_error)
-    
-    if !load_error.is_empty(): pass # show popup or smth
-    
+
+    if !load_error.is_empty(): return # show popup or smth
+
     if header.new_game: SceneControl.begin_game(0) # jump into game immediately
-    else: pass # open level select
+    else: return # open level select
 
 
 func _copy_begin(file: int) -> void:

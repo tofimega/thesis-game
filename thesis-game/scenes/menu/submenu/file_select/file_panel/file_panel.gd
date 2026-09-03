@@ -115,9 +115,9 @@ func _update_file_info(file_header: SaveGame.SaveHeader) -> void:
         "minute": str(playt_min).pad_zeros(3),
         "second": str(playt_sec).pad_zeros(2)
         })
-
+    
     completion.text = "{comp_perc}%".format({
-        "comp_perc": str(int(_file_info.completion)).pad_zeros(3)
+        "comp_perc": str(int(_file_info.completion*100)).pad_zeros(3)
         })
 
     _current_mode = Mode.SHOW_INFO

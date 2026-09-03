@@ -158,8 +158,7 @@ static func _write_header(save_file: FileAccess) -> bool:
 
 
 static func _calc_completion() -> float:
-    # TODO: do this
-    return 0
+    return float(_data.size()-_data.count(0))/_data.size()
 
 
 static func delete_file(file: int) -> Error:

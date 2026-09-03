@@ -7,8 +7,6 @@ signal level_clear
 
 @export_tool_button("Reorder Rooms") var reorder: Callable = reorder_rooms
 
-@export var completion_flags: Array[SaveGame.SaveFlag] = []
-
 var _current_room: Room = null
 var _room_index: int = -1
 

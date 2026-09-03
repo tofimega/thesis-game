@@ -52,7 +52,7 @@ func next_room() -> void:
     carry_controller.stop()
     # move camera to next room   
     var room_pos: float = (_current_level._room_index + 1) * -176
-    
+
     await create_tween().tween_property(camera_2d, "position", Vector2(0, room_pos), abs(room_pos - camera_2d.position.y) / camera_scroll_speed).finished
     #load next room
     var spawn_point: Vector2 = _current_level.load_next_room().global_position
@@ -62,4 +62,12 @@ func next_room() -> void:
 
 
 func next_level() -> void:
-    pass
+    SaveGame.update_flag(level_map.clear_flags[_level_index], 1)
+    SaveGame.save_game()
+    if level_map.map.size() > _level_index + 1:
+        load_level(_level_index + 1)
+    else: game_end_sequence()
+
+
+func game_end_sequence() -> void:
+    SceneControl.back_to_menu(MenuScene.MenuPanel.TITLE)
