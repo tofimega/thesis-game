@@ -90,6 +90,9 @@ static func update_flag(flag: SaveFlag, value: int) -> void:
     signals.state_updated.emit(flag, value)
 
 
+static func read_flag(flag: SaveFlag)->int:
+    return _data[flag]
+
 static func save_game() -> ErrorCode:
     assert(_save_index >= 0, "No save file loaded")
     signals.save_begin.emit()

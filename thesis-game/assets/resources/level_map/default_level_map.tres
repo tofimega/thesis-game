@@ -4,8 +4,12 @@
 
 [resource]
 script = ExtResource("1_wovgt")
-map = Array[String](["uid://batpxa282mtws"])
+map = Array[String](["uid://batpxa282mtws", "uid://batpxa282mtws"])
 clear_flags = Dictionary[int, int]({
-0: 0
+0: 0,
+1: 2
+})
+required_flags = Dictionary[int, int]({
+1: 1
 })
 metadata/_custom_type_script = "uid://ccrc3f7amak14"

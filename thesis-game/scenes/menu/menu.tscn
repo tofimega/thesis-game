@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://dpu2vk5dmi1gy" path="res://scenes/menu/submenu/file_select/file_select.gd" id="4_037ec"]
 [ext_resource type="PackedScene" uid="uid://bhicuavynwvm0" path="res://scenes/menu/submenu/file_select/file_panel/file_panel.tscn" id="5_r8yej"]
 [ext_resource type="Script" uid="uid://c4osvq5vslhs3" path="res://scenes/menu/submenu/level_select.gd" id="5_y1o0p"]
+[ext_resource type="PackedScene" uid="uid://bfke2gujlpscr" path="res://scenes/menu/submenu/level_select/level_button.tscn" id="7_3y2rt"]
+[ext_resource type="Resource" uid="uid://dws781cajxk7e" path="res://assets/resources/level_map/default_level_map.tres" id="7_t0a87"]
 
 [node name="Menu" type="Control" unique_id=133621051]
 custom_minimum_size = Vector2(240, 180)
@@ -122,8 +124,7 @@ focus_next = NodePath("../FilePanel")
 focus_previous = NodePath("../FilePanel2")
 file_num = 2
 
-[node name="LevelSelect" type="Control" parent="ReferenceRect" unique_id=2040768722]
-visible = false
+[node name="LevelSelect" type="Control" parent="ReferenceRect" unique_id=2040768722 node_paths=PackedStringArray("level_container")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -132,3 +133,43 @@ grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 2
 script = ExtResource("5_y1o0p")
+level_map = ExtResource("7_t0a87")
+level_button = ExtResource("7_3y2rt")
+level_container = NodePath("MarginContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer")
+
+[node name="MarginContainer" type="MarginContainer" parent="ReferenceRect/LevelSelect" unique_id=1890783424]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Panel" type="Panel" parent="ReferenceRect/LevelSelect/MarginContainer" unique_id=1349832430]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ReferenceRect/LevelSelect/MarginContainer/Panel" unique_id=1075833339]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ReferenceRect/LevelSelect/MarginContainer/Panel/MarginContainer" unique_id=683659992]
+layout_mode = 2
+follow_focus = true
+draw_focus_border = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ReferenceRect/LevelSelect/MarginContainer/Panel/MarginContainer/ScrollContainer" unique_id=1408572236]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3

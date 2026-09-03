@@ -62,7 +62,7 @@ func _load_file(file: int) -> void:
     if !load_error.is_empty(): return # show popup or smth
 
     if header.new_game: SceneControl.begin_game(0) # jump into game immediately
-    else: return # open level select
+    else: switch_to.emit(MenuScene.MenuPanel.LEVEL_SCELECT) # open level select
 
 
 func _copy_begin(file: int) -> void:

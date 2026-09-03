@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bfke2gujlpscr"]
+
+[ext_resource type="FontFile" uid="uid://bjvrkeqf28h1c" path="res://assets/fonts/pixel_operator/PixelOperatorMonoHB.ttf" id="1_40d01"]
+[ext_resource type="Texture2D" uid="uid://thdmuohy5lij" path="res://assets/images/sprites/clear_crown.png" id="1_ijvhl"]
+[ext_resource type="Script" uid="uid://c4e8n03c11n87" path="res://scenes/menu/submenu/level_select/level_button.gd" id="3_5vbh5"]
+[ext_resource type="Texture2D" uid="uid://dwa6byq6ijvmh" path="res://assets/images/sprites/incomplete_crown.png" id="4_vdu34"]
+
+[node name="LevelButton" type="Button" unique_id=1422135065]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_constants/icon_max_width = 16
+theme_override_fonts/font = ExtResource("1_40d01")
+text = "Level X"
+icon = ExtResource("1_ijvhl")
+script = ExtResource("3_5vbh5")
+clear_icon = ExtResource("1_ijvhl")
+incomplete_icon = ExtResource("4_vdu34")
