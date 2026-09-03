@@ -66,6 +66,7 @@ func next_level() -> void:
     SaveGame.save_game()
     if level_map.map.size() > _level_index + 1:
         load_level(_level_index + 1)
+        next_room()
     else: game_end_sequence()
 
 

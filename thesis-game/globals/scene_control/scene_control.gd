@@ -26,10 +26,10 @@ func _input(event: InputEvent) -> void:
     game_raw.push_input(event)
 
 
-func begin_game(level_index: int) -> void:
+func begin_game(level_index: int, level_map: LevelMap = null) -> void:
     await _scene_switch(GAME)
     var game_scene: GameScene = current_scene
-    game_scene.initialize_game(level_index)
+    game_scene.initialize_game(level_index, level_map)
 
 
 func back_to_menu(panel: MenuScene.MenuPanel = MenuScene.MenuPanel.LEVEL_SCELECT) -> void:
