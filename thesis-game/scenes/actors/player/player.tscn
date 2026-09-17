@@ -3,41 +3,66 @@
 [ext_resource type="Script" uid="uid://buyqecp1yu3om" path="res://scenes/actors/player/player.gd" id="1_wmv1v"]
 [ext_resource type="Texture2D" uid="uid://cyg1uf1waphiy" path="res://assets/images/sprites/player/player (edit).png" id="2_l17oj"]
 [ext_resource type="Script" uid="uid://dkumwt15yafqn" path="res://scenes/actors/player/movement/player_movement_state.gd" id="2_mpktj"]
-[ext_resource type="Script" uid="uid://bjwlw7wwq3ad0" path="res://scenes/actors/player/movement/dummy_state.gd" id="3_8bj4u"]
 [ext_resource type="Script" uid="uid://u0pxxecx1kk5" path="res://scenes/actors/player/animation_handler.gd" id="3_oj104"]
 [ext_resource type="Resource" uid="uid://bb4xklvn2jr62" path="res://assets/resources/player_movement/player_walk.tres" id="3_qdyt2"]
-[ext_resource type="Resource" uid="uid://pr8881v6xd2x" path="res://assets/resources/player_movement/player_idle.tres" id="4_g2g7f"]
-[ext_resource type="Script" uid="uid://c57i14wd82g2p" path="res://scenes/actors/player/movement/animation_timeout_state.gd" id="4_inh5e"]
+[ext_resource type="Script" uid="uid://c57i14wd82g2p" path="res://scenes/actors/player/movement/do_nothing_state.gd" id="4_inh5e"]
+[ext_resource type="Script" uid="uid://vhranncln5i1" path="res://scenes/actors/player/movement/conditions/psc_timer_running.gd" id="5_4iwnj"]
+[ext_resource type="Resource" uid="uid://b2dqu522t34fw" path="res://assets/resources/player_movement/conditions/true.tres" id="5_inh5e"]
 [ext_resource type="Script" uid="uid://b5ofmh2rfq14f" path="res://scenes/actors/general/direction.gd" id="7_g2g7f"]
 [ext_resource type="Script" uid="uid://mb8x5tek235p" path="res://scenes/actors/player/carry_handler.gd" id="8_fp13k"]
 [ext_resource type="Script" uid="uid://by3emb6fcj3rt" path="res://scenes/actors/general/damage_taker.gd" id="8_i174x"]
 [ext_resource type="Texture2D" uid="uid://cxysss2857v3e" path="res://assets/images/sprites/shadow.png" id="9_hcvpp"]
 [ext_resource type="Script" uid="uid://qphgmkvrhto2" path="res://scenes/actors/general/knockback_handler.gd" id="10_i174x"]
 
-[sub_resource type="Resource" id="Resource_fp13k"]
-script = ExtResource("3_8bj4u")
-metadata/_custom_type_script = "uid://bjwlw7wwq3ad0"
+[sub_resource type="Resource" id="Resource_4iwnj"]
+script = ExtResource("4_inh5e")
+metadata/_custom_type_script = "uid://c57i14wd82g2p"
 
-[sub_resource type="Resource" id="Resource_5bhx7"]
-script = ExtResource("3_8bj4u")
-metadata/_custom_type_script = "uid://bjwlw7wwq3ad0"
+[sub_resource type="Resource" id="Resource_068wj"]
+script = ExtResource("4_inh5e")
+metadata/_custom_type_script = "uid://c57i14wd82g2p"
 
-[sub_resource type="Resource" id="Resource_i174x"]
-script = ExtResource("3_8bj4u")
-metadata/_custom_type_script = "uid://bjwlw7wwq3ad0"
+[sub_resource type="Resource" id="Resource_xducv"]
+script = ExtResource("4_inh5e")
+metadata/_custom_type_script = "uid://c57i14wd82g2p"
 
-[sub_resource type="Resource" id="Resource_8bj4u"]
-script = ExtResource("3_8bj4u")
-metadata/_custom_type_script = "uid://bjwlw7wwq3ad0"
+[sub_resource type="Resource" id="Resource_djndi"]
+script = ExtResource("5_4iwnj")
+timer = NodePath("KnockbackTimer")
+metadata/_custom_type_script = "uid://vhranncln5i1"
+
+[sub_resource type="Resource" id="Resource_yab6n"]
+script = ExtResource("4_inh5e")
+state_condition = SubResource("Resource_djndi")
+metadata/_custom_type_script = "uid://c57i14wd82g2p"
+
+[sub_resource type="Resource" id="Resource_5mkge"]
+script = ExtResource("4_inh5e")
+metadata/_custom_type_script = "uid://c57i14wd82g2p"
+
+[sub_resource type="Resource" id="Resource_hxjox"]
+script = ExtResource("5_4iwnj")
+timer = NodePath("ThrowTimer")
+metadata/_custom_type_script = "uid://vhranncln5i1"
+
+[sub_resource type="Resource" id="Resource_q2guw"]
+script = ExtResource("4_inh5e")
+state_condition = SubResource("Resource_hxjox")
+metadata/_custom_type_script = "uid://c57i14wd82g2p"
+
+[sub_resource type="Resource" id="Resource_e2nou"]
+script = ExtResource("5_4iwnj")
+timer = NodePath("PickupTimer")
+metadata/_custom_type_script = "uid://vhranncln5i1"
+
+[sub_resource type="Resource" id="Resource_npmmh"]
+script = ExtResource("4_inh5e")
+state_condition = SubResource("Resource_e2nou")
+metadata/_custom_type_script = "uid://c57i14wd82g2p"
 
 [sub_resource type="Resource" id="Resource_inh5e"]
 script = ExtResource("4_inh5e")
-timer_node = NodePath("ThrowTimer")
-metadata/_custom_type_script = "uid://c57i14wd82g2p"
-
-[sub_resource type="Resource" id="Resource_hcvpp"]
-script = ExtResource("4_inh5e")
-timer_node = NodePath("PickupTimer")
+state_condition = ExtResource("5_inh5e")
 metadata/_custom_type_script = "uid://c57i14wd82g2p"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l17oj"]
@@ -119,14 +144,15 @@ collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_wmv1v")
 movement_states = Dictionary[int, ExtResource("2_mpktj")]({
-0: SubResource("Resource_fp13k"),
-1: SubResource("Resource_5bhx7"),
-2: SubResource("Resource_i174x"),
-3: SubResource("Resource_8bj4u"),
-4: SubResource("Resource_inh5e"),
-5: SubResource("Resource_hcvpp"),
-6: ExtResource("3_qdyt2"),
-7: ExtResource("4_g2g7f")
+0: SubResource("Resource_4iwnj"),
+1: SubResource("Resource_068wj"),
+2: SubResource("Resource_xducv"),
+3: SubResource("Resource_yab6n"),
+4: SubResource("Resource_5mkge"),
+5: SubResource("Resource_q2guw"),
+6: SubResource("Resource_npmmh"),
+7: ExtResource("3_qdyt2"),
+8: SubResource("Resource_inh5e")
 })
 
 [node name="Direction" type="Node" parent="." unique_id=1874156594]
@@ -145,7 +171,8 @@ animations = Dictionary[int, StringName]({
 4: &"stand",
 5: &"stand",
 6: &"stand",
-7: &"stand"
+7: &"stand",
+8: &"stand"
 })
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=920848685]
@@ -174,7 +201,6 @@ script = ExtResource("8_fp13k")
 metadata/_custom_type_script = "uid://mb8x5tek235p"
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=1339143295]
-modulate = Color(0.5529556, 0.55295557, 0.55295557, 1)
 show_behind_parent = true
 position = Vector2(-1, 0)
 texture = ExtResource("9_hcvpp")
@@ -194,5 +220,6 @@ one_shot = true
 one_shot = true
 
 [connection signal="hit" from="DamageTaker" to="KnockBackHandler" method="start_knockback"]
+[connection signal="carry_set" from="CarryHandler" to="AnimationHandler" method="_on_carry_state_changed"]
 [connection signal="try_carry" from="CarryHandler" to="." method="try_carry"]
 [connection signal="try_throw" from="CarryHandler" to="." method="try_throw"]

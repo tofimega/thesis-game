@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="PlayerIdleState" format=3 uid="uid://pr8881v6xd2x"]
-
-[ext_resource type="Script" uid="uid://37fpr0kid0ou" path="res://scenes/actors/player/movement/idle_state.gd" id="1_4qflo"]
-
-[resource]
-script = ExtResource("1_4qflo")
-metadata/_custom_type_script = "uid://37fpr0kid0ou"

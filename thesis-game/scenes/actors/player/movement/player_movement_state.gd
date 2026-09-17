@@ -2,8 +2,7 @@
 class_name PlayerMovementState
 extends Resource
 
-
-@abstract func is_valid(player: Player) -> bool
+@export var state_condition: PlayerStateCondition
 
 
 @abstract func process_movement(player: Player) -> void

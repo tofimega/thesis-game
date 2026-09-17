@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="AllCondition" format=3 uid="uid://b2dqu522t34fw"]
+
+[ext_resource type="Script" uid="uid://vyg8f5quws1o" path="res://scenes/actors/player/movement/conditions/psc_all.gd" id="1_nuq5g"]
+[ext_resource type="Script" uid="uid://d3r23rmr57r1b" path="res://scenes/actors/player/movement/conditions/player_state_condition.gd" id="2_ui5cy"]
+
+[resource]
+script = ExtResource("1_nuq5g")
+metadata/_custom_type_script = "uid://vyg8f5quws1o"

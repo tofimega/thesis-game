@@ -1,9 +1,20 @@
 [gd_resource type="Resource" script_class="PlayerWalkState" format=3 uid="uid://bb4xklvn2jr62"]
 
 [ext_resource type="Script" uid="uid://dt3pnj8stwp1w" path="res://scenes/actors/player/movement/walk_state.gd" id="1_mt63k"]
+[ext_resource type="Script" uid="uid://u1emt37ukk84" path="res://scenes/actors/player/movement/conditions/psc_input_vector.gd" id="2_nl1kr"]
+
+[sub_resource type="Resource" id="Resource_hcvpp"]
+script = ExtResource("2_nl1kr")
+up = &"walk_up"
+down = &"walk_down"
+left = &"walk_left"
+right = &"walk_right"
+deadzone = 0.2
+metadata/_custom_type_script = "uid://u1emt37ukk84"
 
 [resource]
 script = ExtResource("1_mt63k")
 movement_speed = 60.0
 carry_movement_speed = 40.0
+state_condition = SubResource("Resource_hcvpp")
 metadata/_custom_type_script = "uid://dt3pnj8stwp1w"

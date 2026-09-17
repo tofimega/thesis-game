@@ -9,6 +9,7 @@ enum State {
     DESPAWN,
     DEAD,
     HURT,
+    POWERUP_ACTION,
     THROW,
     PICKUP,
     WALK,
@@ -67,6 +68,6 @@ func _get_movement_state() -> State:
     for m: String in State:
         var s: State = State.get(m)
         assert(movement_states.has(s))
-        if movement_states[s].is_valid(self): return s
+        if movement_states[s].state_condition && movement_states[s].state_condition.is_valid(self): return s
 
     return State.IDLE

@@ -27,8 +27,8 @@ func _process(_delta: float) -> void:
 @warning_ignore("shadowed_variable")
 func initialize_game(level_index: int, level_map: LevelMap = null) -> void:
     if level_map != null: self.level_map = level_map
-    load_level(level_index)
-    next_room()
+    _level_index=level_index-1
+    start_level()
 
 
 func load_level(index: int) -> void:
@@ -41,6 +41,7 @@ func load_level(index: int) -> void:
     _level_holder.add_child(_current_level)
     _current_level.room_over.connect(next_room)
     _current_level.level_clear.connect(next_level)
+    Overlay.info_text.set_scrolling_text("Level "+str(_level_index+1))
 
 
 func clear_level() -> void:
@@ -65,10 +66,15 @@ func next_level() -> void:
     SaveGame.update_flag(level_map.clear_flags[_level_index], 1)
     SaveGame.save_game()
     if level_map.map.size() > _level_index + 1:
-        load_level(_level_index + 1)
-        next_room()
+        start_level()
     else: game_end_sequence()
 
 
 func game_end_sequence() -> void:
     SceneControl.back_to_menu(MenuScene.MenuPanel.TITLE)
+
+
+func start_level()->void:
+    load_level(_level_index + 1)
+    camera_2d.position = Vector2.ZERO
+    next_room()

@@ -3,13 +3,17 @@ extends RemoteTransform2D
 
 signal try_carry
 signal try_throw
+signal carry_set(state: CarryState)
 
 enum CarryState {
     CARRY,
     FREE,
 }
 
-var _carry_state: CarryState = CarryState.FREE
+var _carry_state: CarryState = CarryState.FREE:
+    set(s): 
+        _carry_state = s
+        carry_set.emit(s)
 
 
 
