@@ -17,6 +17,10 @@ enum State {
 }
 
 @export var movement_states: Dictionary[State, PlayerMovementState] = {}
+@export var powerup_action: PlayerMovementState:
+    set(a):
+        powerup_action = a
+        movement_states[State.POWERUP_ACTION] = a
 
 @onready var animation_handler: AnimationHandler = $AnimationHandler
 @onready var damage_taker: Area2D = $DamageTaker
@@ -30,8 +34,8 @@ enum State {
 
 func _physics_process(_delta: float) -> void:
     var ms: PlayerMovementState = movement_states[_get_movement_state()]
-    ms.process_state(self)
     animation_handler.switch_anim(_get_movement_state())
+    ms.process_state(self)
 
 
 func do_carry(bomb: Bomb) -> void:

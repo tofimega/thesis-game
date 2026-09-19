@@ -36,6 +36,10 @@ func load_level(index: int) -> void:
     _level_index = index
     clear_level()
     var level_scene: PackedScene = load(level_map.map[_level_index])
+    
+    for i: int in index:
+        if (level_map.unlock_power_on_clear.has(i)):
+            _player.powerup_action = level_map.unlock_power_on_clear[i]
     assert(level_scene.can_instantiate())
     _current_level = level_scene.instantiate()
     _level_holder.add_child(_current_level)
