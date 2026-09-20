@@ -2,13 +2,79 @@
 
 [ext_resource type="PackedScene" uid="uid://c4fp3up3t84pd" path="res://scenes/actors/enemy/base/enemy.tscn" id="1_l1883"]
 [ext_resource type="Script" uid="uid://d38l3406whcop" path="res://scenes/actors/enemy/base/enemy_state.gd" id="2_wc1rh"]
-[ext_resource type="Resource" uid="uid://du6r32o2onx7f" path="res://scenes/actors/enemy/chaser/type_1/patrol_state.tres" id="3_86ddo"]
-[ext_resource type="Resource" uid="uid://b23qceaf571n2" path="res://scenes/actors/enemy/chaser/type_1/turn_state.tres" id="4_k3usr"]
-[ext_resource type="Resource" uid="uid://dp6tegv0r5sum" path="res://scenes/actors/enemy/chaser/type_1/hop_before_dash.tres" id="5_p5tfw"]
-[ext_resource type="Resource" uid="uid://ciiidjavv2qqe" path="res://scenes/actors/enemy/chaser/type_1/dash_state.tres" id="6_07s2y"]
-[ext_resource type="Resource" uid="uid://c4r1j7quonk0b" path="res://scenes/actors/enemy/chaser/type_1/bounce_from_wall.tres" id="7_me4i1"]
-[ext_resource type="Resource" uid="uid://l7kdg1o5mhnw" path="res://scenes/actors/enemy/chaser/type_1/dizzy_state.tres" id="8_hwvj8"]
-[ext_resource type="Resource" uid="uid://dqhg3jfhlku8h" path="res://scenes/actors/enemy/chaser/type_1/dizzy_recovery.tres" id="9_00esy"]
+[ext_resource type="Script" uid="uid://cjyy862upicdc" path="res://scenes/actors/enemy/chaser/states/patrol_state.gd" id="3_p6hnf"]
+[ext_resource type="Script" uid="uid://ct0ux2q15g2j1" path="res://scenes/actors/enemy/chaser/states/turn_state.gd" id="4_d3sbm"]
+[ext_resource type="Script" uid="uid://u2y7k0m5uym4" path="res://scenes/actors/enemy/chaser/states/hop_state.gd" id="5_p5tfw"]
+[ext_resource type="Script" uid="uid://burusmb7lccmc" path="res://scenes/actors/enemy/chaser/states/bounce_state.gd" id="6_07s2y"]
+[ext_resource type="Script" uid="uid://dh6exbwf7pf8n" path="res://scenes/actors/enemy/chaser/states/animate_state.gd" id="7_me4i1"]
+
+[sub_resource type="Resource" id="Resource_hwvj8"]
+script = ExtResource("3_p6hnf")
+velocity = 15.0
+player_detection_range = null
+ignore_raycast_layers = 1
+raycast = NodePath("PlayerDetection")
+signal_switches = Dictionary[StringName, int]({
+&"player_detected": 2,
+&"wall_hit": 1
+})
+anim_name = null
+can_explode = null
+can_hurt = null
+animation_end_switch = null
+metadata/_custom_type_script = "uid://cjyy862upicdc"
+
+[sub_resource type="Resource" id="Resource_00esy"]
+script = ExtResource("4_d3sbm")
+animation_end_switch = 0
+metadata/_custom_type_script = "uid://ct0ux2q15g2j1"
+
+[sub_resource type="Resource" id="Resource_htv18"]
+script = ExtResource("5_p5tfw")
+timer = NodePath("HopTimer")
+signal_switches = Dictionary[StringName, int]({
+&"time_over": 3
+})
+metadata/_custom_type_script = "uid://u2y7k0m5uym4"
+
+[sub_resource type="Resource" id="Resource_dk6nt"]
+script = ExtResource("3_p6hnf")
+velocity = 90.0
+player_detection_range = null
+ignore_raycast_layers = null
+raycast = NodePath("PlayerDetection")
+signal_switches = Dictionary[StringName, int]({
+&"wall_hit": 4
+})
+anim_name = null
+can_explode = null
+can_hurt = null
+animation_end_switch = null
+metadata/_custom_type_script = "uid://cjyy862upicdc"
+
+[sub_resource type="Resource" id="Resource_jortu"]
+script = ExtResource("6_07s2y")
+distance = 8.0
+timer = NodePath("BounceTimer")
+signal_switches = Dictionary[StringName, int]({
+&"time_over": 5
+})
+can_explode = true
+metadata/_custom_type_script = "uid://burusmb7lccmc"
+
+[sub_resource type="Resource" id="Resource_61v2t"]
+script = ExtResource("7_me4i1")
+timer = NodePath("DizzyTimer")
+signal_switches = Dictionary[StringName, int]({
+&"time_over": 6
+})
+can_explode = true
+metadata/_custom_type_script = "uid://dh6exbwf7pf8n"
+
+[sub_resource type="Resource" id="Resource_2qy7h"]
+script = ExtResource("7_me4i1")
+animation_end_switch = 0
+metadata/_custom_type_script = "uid://dh6exbwf7pf8n"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mgg8m"]
 radius = 8.0
@@ -16,7 +82,7 @@ radius = 8.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_p5tfw"]
 
 [node name="Chaser_1" unique_id=656223141 instance=ExtResource("1_l1883")]
-states = Array[ExtResource("2_wc1rh")]([ExtResource("3_86ddo"), ExtResource("4_k3usr"), ExtResource("5_p5tfw"), ExtResource("6_07s2y"), ExtResource("7_me4i1"), ExtResource("8_hwvj8"), ExtResource("9_00esy")])
+states = Array[ExtResource("2_wc1rh")]([SubResource("Resource_hwvj8"), SubResource("Resource_00esy"), SubResource("Resource_htv18"), SubResource("Resource_dk6nt"), SubResource("Resource_jortu"), SubResource("Resource_61v2t"), SubResource("Resource_2qy7h")])
 counted = true
 
 [node name="DamageTaker" parent="." index="1" unique_id=1397366735]
@@ -36,7 +102,7 @@ shape = SubResource("CircleShape2D_mgg8m")
 
 [node name="PlayerDetection" type="RayCast2D" parent="." index="8" unique_id=1815380233]
 target_position = Vector2(64, 0)
-collision_mask = 2
+collision_mask = 3
 
 [node name="HopTimer" type="Timer" parent="." index="9" unique_id=20551572]
 wait_time = 0.5

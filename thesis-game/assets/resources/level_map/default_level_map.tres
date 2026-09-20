@@ -1,15 +1,13 @@
 [gd_resource type="Resource" script_class="LevelMap" format=3 uid="uid://dws781cajxk7e"]
 
 [ext_resource type="Script" uid="uid://ccrc3f7amak14" path="res://scripts/level_map.gd" id="1_wovgt"]
+[ext_resource type="Script" uid="uid://dkumwt15yafqn" path="res://scenes/actors/player/movement/player_movement_state.gd" id="2_535wy"]
 
 [resource]
 script = ExtResource("1_wovgt")
-map = Array[String](["uid://batpxa282mtws", "uid://batpxa282mtws"])
+map = Array[String](["uid://catx0j2i6bkin", "uid://batpxa282mtws"])
 clear_flags = Dictionary[int, int]({
 0: 0,
 1: 2
-})
-required_flags = Dictionary[int, int]({
-1: 1
 })
 metadata/_custom_type_script = "uid://ccrc3f7amak14"

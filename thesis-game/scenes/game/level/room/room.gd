@@ -10,8 +10,10 @@ var enemy_count: int = 0
 
 
 func spawn_actors() -> void:
-    for p: InstancePlaceholder in dynamic.get_children():
-        var n: Node = p.create_instance(true)
+    for p: Node in dynamic.get_children():
+        var n: Node
+        if p is InstancePlaceholder: n = p.create_instance(true)
+        else: n = p
         if n is Enemy: register_enemy(n)
 
 

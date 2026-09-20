@@ -24,6 +24,8 @@ func _ready() -> void:
     for i: int in states.size():
         var s: EnemyState = states[i]
         assert(s != null, "Slot " + str(i) + " has no state")
+        states[i] = s.duplicate_deep(Resource.DEEP_DUPLICATE_ALL)
+        s = states[i]
         s.init_state(self)
         for sw: StringName in s.signal_switches:
             assert(s.has_signal(sw), "State " + str(i) + " has no signal with name " + sw)
