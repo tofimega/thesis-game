@@ -1,6 +1,6 @@
 @tool
 class_name Direction
-extends Node
+extends Node2D
 
 enum Dir {
     LEFT = 0,
@@ -9,7 +9,10 @@ enum Dir {
     DOWN,
 }
 
-@export var face_direction: Dir = Dir.DOWN
+@export var face_direction: Dir = Dir.DOWN:
+    set(f):
+        face_direction = f
+        rotation = get_vector().angle()
 
 
 @warning_ignore("int_as_enum_without_cast", "int_as_enum_without_match")

@@ -155,8 +155,9 @@ movement_states = Dictionary[int, ExtResource("2_mpktj")]({
 8: SubResource("Resource_inh5e")
 })
 
-[node name="Direction" type="Node" parent="." unique_id=1874156594]
+[node name="Direction" type="Node2D" parent="." unique_id=237760465]
 script = ExtResource("7_g2g7f")
+metadata/_custom_type_script = "uid://b5ofmh2rfq14f"
 
 [node name="AnimationHandler" type="AnimatedSprite2D" parent="." unique_id=825897239]
 position = Vector2(0, -12)

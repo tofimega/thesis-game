@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c4fp3up3t84pd"]
 
 [ext_resource type="Script" uid="uid://50q4op7xrivl" path="res://scenes/actors/enemy/base/enemy.gd" id="1_a0au8"]
-[ext_resource type="Script" uid="uid://dlyvegrsfhjry" path="res://scripts/actors_components/health.gd" id="1_vi16i"]
+[ext_resource type="Script" uid="uid://dlyvegrsfhjry" path="res://scenes/actors/general/health.gd" id="1_vi16i"]
 [ext_resource type="Script" uid="uid://by3emb6fcj3rt" path="res://scenes/actors/general/damage_taker.gd" id="2_tn3i4"]
 [ext_resource type="Script" uid="uid://b5ofmh2rfq14f" path="res://scenes/actors/general/direction.gd" id="3_xfx7f"]
 [ext_resource type="Texture2D" uid="uid://b0bqpl13p1qmi" path="res://assets/images/sprites/PH-enemy.png" id="5_q6631"]
@@ -34,25 +34,23 @@ script = ExtResource("1_a0au8")
 [node name="Health" type="Node" parent="." unique_id=1982513786]
 script = ExtResource("1_vi16i")
 
-[node name="DamageTaker" type="Area2D" parent="." unique_id=1397366735 node_paths=PackedStringArray("invincibility_timer", "direction_source")]
+[node name="DamageTaker" type="Area2D" parent="." unique_id=1397366735 node_paths=PackedStringArray("invincibility_timer")]
 collision_layer = 0
 collision_mask = 64
 script = ExtResource("2_tn3i4")
 invincible_time = 0.5
 invincibility_timer = NodePath("../InvinTimer")
-direction_source = NodePath("../Direction")
 metadata/_custom_type_script = "uid://by3emb6fcj3rt"
 
-[node name="BombDamageTaker" type="Area2D" parent="." unique_id=2119286083 node_paths=PackedStringArray("direction_source")]
+[node name="BombDamageTaker" type="Area2D" parent="." unique_id=2119286083]
 collision_layer = 0
 collision_mask = 16
 script = ExtResource("2_tn3i4")
-direction_source = NodePath("../Direction")
 metadata/_custom_type_script = "uid://by3emb6fcj3rt"
 
 [node name="InvinTimer" type="Timer" parent="." unique_id=1222957130]
 
-[node name="Direction" type="Node" parent="." unique_id=1161230762]
+[node name="Direction" type="Node2D" parent="." unique_id=642759767]
 script = ExtResource("3_xfx7f")
 metadata/_custom_type_script = "uid://b5ofmh2rfq14f"
 

@@ -7,13 +7,15 @@
 [ext_resource type="Script" uid="uid://u2y7k0m5uym4" path="res://scenes/actors/enemy/chaser/states/hop_state.gd" id="5_p5tfw"]
 [ext_resource type="Script" uid="uid://burusmb7lccmc" path="res://scenes/actors/enemy/chaser/states/bounce_state.gd" id="6_07s2y"]
 [ext_resource type="Script" uid="uid://dh6exbwf7pf8n" path="res://scenes/actors/enemy/chaser/states/animate_state.gd" id="7_me4i1"]
+[ext_resource type="Texture2D" uid="uid://bug2edgvrcoud" path="res://assets/images/sprites/enemy/chaser_walk.png" id="8_d3sbm"]
+[ext_resource type="Texture2D" uid="uid://dq4etqoupd40r" path="res://assets/images/sprites/enemy/PH_enemy_shield.png" id="8_p5tfw"]
 
 [sub_resource type="Resource" id="Resource_hwvj8"]
 script = ExtResource("3_p6hnf")
 velocity = 15.0
 player_detection_range = null
-ignore_raycast_layers = 1
 raycast = NodePath("PlayerDetection")
+ignore_raycast_layers = 1
 signal_switches = Dictionary[StringName, int]({
 &"player_detected": 2,
 &"wall_hit": 1
@@ -41,8 +43,8 @@ metadata/_custom_type_script = "uid://u2y7k0m5uym4"
 script = ExtResource("3_p6hnf")
 velocity = 90.0
 player_detection_range = null
-ignore_raycast_layers = null
 raycast = NodePath("PlayerDetection")
+ignore_raycast_layers = null
 signal_switches = Dictionary[StringName, int]({
 &"wall_hit": 4
 })
@@ -81,6 +83,84 @@ radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p5tfw"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5tfw"]
+atlas = ExtResource("8_d3sbm")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_07s2y"]
+atlas = ExtResource("8_d3sbm")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_me4i1"]
+atlas = ExtResource("8_d3sbm")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwvj8"]
+atlas = ExtResource("8_d3sbm")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00esy"]
+atlas = ExtResource("8_d3sbm")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_htv18"]
+atlas = ExtResource("8_d3sbm")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dk6nt"]
+atlas = ExtResource("8_d3sbm")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jortu"]
+atlas = ExtResource("8_d3sbm")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_61v2t"]
+atlas = ExtResource("8_d3sbm")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qy7h"]
+atlas = ExtResource("8_d3sbm")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5hncg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p5tfw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_07s2y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_me4i1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hwvj8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00esy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_htv18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dk6nt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jortu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_61v2t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qy7h")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 10.0
+}]
+
 [node name="Chaser_1" unique_id=656223141 instance=ExtResource("1_l1883")]
 states = Array[ExtResource("2_wc1rh")]([SubResource("Resource_hwvj8"), SubResource("Resource_00esy"), SubResource("Resource_htv18"), SubResource("Resource_dk6nt"), SubResource("Resource_jortu"), SubResource("Resource_61v2t"), SubResource("Resource_2qy7h")])
 counted = true
@@ -97,8 +177,24 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BombDamageTaker" index="0" unique_id=263019094]
 shape = SubResource("CircleShape2D_p5tfw")
 
+[node name="Direction" parent="." index="4" unique_id=642759767]
+rotation = 1.5707964
+
+[node name="Sprite2D" type="Sprite2D" parent="Direction" index="0" unique_id=1746270323]
+z_index = 1
+scale = Vector2(0.5, 1)
+texture = ExtResource("8_p5tfw")
+offset = Vector2(7, -7)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="5" unique_id=1764313750]
 shape = SubResource("CircleShape2D_mgg8m")
+
+[node name="Sprite2D" parent="." index="6" unique_id=1552092155]
+offset = Vector2(0, -1)
+
+[node name="AnimatedSprite2D" parent="." index="7" unique_id=1227982333]
+sprite_frames = SubResource("SpriteFrames_5hncg")
+frame_progress = 0.022612812
 
 [node name="PlayerDetection" type="RayCast2D" parent="." index="8" unique_id=1815380233]
 target_position = Vector2(64, 0)

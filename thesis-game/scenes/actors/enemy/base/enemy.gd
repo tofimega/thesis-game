@@ -17,10 +17,15 @@ var current_state: EnemyState
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 
+
 func _ready() -> void:
     if direction_override:
+        for n: Node in direction.get_children():
+            n.reparent(direction_override, false)
+        direction_override.position = direction.position
         direction.queue_free()
         direction = direction_override
+        direction_override.reparent(self, false)
     for i: int in states.size():
         var s: EnemyState = states[i]
         assert(s != null, "Slot " + str(i) + " has no state")
@@ -54,7 +59,6 @@ func _switch_state(state: int) -> void:
 
     animated_sprite_2d.play(current_state.anim_name)
     current_state.enter_state(self)
-    print(current_state.resource_path+" | explodable: "+str(current_state.can_explode))
 
 
 func _on_damage_taker_hit(_from: Vector2) -> void:
@@ -63,7 +67,6 @@ func _on_damage_taker_hit(_from: Vector2) -> void:
 
 
 func _on_bomb_damage_taker_hit(_from: Vector2) -> void:
-    print("explosion hit")
     if !current_state.can_explode: return
     kill_me.emit()
 

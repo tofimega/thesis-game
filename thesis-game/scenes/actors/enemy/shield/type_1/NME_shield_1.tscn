@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bqyvoupjnpe71"]
+
+[ext_resource type="PackedScene" uid="uid://c4fp3up3t84pd" path="res://scenes/actors/enemy/base/enemy.tscn" id="1_o7i3r"]
+[ext_resource type="Texture2D" uid="uid://dq4etqoupd40r" path="res://assets/images/sprites/enemy/PH_enemy_shield.png" id="2_0sfos"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mgg8m"]
+radius = 8.0
+
+[node name="ShieldEnemy" unique_id=656223141 instance=ExtResource("1_o7i3r")]
+counted = true
+
+[node name="DamageTaker" parent="." index="1" unique_id=1397366735 node_paths=PackedStringArray("direction_source")]
+directional_exlucions = Array[Vector2]([Vector2(0, 90)])
+direction_source = NodePath("../Direction")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageTaker" index="0" unique_id=1208121731]
+shape = SubResource("CircleShape2D_mgg8m")
+
+[node name="BombDamageTaker" parent="." index="2" unique_id=2119286083 node_paths=PackedStringArray("direction_source")]
+directional_exlucions = Array[Vector2]([Vector2(0, 90)])
+direction_source = NodePath("../Direction")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BombDamageTaker" index="0" unique_id=2081982658]
+shape = SubResource("CircleShape2D_mgg8m")
+
+[node name="Direction" parent="." index="4" unique_id=642759767]
+z_index = 1
+rotation = 1.5707964
+
+[node name="Sprite2D" type="Sprite2D" parent="Direction" index="0" unique_id=1171295180]
+rotation = -1.5707964
+texture = ExtResource("2_0sfos")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="7" unique_id=2059093933]
+shape = SubResource("CircleShape2D_mgg8m")

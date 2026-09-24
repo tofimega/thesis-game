@@ -8,7 +8,7 @@
 
 [node name="Room" parent="Rooms" parent_id_path=PackedInt32Array(791553573) index="0" unique_id=577419168 instance=ExtResource("2_6iamk")]
 
-[node name="Direction" type="Node" parent="Rooms/Room" index="0" unique_id=1958797613]
+[node name="Direction" type="Node2D" parent="Rooms/Room" index="0" unique_id=548972974]
 script = ExtResource("5_6761a")
 face_direction = 1
 metadata/_custom_type_script = "uid://b5ofmh2rfq14f"
@@ -25,5 +25,8 @@ direction_override = NodePath("../../../Direction")
 
 [node name="PlayerSpawn" parent="Rooms/Room/Offset" parent_id_path=PackedInt32Array(577419168, 2147154176) index="5" unique_id=1866701011]
 position = Vector2(24, 152)
+
+[node name="Room2" parent="Rooms" parent_id_path=PackedInt32Array(791553573) index="1" unique_id=1003820397 instance=ExtResource("2_6iamk")]
+position = Vector2(0, -176)
 
 [editable path="Rooms/Room"]
