@@ -2,11 +2,25 @@
 
 [ext_resource type="PackedScene" uid="uid://c4fp3up3t84pd" path="res://scenes/actors/enemy/base/enemy.tscn" id="1_o7i3r"]
 [ext_resource type="Texture2D" uid="uid://dq4etqoupd40r" path="res://assets/images/sprites/enemy/PH_enemy_shield.png" id="2_0sfos"]
+[ext_resource type="Script" uid="uid://d38l3406whcop" path="res://scenes/actors/enemy/base/enemy_state.gd" id="2_a2n5r"]
+[ext_resource type="Script" uid="uid://ca0vr628i5ecm" path="res://scenes/actors/enemy/shield/states/block_state.gd" id="3_fdirn"]
+
+[sub_resource type="Resource" id="Resource_8ut5w"]
+script = ExtResource("3_fdirn")
+range_detect = NodePath("AggroRange")
+prioritize_layers = PackedByteArray(2)
+tiebreaker = 1
+can_explode = true
+metadata/_custom_type_script = "uid://ca0vr628i5ecm"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mgg8m"]
 radius = 8.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_vx4jr"]
+radius = 48.0
+
 [node name="ShieldEnemy" unique_id=656223141 instance=ExtResource("1_o7i3r")]
+states = Array[ExtResource("2_a2n5r")]([SubResource("Resource_8ut5w")])
 counted = true
 
 [node name="DamageTaker" parent="." index="1" unique_id=1397366735 node_paths=PackedStringArray("direction_source")]
@@ -33,3 +47,11 @@ texture = ExtResource("2_0sfos")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="7" unique_id=2059093933]
 shape = SubResource("CircleShape2D_mgg8m")
+
+[node name="AggroRange" type="Area2D" parent="." index="8" unique_id=1980000357]
+collision_layer = 0
+collision_mask = 6
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AggroRange" index="0" unique_id=1275047775]
+shape = SubResource("CircleShape2D_vx4jr")

@@ -13,11 +13,14 @@ signal iframes_over
 @export var direction_source: Direction
 @export var draw_color: Color = Color(1, 0, 0, .3)
 @export var draw_radius: float = 8
-
+var _draw_shape: bool = true
 func _ready() -> void:
 
     await get_tree().process_frame
-    if !Engine.is_editor_hint(): set_process(false)
+    if !Engine.is_editor_hint() and !OS.is_debug_build():
+        _draw_shape = false
+        queue_redraw()
+        set_process(false)
     area_entered.connect(_handle_hit)
     body_entered.connect(_handle_hit)
     if invincibility_timer: invincibility_timer.timeout.connect(iframes_over.emit)

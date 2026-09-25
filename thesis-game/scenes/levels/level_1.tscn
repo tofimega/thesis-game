@@ -29,4 +29,8 @@ position = Vector2(24, 152)
 [node name="Room2" parent="Rooms" parent_id_path=PackedInt32Array(791553573) index="1" unique_id=1003820397 instance=ExtResource("2_6iamk")]
 position = Vector2(0, -176)
 
+[node name="ShieldEnemy" parent="Rooms/Room2/Offset/Dynamic" parent_id_path=PackedInt32Array(1003820397, 881910093) index="0" unique_id=805013335 instance_placeholder="res://scenes/actors/enemy/shield/type_1/NME_shield_1.tscn"]
+position = Vector2(136, 88)
+
 [editable path="Rooms/Room"]
+[editable path="Rooms/Room2"]
