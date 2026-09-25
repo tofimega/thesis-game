@@ -3,6 +3,7 @@ extends RemoteTransform2D
 
 signal try_carry
 signal try_throw
+signal try_drop
 signal carry_set(state: CarryState)
 
 enum CarryState {
@@ -11,11 +12,9 @@ enum CarryState {
 }
 
 var _carry_state: CarryState = CarryState.FREE:
-    set(s): 
+    set(s):
         _carry_state = s
         carry_set.emit(s)
-
-
 
 
 func _input(_event: InputEvent) -> void:
@@ -33,7 +32,12 @@ func set_carry(bomb: Bomb) -> void:
     _carry_state = CarryState.CARRY
     bomb.bomb_mode = Bomb.BombMode.CARRIED
     remote_path = bomb.get_path()
-    
-func clear_carry()->void:
+
+
+func clear_carry() -> void:
     _carry_state = CarryState.FREE
     remote_path = ^""
+
+
+func _on_damage_taker_hit(_from: Vector2) -> void:
+    try_drop.emit()

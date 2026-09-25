@@ -21,4 +21,5 @@ func _physics_process(_delta: float) -> void:
 
 func start_knockback(source_pos: Vector2) -> void:
     _damage_source = source_pos
+    set_physics_process(true)
     knockback_timer.start()

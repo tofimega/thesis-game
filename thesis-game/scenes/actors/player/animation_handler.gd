@@ -7,8 +7,19 @@ var _current_state: Player.State = Player.State.SPAWN
 var _current_animation: StringName = ""
 var _carry_state: CarryHandler.CarryState = CarryHandler.CarryState.FREE
 
+@onready var timer: Timer = $Timer
 @onready var direction: Direction = $"../Direction"
 
+var flicker: bool:
+    set = set_flicker
+
+func set_flicker(on: bool)->void:
+    flicker = on
+    if flicker:
+        timer.start()
+    else:
+        timer.stop()
+        visible = true
 
 func switch_anim(state: Player.State) -> void:
     _current_state = state
@@ -32,3 +43,7 @@ func _get_anim_name(state: Player.State) -> StringName:
 
 func _on_carry_state_changed(state: CarryHandler.CarryState) -> void:
     _carry_state = state
+
+
+func _on_timer_timeout() -> void:
+    visible = !visible

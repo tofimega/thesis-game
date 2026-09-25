@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://by3emb6fcj3rt" path="res://scenes/actors/general/damage_taker.gd" id="8_i174x"]
 [ext_resource type="Texture2D" uid="uid://cxysss2857v3e" path="res://assets/images/sprites/shadow.png" id="9_hcvpp"]
 [ext_resource type="Script" uid="uid://qphgmkvrhto2" path="res://scenes/actors/general/knockback_handler.gd" id="10_i174x"]
+[ext_resource type="Script" uid="uid://dlyvegrsfhjry" path="res://scenes/actors/general/health.gd" id="14_4iwnj"]
 
 [sub_resource type="Resource" id="Resource_4iwnj"]
 script = ExtResource("4_inh5e")
@@ -176,17 +177,23 @@ animations = Dictionary[int, StringName]({
 8: &"stand"
 })
 
+[node name="Timer" type="Timer" parent="AnimationHandler" unique_id=1861656201]
+wait_time = 0.06
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=920848685]
 shape = SubResource("CircleShape2D_mgg8m")
 
 [node name="KnockBackHandler" type="Node" parent="." unique_id=1549154095 node_paths=PackedStringArray("knockback_body", "knockback_timer")]
 script = ExtResource("10_i174x")
 knockback_body = NodePath("..")
-knockback_speed = 3.0
+knockback_speed = 50.0
 knockback_timer = NodePath("../KnockbackTimer")
 metadata/_custom_type_script = "uid://qphgmkvrhto2"
 
 [node name="DamageTaker" type="Area2D" parent="." unique_id=1205574186 node_paths=PackedStringArray("invincibility_timer")]
+collision_layer = 0
+collision_mask = 56
+monitorable = false
 script = ExtResource("8_i174x")
 invincibility_timer = NodePath("../InvinTimer")
 metadata/_custom_type_script = "uid://by3emb6fcj3rt"
@@ -215,12 +222,23 @@ wait_time = 0.3
 one_shot = true
 
 [node name="KnockbackTimer" type="Timer" parent="." unique_id=1703618359]
+wait_time = 0.2
 one_shot = true
 
 [node name="InvinTimer" type="Timer" parent="." unique_id=762141545]
 one_shot = true
 
+[node name="Health" type="Node" parent="." unique_id=794583963]
+script = ExtResource("14_4iwnj")
+metadata/_custom_type_script = "uid://dlyvegrsfhjry"
+
+[connection signal="timeout" from="AnimationHandler/Timer" to="AnimationHandler" method="_on_timer_timeout"]
+[connection signal="hit" from="DamageTaker" to="Direction" method="set_dir_from_vector"]
 [connection signal="hit" from="DamageTaker" to="KnockBackHandler" method="start_knockback"]
+[connection signal="hit" from="DamageTaker" to="CarryHandler" method="_on_damage_taker_hit"]
+[connection signal="hit" from="DamageTaker" to="AnimationHandler" method="set_flicker" unbinds=1 binds= [true]]
+[connection signal="hit" from="DamageTaker" to="Health" method="dec_health" unbinds=1 binds= [1]]
 [connection signal="carry_set" from="CarryHandler" to="AnimationHandler" method="_on_carry_state_changed"]
 [connection signal="try_carry" from="CarryHandler" to="." method="try_carry"]
 [connection signal="try_throw" from="CarryHandler" to="." method="try_throw"]
+[connection signal="timeout" from="InvinTimer" to="AnimationHandler" method="set_flicker" binds= [false]]

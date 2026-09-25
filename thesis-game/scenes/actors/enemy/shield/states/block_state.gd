@@ -47,7 +47,7 @@ func update_aggro(delta: float) -> CollisionObject2D:
             aggro_list.erase(c)
             continue
         aggro_list[c] = aggro_list[c] + (delta if in_range.get_or_add(c, false) else (-delta))
-        print(c.name, ": ", aggro_list[c])
+        
         if aggro_list[c] <= 0: aggro_list.erase(c)
         elif aggro_list[c] > aggro_threshold: aggro_list[c] = aggro_threshold
 
