@@ -116,6 +116,7 @@ joypads/ignore_joypad_on_unfocused_application=true
 2d_physics/layer_5="Explosion"
 2d_physics/layer_6="Enemy Projectile"
 2d_physics/layer_7="Player Projectile"
+2d_physics/layer_8="block_bomb"
 
 [physics]
 

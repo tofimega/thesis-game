@@ -139,6 +139,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_mgg8m"]
 radius = 7.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_4iwnj"]
+radius = 3.0
+
 [node name="Player" type="CharacterBody2D" unique_id=1211348581]
 collision_layer = 2
 collision_mask = 5
@@ -157,6 +160,7 @@ movement_states = Dictionary[int, ExtResource("2_mpktj")]({
 })
 
 [node name="Direction" type="Node2D" parent="." unique_id=237760465]
+rotation = 1.5707964
 script = ExtResource("7_g2g7f")
 metadata/_custom_type_script = "uid://b5ofmh2rfq14f"
 
@@ -196,10 +200,12 @@ collision_mask = 56
 monitorable = false
 script = ExtResource("8_i174x")
 invincibility_timer = NodePath("../InvinTimer")
+allow_bodies = null
 metadata/_custom_type_script = "uid://by3emb6fcj3rt"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageTaker" unique_id=460364455]
-shape = SubResource("CircleShape2D_mgg8m")
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_4iwnj")
 
 [node name="CarryHandler" type="RemoteTransform2D" parent="." unique_id=1913388303]
 position = Vector2(0, -19)

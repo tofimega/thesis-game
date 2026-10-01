@@ -12,8 +12,10 @@ var loaded_file: String
 @onready var game_raw: SubViewport = $GameRaw
 @onready var info_text: SubViewport = $InfoText
 @onready var text_raw: SubViewport = $TextRaw
-
+@onready var health_raw: SubViewport = $HealthRaw
+@onready var health_sprite: HealthSprite = $HealthRaw/ColorRect/HealthSprite
 @onready var label: ScrollingLabel = $TextRaw/ColorRect/Label
+@onready var health_display: SubViewport = $HealthDisplay
 
 
 func _ready() -> void:

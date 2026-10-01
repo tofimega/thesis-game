@@ -48,11 +48,23 @@ collision_layer = 0
 collision_mask = 16
 monitorable = false
 script = ExtResource("2_tn3i4")
+draw_color = Color(0.60002416, 0.5423755, 0, 0.3019608)
+metadata/_custom_type_script = "uid://by3emb6fcj3rt"
+
+[node name="HitBox" type="Area2D" parent="." unique_id=1817027655]
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+script = ExtResource("2_tn3i4")
+allow_areas = null
+allow_bodies = null
+draw_color = Color(0.60002416, 0.5423755, 0, 0.3019608)
 metadata/_custom_type_script = "uid://by3emb6fcj3rt"
 
 [node name="InvinTimer" type="Timer" parent="." unique_id=1222957130]
 
 [node name="Direction" type="Node2D" parent="." unique_id=642759767]
+rotation = 1.5707964
 script = ExtResource("3_xfx7f")
 metadata/_custom_type_script = "uid://b5ofmh2rfq14f"
 
@@ -66,5 +78,6 @@ sprite_frames = SubResource("SpriteFrames_6f51t")
 [connection signal="health_depleted" from="Health" to="." method="_on_health_depleted"]
 [connection signal="hit" from="DamageTaker" to="." method="_on_damage_taker_hit"]
 [connection signal="hit" from="BombDamageTaker" to="." method="_on_bomb_damage_taker_hit"]
+[connection signal="hit" from="HitBox" to="." method="_on_bomb_damage_taker_hit"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_animation_over"]
 [connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_animation_over"]

@@ -83,6 +83,9 @@ radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p5tfw"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_07s2y"]
+radius = 7.071068
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_p5tfw"]
 atlas = ExtResource("8_d3sbm")
 region = Rect2(0, 0, 16, 16)
@@ -166,35 +169,38 @@ states = Array[ExtResource("2_wc1rh")]([SubResource("Resource_hwvj8"), SubResour
 counted = true
 
 [node name="DamageTaker" parent="." index="1" unique_id=1397366735]
-monitorable = false
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageTaker" index="0" unique_id=1917954894]
 shape = SubResource("CircleShape2D_mgg8m")
 
 [node name="BombDamageTaker" parent="." index="2" unique_id=2119286083]
-monitorable = false
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BombDamageTaker" index="0" unique_id=263019094]
 shape = SubResource("CircleShape2D_p5tfw")
 
-[node name="Direction" parent="." index="4" unique_id=642759767]
-rotation = 1.5707964
+[node name="HitBox" parent="." index="3" unique_id=1817027655]
+allow_areas = true
+allow_bodies = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Direction" index="0" unique_id=1746270323]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0" unique_id=724971920]
+z_index = 1
+shape = SubResource("CircleShape2D_07s2y")
+debug_color = Color(0.99999994, 0.007172685, 0.07558925, 0.41960785)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="5" unique_id=1764313750]
+visible = false
+shape = SubResource("CircleShape2D_mgg8m")
+
+[node name="Sprite2D" type="Sprite2D" parent="Direction" parent_id_path=PackedInt32Array(642759767) index="0" unique_id=1746270323]
 z_index = 1
 scale = Vector2(0.5, 1)
 texture = ExtResource("8_p5tfw")
 offset = Vector2(7, -7)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="5" unique_id=1764313750]
-shape = SubResource("CircleShape2D_mgg8m")
-
-[node name="Sprite2D" parent="." index="6" unique_id=1552092155]
+[node name="Sprite2D" parent="." index="7" unique_id=1552092155]
 offset = Vector2(0, -1)
-
-[node name="AnimatedSprite2D" parent="." index="7" unique_id=1227982333]
-sprite_frames = SubResource("SpriteFrames_5hncg")
-frame_progress = 0.022612812
 
 [node name="PlayerDetection" type="RayCast2D" parent="." index="8" unique_id=1815380233]
 target_position = Vector2(64, 0)
@@ -209,3 +215,7 @@ wait_time = 0.5
 
 [node name="DizzyTimer" type="Timer" parent="." index="11" unique_id=1733681963]
 wait_time = 5.0
+
+[node name="AnimatedSprite2D" parent="." index="12" unique_id=1227982333]
+sprite_frames = SubResource("SpriteFrames_5hncg")
+frame_progress = 0.022612812

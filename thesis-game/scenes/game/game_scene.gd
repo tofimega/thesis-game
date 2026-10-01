@@ -73,6 +73,9 @@ func next_level() -> void:
         start_level()
     else: game_end_sequence()
 
+func reset_level()->void:
+    _level_index-=1
+    start_level()
 
 func game_end_sequence() -> void:
     SceneControl.back_to_menu(MenuScene.MenuPanel.TITLE)
@@ -82,3 +85,7 @@ func start_level()->void:
     load_level(_level_index + 1)
     camera_2d.position = Vector2.ZERO
     next_room()
+
+
+func _on_player_out() -> void:
+    reset_level()

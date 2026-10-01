@@ -30,6 +30,6 @@ func stop() -> void:
 
 
 func start() -> void:
-    #TODO: player's spawn state (animation)
+    player.reset()
     player.set_physics_process(true)
     player.visible = true

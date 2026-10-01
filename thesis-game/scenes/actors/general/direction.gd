@@ -14,6 +14,8 @@ enum Dir {
         face_direction = f
         rotation = get_vector().angle()
 
+func _ready() -> void:
+    face_direction = face_direction
 
 @warning_ignore("int_as_enum_without_cast", "int_as_enum_without_match")
 func get_vector(dir: Dir = -1) -> Vector2:

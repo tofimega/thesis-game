@@ -2,6 +2,7 @@ class_name Health
 extends Node
 
 signal health_depleted
+signal health_changed(new_value: int)
 
 @export var starting_health: int = 3
 
@@ -11,7 +12,7 @@ signal health_depleted
 
 func set_health(h: int) -> void:
     health = h
-    print(health)
+    health_changed.emit(h)
     if h <= 0: health_depleted.emit()
 
 

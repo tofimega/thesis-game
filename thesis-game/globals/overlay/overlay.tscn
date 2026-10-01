@@ -10,11 +10,11 @@ colors = PackedColorArray(0.22803396, 0.47843033, 1, 1, 0.10881125, 0.7145951, 0
 gradient = SubResource("Gradient_mpier")
 fill_to = Vector2(0, 1)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_co2uy"]
-viewport_path = NodePath("InfoTextCRT")
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_wr0pm"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_h6nm0"]
-viewport_path = NodePath("MainCRT")
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_co2uy"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2klt3"]
 
 [sub_resource type="Gradient" id="Gradient_7asm7"]
 offsets = PackedFloat32Array(0)
@@ -71,15 +71,18 @@ theme_override_constants/margin_bottom = 4
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="Health" type="Panel" parent="HBoxContainer/NinePatchRect/LeftPanel/VBoxContainer" unique_id=1682746890]
+[node name="Health" type="TextureRect" parent="HBoxContainer/NinePatchRect/LeftPanel/VBoxContainer" unique_id=1201163380]
+texture_filter = 2
 custom_minimum_size = Vector2(0, 72)
 layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_wr0pm")
+expand_mode = 1
 
 [node name="InfoText" type="TextureRect" parent="HBoxContainer/NinePatchRect/LeftPanel/VBoxContainer" unique_id=1888612831]
 texture_filter = 2
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
-texture = SubResource("ViewportTexture_co2uy")
+texture = SubResource("PlaceholderTexture2D_co2uy")
 expand_mode = 1
 
 [node name="Joystick" type="Panel" parent="HBoxContainer/NinePatchRect/LeftPanel/VBoxContainer" unique_id=1822365273]
@@ -90,7 +93,7 @@ layout_mode = 2
 texture_filter = 1
 custom_minimum_size = Vector2(240, 180)
 layout_mode = 2
-texture = SubResource("ViewportTexture_h6nm0")
+texture = SubResource("PlaceholderTexture2D_2klt3")
 expand_mode = 1
 
 [node name="Loading" type="TextureRect" parent="." unique_id=908309046]

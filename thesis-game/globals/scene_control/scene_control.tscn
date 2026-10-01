@@ -4,6 +4,8 @@
 [ext_resource type="Shader" uid="uid://c5h0ok6hf0bv" path="res://addons/crt_shader/crt_shader_noscan.gdshader" id="2_tg413"]
 [ext_resource type="FontFile" uid="uid://dco61gxck188a" path="res://assets/fonts/dogica/TTF/dogicapixel.ttf" id="3_75m3m"]
 [ext_resource type="Script" uid="uid://cngwpf31ptsw6" path="res://addons/scrolling_text/scrolling_text.gd" id="4_hb684"]
+[ext_resource type="Texture2D" uid="uid://cs8a00k6md0iv" path="res://assets/images/sprites/PH_life_counter.png" id="5_75m3m"]
+[ext_resource type="Script" uid="uid://bxa4jy5jncu7y" path="res://globals/scene_control/health_sprite.gd" id="6_hb684"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_5smwh"]
 viewport_path = NodePath("GameRaw")
@@ -18,18 +20,67 @@ shader_parameter/color_offset = -0.3409999924475
 shader_parameter/mask_brightness = 0.3550000168625
 shader_parameter/aspect = 0.9530000215175
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_o52li"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_y5v3l"]
 viewport_path = NodePath("TextRaw")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wfv0q"]
 resource_local_to_scene = true
 shader = ExtResource("2_tg413")
-shader_parameter/tex = SubResource("ViewportTexture_o52li")
+shader_parameter/tex = SubResource("ViewportTexture_y5v3l")
 shader_parameter/mask_type = 1
-shader_parameter/curve = 0.16800000798
-shader_parameter/color_offset = -0.4489999975775
-shader_parameter/mask_brightness = 0.6270000297825
+shader_parameter/curve = 0.1250000059375
+shader_parameter/color_offset = 0.5
+shader_parameter/mask_brightness = 0.8310000394725
+shader_parameter/aspect = 0.8830000181925
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_hb684"]
+viewport_path = NodePath("HealthRaw")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hb684"]
+resource_local_to_scene = true
+shader = ExtResource("2_tg413")
+shader_parameter/tex = SubResource("ViewportTexture_hb684")
+shader_parameter/mask_type = 5
+shader_parameter/curve = 0.3410000161975
+shader_parameter/color_offset = -0.5
+shader_parameter/mask_brightness = 0.17600000836
 shader_parameter/aspect = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_75m3m"]
+atlas = ExtResource("5_75m3m")
+region = Rect2(216, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hb684"]
+atlas = ExtResource("5_75m3m")
+region = Rect2(144, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5v3l"]
+atlas = ExtResource("5_75m3m")
+region = Rect2(72, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wfv0q"]
+atlas = ExtResource("5_75m3m")
+region = Rect2(0, 0, 72, 72)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mgg8m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_75m3m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hb684")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5v3l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wfv0q")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="SceneControl" type="Node" unique_id=1014466701]
 script = ExtResource("1_rmhsi")
@@ -99,3 +150,34 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="HealthDisplay" type="SubViewport" parent="." unique_id=1549155797]
+disable_3d = true
+transparent_bg = true
+snap_2d_transforms_to_pixel = true
+size = Vector2i(216, 216)
+
+[node name="ColorRect" type="ColorRect" parent="HealthDisplay" unique_id=1504041746]
+material = SubResource("ShaderMaterial_hb684")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HealthRaw" type="SubViewport" parent="." unique_id=404889759]
+size = Vector2i(72, 72)
+
+[node name="ColorRect" type="ColorRect" parent="HealthRaw" unique_id=1033442065]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.10747976, 0.10747973, 0.10747973, 1)
+
+[node name="HealthSprite" type="AnimatedSprite2D" parent="HealthRaw/ColorRect" unique_id=613295125]
+sprite_frames = SubResource("SpriteFrames_mgg8m")
+centered = false
+script = ExtResource("6_hb684")
