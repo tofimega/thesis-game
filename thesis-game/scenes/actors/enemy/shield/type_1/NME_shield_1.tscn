@@ -39,11 +39,7 @@ direction_source = NodePath("../Direction")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BombDamageTaker" index="0" unique_id=2081982658]
 shape = SubResource("CircleShape2D_mgg8m")
 
-[node name="HitBox" parent="." index="3" unique_id=1817027655]
-allow_areas = true
-allow_bodies = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0" unique_id=584307677]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" parent_id_path=PackedInt32Array(1817027655) index="0" unique_id=584307677]
 z_index = 1
 shape = SubResource("CircleShape2D_mgg8m")
 debug_color = Color(0.9999066, 0, 0.11277779, 0.41960785)

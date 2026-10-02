@@ -7,8 +7,12 @@ extends Control
 @onready var info_text: ScrollingLabel = SceneControl.label
 @onready var health: TextureRect = $HBoxContainer/NinePatchRect/LeftPanel/VBoxContainer/Health
 
+var fullscreen: bool = false
 
-
+func _unhandled_input(event: InputEvent) -> void:
+    if Input.is_action_just_pressed_by_event("toggle_fullscreen", event):
+        fullscreen = !fullscreen
+        DisplayServer.window_set_mode(DisplayServer.WindowMode.WINDOW_MODE_EXCLUSIVE_FULLSCREEN if fullscreen else DisplayServer.WindowMode.WINDOW_MODE_WINDOWED)
 
 
 

@@ -180,11 +180,7 @@ visible = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BombDamageTaker" index="0" unique_id=263019094]
 shape = SubResource("CircleShape2D_p5tfw")
 
-[node name="HitBox" parent="." index="3" unique_id=1817027655]
-allow_areas = true
-allow_bodies = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0" unique_id=724971920]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" parent_id_path=PackedInt32Array(1817027655) index="0" unique_id=724971920]
 z_index = 1
 shape = SubResource("CircleShape2D_07s2y")
 debug_color = Color(0.99999994, 0.007172685, 0.07558925, 0.41960785)

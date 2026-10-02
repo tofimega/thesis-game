@@ -200,7 +200,6 @@ collision_mask = 56
 monitorable = false
 script = ExtResource("8_i174x")
 invincibility_timer = NodePath("../InvinTimer")
-allow_bodies = null
 metadata/_custom_type_script = "uid://by3emb6fcj3rt"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageTaker" unique_id=460364455]

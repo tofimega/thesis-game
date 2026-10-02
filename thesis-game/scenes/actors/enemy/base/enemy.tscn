@@ -56,8 +56,6 @@ collision_layer = 8
 collision_mask = 0
 monitoring = false
 script = ExtResource("2_tn3i4")
-allow_areas = null
-allow_bodies = null
 draw_color = Color(0.60002416, 0.5423755, 0, 0.3019608)
 metadata/_custom_type_script = "uid://by3emb6fcj3rt"
 
