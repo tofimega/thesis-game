@@ -30,7 +30,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 script = ExtResource("1_ynx6w")
 
 [node name="Backgorund" type="TextureRect" parent="." unique_id=811357847]
@@ -40,6 +39,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 0
 texture = SubResource("GradientTexture2D_ynx6w")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=561460223]
@@ -49,12 +49,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 0
 theme_override_constants/separation = 0
 alignment = 2
 
 [node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer" unique_id=720286630]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 0
 texture = ExtResource("2_7asm7")
 
 [node name="LeftPanel" type="MarginContainer" parent="HBoxContainer/NinePatchRect" unique_id=563481003]
@@ -62,6 +64,7 @@ layout_mode = 0
 offset_right = 80.0
 offset_bottom = 180.0
 size_flags_horizontal = 3
+mouse_filter = 0
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
@@ -69,12 +72,14 @@ theme_override_constants/margin_bottom = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/NinePatchRect/LeftPanel" unique_id=716139183]
 layout_mode = 2
+mouse_filter = 0
 theme_override_constants/separation = 4
 
 [node name="Health" type="TextureRect" parent="HBoxContainer/NinePatchRect/LeftPanel/VBoxContainer" unique_id=1201163380]
 texture_filter = 2
 custom_minimum_size = Vector2(0, 72)
 layout_mode = 2
+mouse_filter = 0
 texture = SubResource("PlaceholderTexture2D_wr0pm")
 expand_mode = 1
 
@@ -82,6 +87,7 @@ expand_mode = 1
 texture_filter = 2
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
+mouse_filter = 0
 texture = SubResource("PlaceholderTexture2D_co2uy")
 expand_mode = 1
 
@@ -93,6 +99,7 @@ layout_mode = 2
 texture_filter = 1
 custom_minimum_size = Vector2(240, 180)
 layout_mode = 2
+mouse_filter = 0
 texture = SubResource("PlaceholderTexture2D_2klt3")
 expand_mode = 1
 
@@ -105,4 +112,5 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 0
 texture = SubResource("GradientTexture1D_wr0pm")

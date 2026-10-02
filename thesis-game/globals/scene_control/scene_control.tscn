@@ -88,12 +88,14 @@ script = ExtResource("1_rmhsi")
 [node name="GameRaw" type="SubViewport" parent="." unique_id=1845517046]
 disable_3d = true
 snap_2d_transforms_to_pixel = true
+canvas_item_default_texture_filter = 0
 size = Vector2i(240, 180)
 
 [node name="GameView" type="SubViewport" parent="." unique_id=211576642]
 disable_3d = true
 transparent_bg = true
 snap_2d_transforms_to_pixel = true
+gui_disable_input = true
 size = Vector2i(720, 540)
 
 [node name="ColorRect" type="ColorRect" parent="GameView" unique_id=954705909]
@@ -103,10 +105,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="TextRaw" type="SubViewport" parent="." unique_id=1403972627]
 disable_3d = true
 snap_2d_transforms_to_pixel = true
+gui_disable_input = true
 size = Vector2i(72, 20)
 
 [node name="ColorRect" type="ColorRect" parent="TextRaw" unique_id=1648272644]
@@ -117,6 +121,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0.17641911, 0.17641908, 0.17641908, 1)
 
 [node name="Label" type="RichTextLabel" parent="TextRaw/ColorRect" unique_id=605832223]
@@ -127,6 +132,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_colors/default_color = Color(0.88283396, 0.47867638, 0.20078021, 1)
 theme_override_fonts/normal_font = ExtResource("3_75m3m")
 text = "TEXT"
@@ -141,6 +147,7 @@ scroll_speed = 30.0
 disable_3d = true
 transparent_bg = true
 snap_2d_transforms_to_pixel = true
+gui_disable_input = true
 size = Vector2i(144, 40)
 
 [node name="ColorRect" type="ColorRect" parent="InfoText" unique_id=1865362153]
@@ -150,11 +157,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="HealthDisplay" type="SubViewport" parent="." unique_id=1549155797]
 disable_3d = true
 transparent_bg = true
 snap_2d_transforms_to_pixel = true
+gui_disable_input = true
 size = Vector2i(216, 216)
 
 [node name="ColorRect" type="ColorRect" parent="HealthDisplay" unique_id=1504041746]
@@ -164,8 +173,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="HealthRaw" type="SubViewport" parent="." unique_id=404889759]
+gui_disable_input = true
 size = Vector2i(72, 72)
 
 [node name="ColorRect" type="ColorRect" parent="HealthRaw" unique_id=1033442065]
@@ -175,6 +186,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0.10747976, 0.10747973, 0.10747973, 1)
 
 [node name="HealthSprite" type="AnimatedSprite2D" parent="HealthRaw/ColorRect" unique_id=613295125]

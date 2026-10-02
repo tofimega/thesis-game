@@ -48,6 +48,7 @@ offset_right = 20.0
 offset_bottom = -17.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 0
 text = "Press Start"
 label_settings = ExtResource("1_klgdb")
 horizontal_alignment = 1
@@ -71,6 +72,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 0
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
@@ -86,6 +88,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 0
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
@@ -93,6 +96,7 @@ theme_override_constants/margin_bottom = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ReferenceRect/FileSelect/MarginContainer/Panel/MarginContainer" unique_id=1930791492]
 layout_mode = 2
+mouse_filter = 0
 
 [node name="FilePanel" parent="ReferenceRect/FileSelect/MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=1980114349 instance=ExtResource("5_r8yej")]
 layout_mode = 2
@@ -144,6 +148,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 0
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
@@ -159,6 +164,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 0
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
@@ -166,6 +172,7 @@ theme_override_constants/margin_bottom = 4
 
 [node name="ScrollContainer" type="ScrollContainer" parent="ReferenceRect/LevelSelect/MarginContainer/Panel/MarginContainer" unique_id=683659992]
 layout_mode = 2
+mouse_filter = 0
 follow_focus = true
 draw_focus_border = true
 
@@ -173,3 +180,4 @@ draw_focus_border = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 0

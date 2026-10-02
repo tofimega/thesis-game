@@ -23,7 +23,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-    if !event.is_action_type():
+    if event is InputEventMouse || !event.is_action_type():
         return
     game_raw.push_input(event)
 
