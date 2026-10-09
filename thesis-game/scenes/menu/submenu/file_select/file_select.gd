@@ -24,7 +24,12 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
     if Input.is_action_just_pressed_by_event("ui_cancel", event):
-        switch_to.emit(MenuScene.MenuPanel.TITLE)
+        if current_mode == Mode.COPY_FILE:
+            current_mode = Mode.SELECT_FILE
+            selected_panel = _file_to_copy
+            FilePanel.copy_mode = false
+        else:
+            switch_to.emit(MenuScene.MenuPanel.TITLE)
 
 
 func on_show() -> void:

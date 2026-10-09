@@ -14,7 +14,7 @@ enum Mode {
     DELETE_CHOICER,
 }
 
-static var _copy_mode: bool = false
+static var copy_mode: bool = false
 
 @export var file_num: int = -1:
     set(v):
@@ -58,7 +58,7 @@ var _current_mode: Mode = Mode.SHOW_INFO:
 
 
 func _ready() -> void:
-    _copy_mode = false
+    copy_mode = false
     file_num = file_num
     for c: Control in _panels.values():
         c.visible = false
@@ -85,7 +85,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _handle_press() -> void:
-    if _copy_mode: _current_mode = Mode.COPY_CHOICER
+    if copy_mode: _current_mode = Mode.COPY_CHOICER
     else: _current_mode = Mode.FILE_OPTIONS
 
 
@@ -124,21 +124,23 @@ func _update_file_info(file_header: SaveGame.SaveHeader) -> void:
 
 
 func _begin_copy() -> void:
-    _copy_mode = true
+    copy_mode = true
     _current_mode = Mode.SHOW_INFO
     copy_begin.emit(file_num)
 
 
 func _cancel_choicer() -> void:
     choicer_canceled.emit(file_num)
-    _current_mode = Mode.FILE_OPTIONS
+    match _current_mode:
+        Mode.DELETE_CHOICER: _current_mode = Mode.FILE_OPTIONS
+        _: _current_mode = Mode.SHOW_INFO
 
 
 func _evaluate_choicer() -> void:
     match _current_mode:
         Mode.COPY_CHOICER: 
             copy_confirm.emit(file_num)
-            _copy_mode = false
+            copy_mode = false
         Mode.DELETE_CHOICER: delete_file.emit(file_num)
         _: assert(false, "Incorrect choicer mode")
 

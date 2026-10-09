@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://506p3q3mukhd" path="res://scenes/game/game_scene.gd" id="1_sul5r"]
 [ext_resource type="Resource" uid="uid://dws781cajxk7e" path="res://assets/resources/level_map/default_level_map.tres" id="2_7h61r"]
 [ext_resource type="PackedScene" uid="uid://86ruhs3hrnbv" path="res://scenes/actors/player/player.tscn" id="3_0sr1o"]
+[ext_resource type="Script" uid="uid://cmxvbu77x50ou" path="res://scenes/game/level_end_screen.gd" id="3_87uf6"]
+[ext_resource type="LabelSettings" uid="uid://c4jxn1wt6u4pr" path="res://assets/label_settings/pixel_operator.tres" id="3_bdhmt"]
 [ext_resource type="Script" uid="uid://bn5hof08cvlps" path="res://scenes/game/carry_controller.gd" id="3_lfrn8"]
 [ext_resource type="PackedScene" uid="uid://duufvf2275q3y" path="res://scenes/actors/bomb/bomb.tscn" id="5_5i0tg"]
 [ext_resource type="PackedScene" uid="uid://dvuhoen5pcmd" path="res://scenes/actors/explosion/explosion.tscn" id="6_5i0tg"]
@@ -19,6 +21,45 @@ offset_bottom = 180.0
 [node name="LevelHolder" type="Node2D" parent="." unique_id=1116380137]
 y_sort_enabled = true
 
+[node name="Camera2D" type="Camera2D" parent="." unique_id=873286340]
+anchor_mode = 0
+
+[node name="ResultsScreen" type="ColorRect" parent="Camera2D" unique_id=377680960]
+offset_right = 240.0
+offset_bottom = 180.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("3_87uf6")
+
+[node name="LevelClearText" type="Label" parent="Camera2D/ResultsScreen" unique_id=491682045]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.1
+anchor_right = 0.5
+anchor_bottom = 0.1
+offset_left = -64.0
+offset_right = 64.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Level X Cleared!"
+label_settings = ExtResource("3_bdhmt")
+
+[node name="PowerupText" type="Label" parent="Camera2D/ResultsScreen" unique_id=1924351380]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.2
+anchor_right = 0.5
+anchor_bottom = 0.2
+offset_left = -64.0
+offset_right = 64.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "You Got: AUUEueueUíu"
+label_settings = ExtResource("3_bdhmt")
+
 [node name="CarryController" type="Node2D" parent="." unique_id=684975796]
 y_sort_enabled = true
 script = ExtResource("3_lfrn8")
@@ -32,9 +73,6 @@ unique_name_in_owner = true
 z_index = 1
 monitoring = false
 monitorable = false
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=873286340]
-anchor_mode = 0
 
 [connection signal="want_carry" from="CarryController/Player" to="CarryController" method="try_carry"]
 [connection signal="want_throw" from="CarryController/Player" to="CarryController" method="try_throw"]

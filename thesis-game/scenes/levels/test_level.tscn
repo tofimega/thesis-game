@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ctnfjng6hqk8g" path="res://scenes/game/level/room/room.tscn" id="2_6iamk"]
 [ext_resource type="Texture2D" uid="uid://bpni4m0cll4ky" path="res://icon.svg" id="3_x42e6"]
 [ext_resource type="Texture2D" uid="uid://k0ve8ehcjgn3" path="res://assets/images/floor_tile.png" id="4_6761a"]
-[ext_resource type="Script" uid="uid://b5ofmh2rfq14f" path="res://scenes/actors/general/direction.gd" id="5_6761a"]
+[ext_resource type="Script" uid="uid://b5ofmh2rfq14f" path="res://scripts/shared_actor_components/direction.gd" id="5_6761a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sk5k4"]
 texture = ExtResource("3_x42e6")

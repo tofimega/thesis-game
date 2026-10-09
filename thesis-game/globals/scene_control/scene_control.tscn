@@ -91,6 +91,19 @@ snap_2d_transforms_to_pixel = true
 canvas_item_default_texture_filter = 0
 size = Vector2i(240, 180)
 
+[node name="CanvasLayer" type="CanvasLayer" parent="GameRaw" unique_id=1008411432]
+layer = 2
+
+[node name="LoadingScreen" type="ColorRect" parent="GameRaw/CanvasLayer" unique_id=1516378544]
+z_index = 1000
+z_as_relative = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
 [node name="GameView" type="SubViewport" parent="." unique_id=211576642]
 disable_3d = true
 transparent_bg = true

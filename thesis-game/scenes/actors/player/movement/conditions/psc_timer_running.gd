@@ -7,4 +7,4 @@ extends PlayerStateCondition
 
 func is_valid(player: Player)->bool:
     var t: Timer = player.get_node(timer) as Timer
-    return !t.is_stopped() and (allow_pause or !t.paused)
+    return t and !t.is_stopped() and (allow_pause or !t.paused)

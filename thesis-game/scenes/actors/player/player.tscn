@@ -8,12 +8,12 @@
 [ext_resource type="Script" uid="uid://c57i14wd82g2p" path="res://scenes/actors/player/movement/do_nothing_state.gd" id="4_inh5e"]
 [ext_resource type="Script" uid="uid://vhranncln5i1" path="res://scenes/actors/player/movement/conditions/psc_timer_running.gd" id="5_4iwnj"]
 [ext_resource type="Resource" uid="uid://b2dqu522t34fw" path="res://assets/resources/player_movement/conditions/true.tres" id="5_inh5e"]
-[ext_resource type="Script" uid="uid://b5ofmh2rfq14f" path="res://scenes/actors/general/direction.gd" id="7_g2g7f"]
+[ext_resource type="Script" uid="uid://b5ofmh2rfq14f" path="res://scripts/shared_actor_components/direction.gd" id="7_g2g7f"]
 [ext_resource type="Script" uid="uid://mb8x5tek235p" path="res://scenes/actors/player/carry_handler.gd" id="8_fp13k"]
-[ext_resource type="Script" uid="uid://by3emb6fcj3rt" path="res://scenes/actors/general/damage_taker.gd" id="8_i174x"]
+[ext_resource type="Script" uid="uid://by3emb6fcj3rt" path="res://scripts/shared_actor_components/damage_taker.gd" id="8_i174x"]
 [ext_resource type="Texture2D" uid="uid://cxysss2857v3e" path="res://assets/images/sprites/shadow.png" id="9_hcvpp"]
-[ext_resource type="Script" uid="uid://qphgmkvrhto2" path="res://scenes/actors/general/knockback_handler.gd" id="10_i174x"]
-[ext_resource type="Script" uid="uid://dlyvegrsfhjry" path="res://scenes/actors/general/health.gd" id="14_4iwnj"]
+[ext_resource type="Script" uid="uid://qphgmkvrhto2" path="res://scripts/shared_actor_components/knockback_handler.gd" id="10_i174x"]
+[ext_resource type="Script" uid="uid://dlyvegrsfhjry" path="res://scripts/shared_actor_components/health.gd" id="14_4iwnj"]
 
 [sub_resource type="Resource" id="Resource_4iwnj"]
 script = ExtResource("4_inh5e")
@@ -218,6 +218,9 @@ show_behind_parent = true
 position = Vector2(-1, 0)
 texture = ExtResource("9_hcvpp")
 
+[node name="GeneralActionTimer" type="Timer" parent="." unique_id=566913733]
+one_shot = true
+
 [node name="PickupTimer" type="Timer" parent="." unique_id=227486486]
 wait_time = 0.3
 one_shot = true
@@ -244,6 +247,6 @@ metadata/_custom_type_script = "uid://dlyvegrsfhjry"
 [connection signal="hit" from="DamageTaker" to="AnimationHandler" method="set_flicker" unbinds=1 binds= [true]]
 [connection signal="hit" from="DamageTaker" to="Health" method="dec_health" unbinds=1 binds= [1]]
 [connection signal="carry_set" from="CarryHandler" to="AnimationHandler" method="_on_carry_state_changed"]
-[connection signal="try_carry" from="CarryHandler" to="." method="try_carry"]
-[connection signal="try_throw" from="CarryHandler" to="." method="try_throw"]
+[connection signal="try_carry" from="CarryHandler" to="." method="_try_carry"]
+[connection signal="try_throw" from="CarryHandler" to="." method="_try_throw"]
 [connection signal="timeout" from="InvinTimer" to="AnimationHandler" method="set_flicker" binds= [false]]

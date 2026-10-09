@@ -3,17 +3,18 @@ extends AnimatedSprite2D
 
 @export var animations: Dictionary[Player.State, StringName]
 
+var flicker: bool:
+    set = set_flicker
+
 var _current_state: Player.State = Player.State.SPAWN
-var _current_animation: StringName = ""
+var current_animation: StringName = ""
 var _carry_state: CarryHandler.CarryState = CarryHandler.CarryState.FREE
 
 @onready var timer: Timer = $Timer
 @onready var direction: Direction = $"../Direction"
 
-var flicker: bool:
-    set = set_flicker
 
-func set_flicker(on: bool)->void:
+func set_flicker(on: bool) -> void:
     flicker = on
     if flicker:
         timer.start()
@@ -21,10 +22,11 @@ func set_flicker(on: bool)->void:
         timer.stop()
         visible = true
 
+
 func switch_anim(state: Player.State) -> void:
     _current_state = state
     var anim_name: StringName = _get_anim_name(_current_state)
-    _current_animation = anim_name
+    current_animation = anim_name
     var dir_anim_name: StringName = anim_name + "_" + direction.Dir.find_key(direction.face_direction).to_lower()
 
     if sprite_frames.has_animation(dir_anim_name): play(dir_anim_name)

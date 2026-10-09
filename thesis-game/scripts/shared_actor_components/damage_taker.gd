@@ -54,6 +54,8 @@ func source_out(_b: Node2D) -> void:
 
 
 func _draw() -> void:
+    if !_draw_shape: return
+    if !Engine.is_editor_hint() and !OS.is_debug_build(): return
     for v: Vector2 in directional_exlucions:
         var x: float = deg_to_rad(v.x)
         var y: float = deg_to_rad(v.y)

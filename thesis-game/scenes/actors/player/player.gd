@@ -29,6 +29,7 @@ enum State {
 @onready var pickup_timer: Timer = $PickupTimer
 @onready var throw_timer: Timer = $ThrowTimer
 @onready var invin_timer: Timer = $InvinTimer
+@onready var general_action_timer: Timer = $GeneralActionTimer
 @onready var knockback_timer: Timer = $KnockbackTimer
 @onready var health: Health = $Health
 @onready var knockback_handler: KnockBackHandler = $KnockBackHandler
@@ -41,9 +42,9 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-    var ms: PlayerMovementState = movement_states[_get_movement_state()]
-    animation_handler.switch_anim(_get_movement_state())
-    ms.process_state(self)
+    var state: State = _get_movement_state()
+    animation_handler.switch_anim(state)
+    movement_states[state].process_state(self)
 
 
 func reset() -> void:
@@ -73,7 +74,7 @@ func do_throw() -> void:
     throw_timer.start()
 
 
-func try_throw() -> void:
+func _try_throw() -> void:
     match _get_movement_state():
         State.WALK, State.IDLE: want_throw.emit()
 
@@ -82,7 +83,7 @@ func reset_carry_state() -> void:
     carry_handler.clear_carry()
 
 
-func try_carry() -> void:
+func _try_carry() -> void:
     match _get_movement_state():
         State.WALK, State.IDLE: want_carry.emit()
         _: return

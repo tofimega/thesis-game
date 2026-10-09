@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bedknwwgpddhc" path="res://scenes/game/level/level.tscn" id="1_ksju7"]
 [ext_resource type="PackedScene" uid="uid://ctnfjng6hqk8g" path="res://scenes/game/level/room/room.tscn" id="2_6iamk"]
-[ext_resource type="Script" uid="uid://b5ofmh2rfq14f" path="res://scenes/actors/general/direction.gd" id="5_6761a"]
+[ext_resource type="Script" uid="uid://b5ofmh2rfq14f" path="res://scripts/shared_actor_components/direction.gd" id="5_6761a"]
 
 [node name="Level" unique_id=440849579 instance=ExtResource("1_ksju7")]
 

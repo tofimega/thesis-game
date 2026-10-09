@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="CreateProjectileState" format=3 uid="uid://b6pjfu7mhg8ca"]
+
+[ext_resource type="Script" uid="uid://bq6ty7i8nchnq" path="res://scenes/actors/player/movement/create_projectile_state.gd" id="1_qe7sr"]
+[ext_resource type="Script" uid="uid://dyt0n4kdjl4g2" path="res://scenes/actors/player/movement/conditions/psc_any.gd" id="2_4ghw8"]
+[ext_resource type="Script" uid="uid://d3r23rmr57r1b" path="res://scenes/actors/player/movement/conditions/player_state_condition.gd" id="3_4sdrs"]
+[ext_resource type="Script" uid="uid://d1cn8xyo7yof3" path="res://scenes/actors/player/movement/conditions/psc_input.gd" id="4_sba21"]
+[ext_resource type="Script" uid="uid://vhranncln5i1" path="res://scenes/actors/player/movement/conditions/psc_timer_running.gd" id="6_g5hp4"]
+
+[sub_resource type="Resource" id="Resource_bdhmt"]
+script = ExtResource("4_sba21")
+input_action = &"action_b"
+metadata/_custom_type_script = "uid://d1cn8xyo7yof3"
+
+[sub_resource type="Resource" id="Resource_87uf6"]
+script = ExtResource("6_g5hp4")
+timer = NodePath("GeneralActionTimer")
+metadata/_custom_type_script = "uid://vhranncln5i1"
+
+[sub_resource type="Resource" id="Resource_5i0tg"]
+script = ExtResource("2_4ghw8")
+subconditions = Array[ExtResource("3_4sdrs")]([SubResource("Resource_bdhmt"), SubResource("Resource_87uf6")])
+metadata/_custom_type_script = "uid://dyt0n4kdjl4g2"
+
+[resource]
+script = ExtResource("1_qe7sr")
+state_condition = SubResource("Resource_5i0tg")
+metadata/_custom_type_script = "uid://bq6ty7i8nchnq"
