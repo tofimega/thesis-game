@@ -32,8 +32,9 @@ func switch_panel(panel: MenuPanel) -> void:
     assert(panels.has(panel), "incorrect mode")
     var fade: bool = current_panel==level_select or panel == MenuPanel.LEVEL_SCELECT
     if current_panel:
-        if fade: 
-            current_panel.release_focus()
+        if fade:
+            var f: Control = get_viewport().gui_get_focus_owner()
+            if f: f.release_focus()
             await SceneControl.fade_loading(1, .3)
         current_panel.release_focus()
         current_panel.visible = false

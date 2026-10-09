@@ -66,7 +66,10 @@ func _load_file(file: int) -> void:
 
     if !load_error.is_empty(): return # show popup or smth
 
-    if header.new_game: SceneControl.begin_game(0) # jump into game immediately
+    if header.new_game:
+        var f: Control = get_viewport().gui_get_focus_owner()
+        if f: f.release_focus()
+        SceneControl.begin_game(0) # jump into game immediately
     else: switch_to.emit(MenuScene.MenuPanel.LEVEL_SCELECT) # open level select
 
 
