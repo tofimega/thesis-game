@@ -24,6 +24,8 @@ func on_explosion() -> void:
 func stop() -> void:
     player.reset_carry_state()
     player.set_physics_process(false)
+    player.set_process_input(false)
+    player.carry_handler.set_process_input(false)
     player.visible = false
     bomb.cancel_explosion()
     explosion.stop()
@@ -32,4 +34,6 @@ func stop() -> void:
 func start() -> void:
     player.reset()
     player.set_physics_process(true)
+    player.set_process_input(true)
+    player.carry_handler.set_process_input(true)
     player.visible = true
