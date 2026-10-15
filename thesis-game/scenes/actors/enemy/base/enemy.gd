@@ -14,7 +14,7 @@ var current_state: EnemyState
 @onready var damage_taker: DamageTaker = $DamageTaker
 @onready var bomb_damage_taker: DamageTaker = $BombDamageTaker
 @onready var direction: Direction = $Direction
-@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animated_sprite_2d: EnemySprite = $AnimatedSprite2D
 
 
 func _ready() -> void:
@@ -57,6 +57,7 @@ func _switch_state(state: int) -> void:
         switches[s] = c
 
     animated_sprite_2d.play(current_state.anim_name)
+    animated_sprite_2d.flicker = current_state.can_explode
     current_state.enter_state(self)
 
 

@@ -6,6 +6,11 @@
 [ext_resource type="Script" uid="uid://b5ofmh2rfq14f" path="res://scripts/shared_actor_components/direction.gd" id="3_xfx7f"]
 [ext_resource type="Texture2D" uid="uid://b0bqpl13p1qmi" path="res://assets/images/sprites/PH-enemy.png" id="5_q6631"]
 [ext_resource type="Texture2D" uid="uid://cxysss2857v3e" path="res://assets/images/sprites/shadow.png" id="5_vx4jr"]
+[ext_resource type="Shader" uid="uid://ber7f5orphmqp" path="res://scenes/actors/enemy/base/enemy.gdshader" id="6_xh2j2"]
+[ext_resource type="Script" uid="uid://dak8vcsdcvjrn" path="res://scenes/actors/enemy/base/enemy_sprite_flicker.gd" id="8_gmiaa"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rm5d4"]
+shader = ExtResource("6_xh2j2")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vx4jr"]
 atlas = ExtResource("5_q6631")
@@ -71,7 +76,10 @@ position = Vector2(0, 7)
 texture = ExtResource("5_vx4jr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1227982333]
+material = SubResource("ShaderMaterial_rm5d4")
+instance_shader_parameters/flicker_on = false
 sprite_frames = SubResource("SpriteFrames_6f51t")
+script = ExtResource("8_gmiaa")
 
 [connection signal="health_depleted" from="Health" to="." method="_on_health_depleted"]
 [connection signal="hit" from="DamageTaker" to="." method="_on_damage_taker_hit"]
