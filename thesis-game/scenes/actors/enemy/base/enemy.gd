@@ -14,7 +14,8 @@ var current_state: EnemyState
 @onready var damage_taker: DamageTaker = $DamageTaker
 @onready var bomb_damage_taker: DamageTaker = $BombDamageTaker
 @onready var direction: Direction = $Direction
-@onready var animated_sprite_2d: EnemySprite = $AnimatedSprite2D
+@onready var animated_sprite_2d: AnimationHandler = $AnimatedSprite2D
+@onready var sprite_flicker: Flickerer = $AnimatedSprite2D/SpriteFlicker
 
 
 func _ready() -> void:
@@ -25,6 +26,7 @@ func _ready() -> void:
         direction.queue_free()
         direction = direction_override
         direction_override.reparent(self, false)
+        animated_sprite_2d.direction = direction
     for i: int in states.size():
         var s: EnemyState = states[i]
         assert(s != null, "Slot " + str(i) + " has no state")
@@ -56,8 +58,10 @@ func _switch_state(state: int) -> void:
             push_error(error_string(err))
         switches[s] = c
 
-    animated_sprite_2d.play(current_state.anim_name)
-    animated_sprite_2d.flicker = current_state.can_explode
+    animated_sprite_2d.switch_anim_string(current_state.anim_name)
+    damage_taker.ignore_exclusions = current_state.ignore_block_direction
+    bomb_damage_taker.ignore_exclusions = current_state.ignore_block_direction
+    sprite_flicker.flicker = current_state.can_explode
     current_state.enter_state(self)
 
 

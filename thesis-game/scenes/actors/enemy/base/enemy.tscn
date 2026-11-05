@@ -6,11 +6,9 @@
 [ext_resource type="Script" uid="uid://b5ofmh2rfq14f" path="res://scripts/shared_actor_components/direction.gd" id="3_xfx7f"]
 [ext_resource type="Texture2D" uid="uid://b0bqpl13p1qmi" path="res://assets/images/sprites/PH-enemy.png" id="5_q6631"]
 [ext_resource type="Texture2D" uid="uid://cxysss2857v3e" path="res://assets/images/sprites/shadow.png" id="5_vx4jr"]
-[ext_resource type="Shader" uid="uid://ber7f5orphmqp" path="res://scenes/actors/enemy/base/enemy.gdshader" id="6_xh2j2"]
-[ext_resource type="Script" uid="uid://dak8vcsdcvjrn" path="res://scenes/actors/enemy/base/enemy_sprite_flicker.gd" id="8_gmiaa"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_rm5d4"]
-shader = ExtResource("6_xh2j2")
+[ext_resource type="Material" uid="uid://d12bjsnchxrar" path="res://assets/materials/enemy_flicker.tres" id="6_gmiaa"]
+[ext_resource type="Script" uid="uid://u0pxxecx1kk5" path="res://scripts/shared_actor_components/animation_handler.gd" id="8_gmiaa"]
+[ext_resource type="Script" uid="uid://dak8vcsdcvjrn" path="res://scenes/actors/enemy/base/enemy_sprite_flicker.gd" id="9_wa3by"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vx4jr"]
 atlas = ExtResource("5_q6631")
@@ -44,7 +42,7 @@ collision_layer = 0
 collision_mask = 64
 monitorable = false
 script = ExtResource("2_tn3i4")
-invincible_time = 0.5
+invincible_time = 0.1
 invincibility_timer = NodePath("../InvinTimer")
 metadata/_custom_type_script = "uid://by3emb6fcj3rt"
 
@@ -53,18 +51,17 @@ collision_layer = 0
 collision_mask = 16
 monitorable = false
 script = ExtResource("2_tn3i4")
+invincible_time = 0.1
 draw_color = Color(0.60002416, 0.5423755, 0, 0.3019608)
 metadata/_custom_type_script = "uid://by3emb6fcj3rt"
 
-[node name="HitBox" type="Area2D" parent="." unique_id=1817027655]
+[node name="HitBox" type="Area2D" parent="." unique_id=1012384815]
 collision_layer = 8
 collision_mask = 0
 monitoring = false
-script = ExtResource("2_tn3i4")
-draw_color = Color(0.60002416, 0.5423755, 0, 0.3019608)
-metadata/_custom_type_script = "uid://by3emb6fcj3rt"
 
 [node name="InvinTimer" type="Timer" parent="." unique_id=1222957130]
+one_shot = true
 
 [node name="Direction" type="Node2D" parent="." unique_id=642759767]
 rotation = 1.5707964
@@ -76,14 +73,23 @@ position = Vector2(0, 7)
 texture = ExtResource("5_vx4jr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1227982333]
-material = SubResource("ShaderMaterial_rm5d4")
+material = ExtResource("6_gmiaa")
 instance_shader_parameters/flicker_on = false
 sprite_frames = SubResource("SpriteFrames_6f51t")
 script = ExtResource("8_gmiaa")
 
+[node name="SpriteFlicker" type="Node" parent="AnimatedSprite2D" unique_id=819612518 node_paths=PackedStringArray("sprite")]
+script = ExtResource("9_wa3by")
+sprite = NodePath("..")
+
+[node name="Timer" type="Timer" parent="AnimatedSprite2D" unique_id=1439769281]
+wait_time = 0.06
+
 [connection signal="health_depleted" from="Health" to="." method="_on_health_depleted"]
 [connection signal="hit" from="DamageTaker" to="." method="_on_damage_taker_hit"]
+[connection signal="hit" from="DamageTaker" to="AnimatedSprite2D" method="set_flicker" unbinds=1 binds= [true]]
 [connection signal="hit" from="BombDamageTaker" to="." method="_on_bomb_damage_taker_hit"]
-[connection signal="hit" from="HitBox" to="." method="_on_bomb_damage_taker_hit"]
+[connection signal="timeout" from="InvinTimer" to="AnimatedSprite2D" method="set_flicker" binds= [false]]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_animation_over"]
 [connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_animation_over"]
+[connection signal="timeout" from="AnimatedSprite2D/Timer" to="AnimatedSprite2D" method="_on_timer_timeout"]

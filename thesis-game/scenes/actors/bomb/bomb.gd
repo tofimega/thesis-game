@@ -31,6 +31,7 @@ var _traveled: float = 0
 @onready var short_fuse: Timer = $ShortFuse
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var spark: AnimatedSprite2D = $Spark
+@onready var hit_box: Area2D = $HitBox
 
 
 func _ready() -> void:
@@ -57,7 +58,8 @@ func _physics_process(delta: float) -> void:
 func set_bomb_mode(b: BombMode) -> void:
     bomb_mode = b
     shadow.visible = true
-
+    hit_box.monitoring=false
+    
     match bomb_mode:
         BombMode.INACTIVE:
             z_index = 0
@@ -85,6 +87,7 @@ func set_bomb_mode(b: BombMode) -> void:
         BombMode.GROUNDED:
             z_index = 0
             visible = true
+            hit_box.monitoring=true
             set_physics_process(false)
             set_collision_layer_value(3, true)
             set_collision_mask_value(1, true)

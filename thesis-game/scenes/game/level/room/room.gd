@@ -7,6 +7,9 @@ var enemy_count: int = 0
 
 @onready var dynamic: Node2D = $Offset/Dynamic
 @onready var player_spawn: Marker2D = $Offset/PlayerSpawn
+@onready var background: TileMapLayer = $Offset/Background
+@onready var solid: TileMapLayer = $Offset/Solid
+@onready var wall: TileMapLayer = $Offset/Wall
 
 
 func spawn_actors() -> void:

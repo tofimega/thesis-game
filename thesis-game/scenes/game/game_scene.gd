@@ -30,7 +30,7 @@ func load_level(index: int) -> void:
     clear_level()
     var level_scene: PackedScene = load(level_map.map[_level_index])
 
-    #set_player_powerup(find_powerup(index))
+    set_player_powerup(find_powerup(index))
 
     var unlocked_powerups: Array = level_map.unlock_power_on_clear.keys().filter(func(k: int) -> bool: return k < index)
     if !unlocked_powerups.is_empty():
@@ -92,7 +92,13 @@ func next_level() -> void:
 
 func reset_level() -> void:
     _level_index -= 1
+    _current_level.unload_room()
+    carry_controller.stop()
+    _player.visible = true
+    await get_tree().create_timer(.5).timeout
+    await SceneControl.fade_loading(1)
     start_level()
+    SceneControl.fade_loading(0)
 
 
 func game_end_sequence() -> void:
@@ -102,20 +108,41 @@ func game_end_sequence() -> void:
 func level_end_sequence() -> void:
     carry_controller.stop()
     _player.visible = true
+    _player.shadow.visible = false
+    _player.direction.face_direction = Direction.Dir.DOWN
+    _player.animation_handler.switch_anim(Player.State.IDLE)
     results_screen.fade(1, 1)
-    y_sort_enabled=false
-    await create_tween().set_ease(Tween.EASE_OUT).tween_property(_player, "global_position", camera_2d.get_screen_center_position(), 1).finished
+    y_sort_enabled = false
+    await create_tween() \
+        .set_ease(Tween.EASE_OUT) \
+        .tween_property(
+        _player,
+        "global_position",
+        camera_2d.get_screen_center_position(),
+        1).finished
+    results_screen.z_index -= 1
+    _current_level._current_room.background.visible = false
+    _current_level._current_room.solid.visible = false
+    _current_level._current_room.wall.visible = false
     await results_screen.display_level_text(_level_index + 1)
     await get_tree().create_timer(1).timeout
     var p: PowerupInfo = find_powerup(_level_index + 1)
-    if p!=null:
+    if p != null:
         set_player_powerup(p)
         await results_screen.display_powerup_text(p.powerup_name)
+        _player.direction.face_direction = Direction.Dir.RIGHT
+        _player.animation_handler.switch_anim(Player.State.IDLE)
         await get_tree().create_timer(1).timeout
+        for i: int in 2:
+            Input.action_press("action_b")
+            _player.powerup_action.process_state(_player)
+            _player.animation_handler.switch_anim(Player.State.POWERUP_ACTION)
+            Input.action_release("action_b")
+            await get_tree().create_timer(1.5).timeout
     await SceneControl.fade_loading(1, .3)
-    y_sort_enabled=true
-    
-    #TODO: animate
+    _player.shadow.visible = true
+    y_sort_enabled = true
+    results_screen.z_index += 1
 
 
 func start_level() -> void:
@@ -124,5 +151,11 @@ func start_level() -> void:
     next_room()
 
 
+func _notification(what: int) -> void:
+    match what:
+        NOTIFICATION_CRASH, NOTIFICATION_WM_CLOSE_REQUEST, NOTIFICATION_PREDELETE:
+            SaveGame.save_game()
+
+
 func _on_player_out() -> void:
-    reset_level()
+    await reset_level()

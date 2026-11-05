@@ -5,14 +5,21 @@ extends AnimatedSprite2D
 
 var flicker: bool:
     set = set_flicker
+var current_animation: StringName = ""
 
 var _current_state: Player.State = Player.State.SPAWN
-var current_animation: StringName = ""
 var _carry_state: CarryHandler.CarryState = CarryHandler.CarryState.FREE
 
-@onready var timer: Timer = $Timer
+@onready var timer: Timer = get_node_or_null(^"Timer")
 @onready var direction: Direction = $"../Direction"
 
+var _dir: Direction.Dir = Direction.Dir.DOWN
+
+func _process(_delta: float) -> void:
+    if is_instance_valid(direction) and direction.face_direction != _dir:
+        _dir = direction.face_direction
+        switch_anim_string(current_animation)
+    
 
 func set_flicker(on: bool) -> void:
     flicker = on
@@ -26,6 +33,11 @@ func set_flicker(on: bool) -> void:
 func switch_anim(state: Player.State) -> void:
     _current_state = state
     var anim_name: StringName = _get_anim_name(_current_state)
+    switch_anim_string(anim_name)
+
+
+func switch_anim_string(a: StringName) -> void:
+    var anim_name: StringName = a
     current_animation = anim_name
     var dir_anim_name: StringName = anim_name + "_" + direction.Dir.find_key(direction.face_direction).to_lower()
 

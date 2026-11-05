@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="CreateProjectileState" format=3 uid="uid://b6pjfu7mhg8ca"]
 
 [ext_resource type="Script" uid="uid://bq6ty7i8nchnq" path="res://scenes/actors/player/movement/create_projectile_state.gd" id="1_qe7sr"]
+[ext_resource type="PackedScene" uid="uid://0f6lxj8hspnx" path="res://scenes/actors/player/projectiles/burst_projectile/burst_projectile.tscn" id="1_rqmxk"]
 [ext_resource type="Script" uid="uid://dyt0n4kdjl4g2" path="res://scenes/actors/player/movement/conditions/psc_any.gd" id="2_4ghw8"]
 [ext_resource type="Script" uid="uid://d3r23rmr57r1b" path="res://scenes/actors/player/movement/conditions/player_state_condition.gd" id="3_4sdrs"]
 [ext_resource type="Script" uid="uid://d1cn8xyo7yof3" path="res://scenes/actors/player/movement/conditions/psc_input.gd" id="4_sba21"]
@@ -23,5 +24,8 @@ metadata/_custom_type_script = "uid://dyt0n4kdjl4g2"
 
 [resource]
 script = ExtResource("1_qe7sr")
+offset_distance = 12.0
+projectile = ExtResource("1_rqmxk")
+delay = 0.3
 state_condition = SubResource("Resource_5i0tg")
 metadata/_custom_type_script = "uid://bq6ty7i8nchnq"

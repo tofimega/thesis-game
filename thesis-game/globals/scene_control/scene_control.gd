@@ -57,9 +57,12 @@ func _scene_switch(new: String, fade: bool=true) -> void:
     if current_scene != null: current_scene.queue_free()
     await get_tree().process_frame
     var root: Node = new_scene.instantiate()
-    #TODO: fade out
     game_raw.add_child(root)
     loading_screen.move_to_front()
     current_scene = root
     loaded_scene_path = new
-    #TODO: fade in
+
+func insert_into_game(node: Node2D)->void:
+    if current_scene is not GameScene: return
+    var gs: GameScene = current_scene as GameScene
+    gs._current_level._current_room.dynamic.add_child(node)

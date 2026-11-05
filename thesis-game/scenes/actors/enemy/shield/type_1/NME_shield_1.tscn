@@ -4,12 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://dq4etqoupd40r" path="res://assets/images/sprites/enemy/PH_enemy_shield.png" id="2_0sfos"]
 [ext_resource type="Script" uid="uid://d38l3406whcop" path="res://scenes/actors/enemy/base/enemy_state.gd" id="2_a2n5r"]
 [ext_resource type="Script" uid="uid://ca0vr628i5ecm" path="res://scenes/actors/enemy/shield/states/block_state.gd" id="3_fdirn"]
+[ext_resource type="Texture2D" uid="uid://cy3cquoje4a0b" path="res://assets/images/sprites/enemy/shield1.png" id="5_fdirn"]
 
 [sub_resource type="Resource" id="Resource_8ut5w"]
 script = ExtResource("3_fdirn")
 range_detect = NodePath("AggroRange")
 prioritize_layers = PackedByteArray(2)
 tiebreaker = 1
+anim_name = &"block"
 can_explode = true
 metadata/_custom_type_script = "uid://ca0vr628i5ecm"
 
@@ -18,6 +20,90 @@ radius = 7.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vx4jr"]
 radius = 48.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdirn"]
+atlas = ExtResource("5_fdirn")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xh3i6"]
+atlas = ExtResource("5_fdirn")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qs4x4"]
+atlas = ExtResource("5_fdirn")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l4s1w"]
+atlas = ExtResource("5_fdirn")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ut5w"]
+atlas = ExtResource("5_fdirn")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_srq5t"]
+atlas = ExtResource("5_fdirn")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_owm0b"]
+atlas = ExtResource("5_fdirn")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogaiy"]
+atlas = ExtResource("5_fdirn")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xh3i6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fdirn")
+}],
+"loop": 1,
+"name": &"block_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xh3i6")
+}],
+"loop": 1,
+"name": &"block_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qs4x4")
+}],
+"loop": 1,
+"name": &"block_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l4s1w")
+}],
+"loop": 1,
+"name": &"block_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ut5w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_srq5t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_owm0b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ogaiy")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="ShieldEnemy" unique_id=656223141 instance=ExtResource("1_o7i3r")]
 collision_layer = 136
@@ -48,6 +134,7 @@ debug_color = Color(0.9999066, 0, 0.11277779, 0.41960785)
 z_index = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="Direction" index="0" unique_id=1171295180]
+visible = false
 rotation = -1.5707964
 texture = ExtResource("2_0sfos")
 
@@ -63,3 +150,6 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AggroRange" index="0" unique_id=1275047775]
 shape = SubResource("CircleShape2D_vx4jr")
+
+[node name="AnimatedSprite2D" parent="." index="9" unique_id=1227982333]
+sprite_frames = SubResource("SpriteFrames_xh3i6")

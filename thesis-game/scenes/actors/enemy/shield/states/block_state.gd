@@ -4,7 +4,9 @@ extends EnemyState
 signal object_entered
 signal object_exited
 signal new_target
+
 signal aggro_exceeded
+signal aggro_target(target: CollisionObject2D)
 
 enum TieBreaker {
     LEAST_RECENT,
@@ -12,6 +14,7 @@ enum TieBreaker {
 }
 
 @export_node_path("Area2D") var range_detect: NodePath
+@export_node_path("Targeter") var targeter: NodePath
 @export var allow_bodies: bool = true
 @export var aggro_threshold: float = 3
 @export var allow_areas: bool = true
@@ -19,6 +22,8 @@ enum TieBreaker {
 @export var tiebreaker: TieBreaker
 
 var range_shape: Area2D
+var targeter_node: Targeter
+
 var priority_lists: Dictionary[int, Array]
 var aggro_list: Dictionary[CollisionObject2D, float]
 var in_range: Dictionary[CollisionObject2D, bool]
@@ -34,6 +39,7 @@ func process_enemy(enemy: Enemy, delta: float) -> void:
     if target != last_target: new_target.emit()
     if aggro_list.get_or_add(target, 0) >= aggro_threshold:
         aggro_list[target] = 0
+        aggro_target.emit(target)
         aggro_exceeded.emit()
         
     enemy.direction.set_dir_from_vector(enemy.global_position.direction_to(target.global_position))
@@ -72,6 +78,9 @@ func init_state(enemy: Enemy) -> void:
     priority_lists[-1] = []
 
     range_shape = enemy.get_node(range_detect)
+    targeter_node = enemy.get_node_or_null(targeter)
+    if targeter_node !=null:
+        aggro_target.connect(targeter_node.set_target)
     if allow_bodies:
         range_shape.area_entered.connect(target_in)
         range_shape.area_exited.connect(target_out)

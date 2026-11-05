@@ -33,6 +33,8 @@ enum State {
 @onready var knockback_timer: Timer = $KnockbackTimer
 @onready var health: Health = $Health
 @onready var knockback_handler: KnockBackHandler = $KnockBackHandler
+@onready var center: Marker2D = $Center
+@onready var shadow: Sprite2D = $Shadow
 
 
 func _ready() -> void:

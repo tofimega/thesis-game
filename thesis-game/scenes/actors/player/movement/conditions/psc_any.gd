@@ -3,4 +3,4 @@ extends CompoundCondition
 
 
 func is_valid(player: Player)->bool:
-    return subconditions.any(p.bind(player))
+    return subconditions.any(func (c: PlayerStateCondition)->bool: return c.is_valid(player))

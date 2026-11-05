@@ -29,8 +29,60 @@ position = Vector2(24, 152)
 [node name="Room2" parent="Rooms" parent_id_path=PackedInt32Array(791553573) index="1" unique_id=1003820397 instance=ExtResource("2_6iamk")]
 position = Vector2(0, -176)
 
+[node name="Solid" parent="Rooms/Room2/Offset" parent_id_path=PackedInt32Array(1003820397, 2147154176) index="2" unique_id=1031997263]
+tile_map_data = PackedByteArray("AAAGAAIAAAADAAIAAAAIAAIAAAADAAIAAAAFAAIAAAADAAIAAAAJAAIAAAADAAIAAAAHAAIAAAADAAIAAAAEAAMAAAADAAIAAAAKAAMAAAADAAIAAAAKAAQAAAADAAIAAAAEAAQAAAADAAIAAAA=")
+
 [node name="ShieldEnemy" parent="Rooms/Room2/Offset/Dynamic" parent_id_path=PackedInt32Array(1003820397, 881910093) index="0" unique_id=805013335 instance_placeholder="res://scenes/actors/enemy/shield/type_1/NME_shield_1.tscn"]
-position = Vector2(136, 88)
+position = Vector2(120, 56)
+
+[node name="PlayerSpawn" parent="Rooms/Room2/Offset" parent_id_path=PackedInt32Array(1003820397, 2147154176) index="5" unique_id=1866701011]
+position = Vector2(120, 152)
+
+[node name="Room3" parent="Rooms" parent_id_path=PackedInt32Array(791553573) index="2" unique_id=250059550 instance=ExtResource("2_6iamk")]
+position = Vector2(0, -352)
+
+[node name="Direction" type="Node2D" parent="Rooms/Room3" index="0" unique_id=204152876]
+position = Vector2(0, 4)
+rotation = 3.1415927
+script = ExtResource("5_6761a")
+face_direction = 0
+metadata/_custom_type_script = "uid://b5ofmh2rfq14f"
+
+[node name="Direction2" type="Node2D" parent="Rooms/Room3" index="1" unique_id=1535605517]
+position = Vector2(0, 4)
+script = ExtResource("5_6761a")
+face_direction = 1
+metadata/_custom_type_script = "uid://b5ofmh2rfq14f"
+
+[node name="Solid" parent="Rooms/Room3/Offset" parent_id_path=PackedInt32Array(250059550, 2147154176) index="2" unique_id=1031997263]
+tile_map_data = PackedByteArray("AAABAAYAAAADAAIAAAACAAYAAAADAAIAAAADAAYAAAADAAIAAAAEAAYAAAADAAIAAAAFAAYAAAADAAIAAAAJAAYAAAADAAIAAAAKAAYAAAADAAIAAAAGAAYAAAADAAIAAAAHAAYAAAADAAIAAAAIAAYAAAADAAIAAAANAAMAAAADAAIAAAAMAAMAAAADAAIAAAALAAMAAAADAAIAAAAKAAMAAAADAAIAAAAGAAMAAAADAAIAAAAFAAMAAAADAAIAAAAEAAMAAAADAAIAAAAJAAMAAAADAAIAAAAIAAMAAAADAAIAAAAHAAMAAAADAAIAAAA=")
+
+[node name="ShieldEnemy" parent="Rooms/Room3/Offset/Dynamic" parent_id_path=PackedInt32Array(250059550, 881910093) index="0" unique_id=2081030205 instance_placeholder="res://scenes/actors/enemy/shield/type_1/NME_shield_1.tscn"]
+position = Vector2(184, 104)
+
+[node name="ShieldEnemy2" parent="Rooms/Room3/Offset/Dynamic" parent_id_path=PackedInt32Array(250059550, 881910093) index="1" unique_id=1684676199 instance_placeholder="res://scenes/actors/enemy/shield/type_1/NME_shield_1.tscn"]
+position = Vector2(56, 56)
+
+[node name="ShieldEnemy3" parent="Rooms/Room3/Offset/Dynamic" parent_id_path=PackedInt32Array(250059550, 881910093) index="2" unique_id=1420289397 instance_placeholder="res://scenes/actors/enemy/shield/type_1/NME_shield_1.tscn"]
+position = Vector2(120, 136)
+
+[node name="Chaser_1" parent="Rooms/Room3/Offset/Dynamic" parent_id_path=PackedInt32Array(250059550, 881910093) index="3" unique_id=1131853438 instance_placeholder="res://scenes/actors/enemy/chaser/type_1/NME_chaser_1.tscn"]
+position = Vector2(32, 32)
+
+[node name="Chaser_3" parent="Rooms/Room3/Offset/Dynamic" parent_id_path=PackedInt32Array(250059550, 881910093) index="4" unique_id=865936734 instance_placeholder="res://scenes/actors/enemy/chaser/type_1/NME_chaser_1.tscn"]
+position = Vector2(208, 80)
+
+[node name="Chaser_4" parent="Rooms/Room3/Offset/Dynamic" parent_id_path=PackedInt32Array(250059550, 881910093) index="5" unique_id=1542129077 node_paths=PackedStringArray("direction_override") instance_placeholder="res://scenes/actors/enemy/chaser/type_1/NME_chaser_1.tscn"]
+position = Vector2(208, 32)
+direction_override = NodePath("../../../Direction")
+
+[node name="Chaser_2" parent="Rooms/Room3/Offset/Dynamic" parent_id_path=PackedInt32Array(250059550, 881910093) index="6" unique_id=323385326 node_paths=PackedStringArray("direction_override") instance_placeholder="res://scenes/actors/enemy/chaser/type_1/NME_chaser_1.tscn"]
+position = Vector2(32, 80)
+direction_override = NodePath("../../../Direction2")
+
+[node name="PlayerSpawn" parent="Rooms/Room3/Offset" parent_id_path=PackedInt32Array(250059550, 2147154176) index="5" unique_id=1866701011]
+position = Vector2(24, 136)
 
 [editable path="Rooms/Room"]
 [editable path="Rooms/Room2"]
+[editable path="Rooms/Room3"]

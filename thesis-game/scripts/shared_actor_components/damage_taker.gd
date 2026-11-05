@@ -11,11 +11,11 @@ signal iframes_over
 @export var allow_areas: bool = true
 @export var allow_bodies: bool = true
 @export_group("Direction")
+@export var ignore_exclusions: bool = false
 @export var directional_exlucions: Array[Vector2]
 @export var direction_source: Direction
 @export var draw_color: Color = Color(1, 0, 0, .3)
 @export var draw_radius: float = 8
-
 var damage_sources: int = 0
 
 var hit_taken: bool
@@ -55,6 +55,7 @@ func source_out(_b: Node2D) -> void:
 
 func _draw() -> void:
     if !_draw_shape: return
+    if ignore_exclusions: return
     if !Engine.is_editor_hint() and !OS.is_debug_build(): return
     for v: Vector2 in directional_exlucions:
         var x: float = deg_to_rad(v.x)
@@ -69,14 +70,16 @@ func _handle_hit(other: Node2D) -> void:
         return
     var incoming_pos: Vector2 = other.global_position
     var angle_vec: Vector2 = global_position.direction_to(incoming_pos)
-    for v: Vector2 in directional_exlucions:
-        var x: float = deg_to_rad(v.x)
-        var y: float = deg_to_rad(v.y)
-        var direction_offset: float = direction_source.get_vector().angle() if direction_source else 0.0
-        x += direction_offset
-        if angle_vec.angle() >= x - y and angle_vec.angle() <= x + y:
-            hit_blocked.emit(angle_vec)
-            return
+    if !ignore_exclusions:
+        for v: Vector2 in directional_exlucions:
+            var x: float = deg_to_rad(v.x)
+            var y: float = deg_to_rad(v.y)
+            var direction_offset: float = direction_source.get_vector().angle() if direction_source else 0.0
+            x += direction_offset
+            if angle_vec.angle() >= x - y and angle_vec.angle() <= x + y:
+                hit_blocked.emit(angle_vec)
+                return
+
     if damage_sources > 0:
         hit_taken = true
     elif invincibility_timer: invincibility_timer.start(invincible_time)

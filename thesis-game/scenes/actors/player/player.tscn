@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://buyqecp1yu3om" path="res://scenes/actors/player/player.gd" id="1_wmv1v"]
 [ext_resource type="Texture2D" uid="uid://cyg1uf1waphiy" path="res://assets/images/sprites/player/player (edit).png" id="2_l17oj"]
 [ext_resource type="Script" uid="uid://dkumwt15yafqn" path="res://scenes/actors/player/movement/player_movement_state.gd" id="2_mpktj"]
-[ext_resource type="Script" uid="uid://u0pxxecx1kk5" path="res://scenes/actors/player/animation_handler.gd" id="3_oj104"]
+[ext_resource type="Script" uid="uid://u0pxxecx1kk5" path="res://scripts/shared_actor_components/animation_handler.gd" id="3_oj104"]
 [ext_resource type="Resource" uid="uid://bb4xklvn2jr62" path="res://assets/resources/player_movement/player_walk.tres" id="3_qdyt2"]
 [ext_resource type="Script" uid="uid://c57i14wd82g2p" path="res://scenes/actors/player/movement/do_nothing_state.gd" id="4_inh5e"]
 [ext_resource type="Script" uid="uid://vhranncln5i1" path="res://scenes/actors/player/movement/conditions/psc_timer_running.gd" id="5_4iwnj"]
@@ -74,21 +74,21 @@ region = Rect2(0, 0, 16, 24)
 atlas = ExtResource("2_l17oj")
 region = Rect2(16, 0, 16, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hcvpp"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_xducv"]
 atlas = ExtResource("2_l17oj")
-region = Rect2(0, 0, 17, 24)
+region = Rect2(0, 0, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4iwnj"]
 atlas = ExtResource("2_l17oj")
-region = Rect2(51, 0, 17, 24)
+region = Rect2(51, 0, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_068wj"]
 atlas = ExtResource("2_l17oj")
-region = Rect2(34, 0, 17, 24)
+region = Rect2(35, 0, 16, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xducv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_yab6n"]
 atlas = ExtResource("2_l17oj")
-region = Rect2(17, 0, 17, 24)
+region = Rect2(17, 0, 16, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_j2q5q"]
 animations = [{
@@ -105,7 +105,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hcvpp")
+"texture": SubResource("AtlasTexture_xducv")
 }],
 "loop": 1,
 "name": &"stand_down",
@@ -129,7 +129,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xducv")
+"texture": SubResource("AtlasTexture_yab6n")
 }],
 "loop": 1,
 "name": &"stand_up",
@@ -167,7 +167,7 @@ metadata/_custom_type_script = "uid://b5ofmh2rfq14f"
 [node name="AnimationHandler" type="AnimatedSprite2D" parent="." unique_id=825897239]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_j2q5q")
-animation = &"stand_down"
+animation = &"stand_right"
 script = ExtResource("3_oj104")
 animations = Dictionary[int, StringName]({
 0: &"stand",
@@ -219,6 +219,7 @@ position = Vector2(-1, 0)
 texture = ExtResource("9_hcvpp")
 
 [node name="GeneralActionTimer" type="Timer" parent="." unique_id=566913733]
+wait_time = 0.3
 one_shot = true
 
 [node name="PickupTimer" type="Timer" parent="." unique_id=227486486]
@@ -239,6 +240,8 @@ one_shot = true
 [node name="Health" type="Node" parent="." unique_id=794583963]
 script = ExtResource("14_4iwnj")
 metadata/_custom_type_script = "uid://dlyvegrsfhjry"
+
+[node name="Center" type="Marker2D" parent="." unique_id=253030731]
 
 [connection signal="timeout" from="AnimationHandler/Timer" to="AnimationHandler" method="_on_timer_timeout"]
 [connection signal="hit" from="DamageTaker" to="Direction" method="set_dir_from_vector"]

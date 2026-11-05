@@ -13,17 +13,12 @@
 [sub_resource type="Resource" id="Resource_hwvj8"]
 script = ExtResource("3_p6hnf")
 velocity = 15.0
-player_detection_range = null
 raycast = NodePath("PlayerDetection")
 ignore_raycast_layers = 1
 signal_switches = Dictionary[StringName, int]({
 &"player_detected": 2,
 &"wall_hit": 1
 })
-anim_name = null
-can_explode = null
-can_hurt = null
-animation_end_switch = null
 metadata/_custom_type_script = "uid://cjyy862upicdc"
 
 [sub_resource type="Resource" id="Resource_00esy"]
@@ -42,16 +37,12 @@ metadata/_custom_type_script = "uid://u2y7k0m5uym4"
 [sub_resource type="Resource" id="Resource_dk6nt"]
 script = ExtResource("3_p6hnf")
 velocity = 90.0
-player_detection_range = null
+player_detection_range = 0.0
 raycast = NodePath("PlayerDetection")
 ignore_raycast_layers = null
 signal_switches = Dictionary[StringName, int]({
 &"wall_hit": 4
 })
-anim_name = null
-can_explode = null
-can_hurt = null
-animation_end_switch = null
 metadata/_custom_type_script = "uid://cjyy862upicdc"
 
 [sub_resource type="Resource" id="Resource_jortu"]
@@ -180,7 +171,7 @@ visible = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BombDamageTaker" index="0" unique_id=263019094]
 shape = SubResource("CircleShape2D_p5tfw")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" parent_id_path=PackedInt32Array(1817027655) index="0" unique_id=724971920]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" parent_id_path=PackedInt32Array(1012384815) index="0" unique_id=724971920]
 z_index = 1
 shape = SubResource("CircleShape2D_07s2y")
 debug_color = Color(0.99999994, 0.007172685, 0.07558925, 0.41960785)
@@ -208,9 +199,11 @@ one_shot = true
 
 [node name="BounceTimer" type="Timer" parent="." index="10" unique_id=2133184319]
 wait_time = 0.5
+one_shot = true
 
 [node name="DizzyTimer" type="Timer" parent="." index="11" unique_id=1733681963]
 wait_time = 5.0
+one_shot = true
 
 [node name="AnimatedSprite2D" parent="." index="12" unique_id=1227982333]
 sprite_frames = SubResource("SpriteFrames_5hncg")

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://ci2c4t12mpl0s"]
+
+[ext_resource type="Script" uid="uid://dbsc5t54qmrf0" path="res://scenes/actors/bullet/bullet.gd" id="1_qtg5p"]
+
+[node name="Bullet" type="CharacterBody2D" unique_id=340462345]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_qtg5p")

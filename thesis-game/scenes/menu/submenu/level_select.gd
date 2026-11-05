@@ -20,6 +20,7 @@ func on_show() -> void:
         lb.disabled = level_map.clear_flags.has(l - 1) and SaveGame.read_flag(level_map.clear_flags[l - 1]) == 0
         lb.clear = !(level_map.clear_flags.has(l) and !SaveGame.read_flag(level_map.clear_flags[l]))
         lb.pressed.connect(SceneControl.begin_game.bind(l))
+        lb.pressed.connect(lb.release_focus)
         level_container.add_child(lb)
 
     await get_tree().process_frame

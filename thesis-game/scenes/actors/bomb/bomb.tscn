@@ -73,7 +73,6 @@ throw_speed = 100.0
 visual_offset_mult = 10.0
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=1506567284]
-modulate = Color(0.5529556, 0.55295557, 0.55295557, 1)
 position = Vector2(0, 1)
 texture = ExtResource("3_2frx6")
 
@@ -100,5 +99,16 @@ one_shot = true
 wait_time = 0.7
 one_shot = true
 
+[node name="HitBox" type="Area2D" parent="." unique_id=1608378884]
+collision_layer = 0
+collision_mask = 256
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1214804335]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_mgg8m")
+
 [connection signal="timeout" from="Fuse1" to="." method="begin_short_fuse"]
 [connection signal="timeout" from="ShortFuse" to="." method="explode"]
+[connection signal="area_entered" from="HitBox" to="." method="explode" unbinds=1]
+[connection signal="body_entered" from="HitBox" to="." method="explode" unbinds=1]

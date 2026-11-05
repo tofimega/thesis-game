@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://vybqbdxv6c8q"]
+
+[ext_resource type="PackedScene" uid="uid://bqyvoupjnpe71" path="res://scenes/actors/enemy/shield/type_1/NME_shield_1.tscn" id="1_ld6wu"]
+[ext_resource type="Script" uid="uid://d38l3406whcop" path="res://scenes/actors/enemy/base/enemy_state.gd" id="2_iik3i"]
+[ext_resource type="Script" uid="uid://ca0vr628i5ecm" path="res://scenes/actors/enemy/shield/states/block_state.gd" id="3_yi7hg"]
+[ext_resource type="PackedScene" uid="uid://w4fjquk3okae" path="res://scenes/actors/bullet/bullet_colliders/simple/simple_collider.tscn" id="4_7aekr"]
+[ext_resource type="Script" uid="uid://cvs8a01csxc7t" path="res://scripts/shared_actor_components/targeter.gd" id="4_iik3i"]
+[ext_resource type="Script" uid="uid://jb7vku70rffw" path="res://scenes/actors/enemy/shield/states/fire_at_target_state.gd" id="5_adbif"]
+[ext_resource type="Script" uid="uid://cp34gpye2dojy" path="res://scenes/actors/enemy/shield/states/wait_for_timeout.gd" id="6_31wkj"]
+
+[sub_resource type="Resource" id="Resource_yiwgc"]
+script = ExtResource("3_yi7hg")
+range_detect = NodePath("AggroRange")
+targeter = NodePath("Targeter")
+prioritize_layers = PackedByteArray(3)
+tiebreaker = 1
+anim_name = &"block"
+can_explode = true
+metadata/_custom_type_script = "uid://ca0vr628i5ecm"
+
+[sub_resource type="Resource" id="Resource_uj8j7"]
+script = ExtResource("5_adbif")
+bullet = ExtResource("4_7aekr")
+targeter = NodePath("Targeter")
+can_explode = true
+ignore_block_direction = true
+metadata/_custom_type_script = "uid://jb7vku70rffw"
+
+[sub_resource type="Resource" id="Resource_t7jsj"]
+script = ExtResource("6_31wkj")
+can_explode = true
+ignore_block_direction = true
+metadata/_custom_type_script = "uid://cp34gpye2dojy"
+
+[node name="NME_Shield_2" unique_id=656223141 instance=ExtResource("1_ld6wu")]
+states = Array[ExtResource("2_iik3i")]([SubResource("Resource_yiwgc"), SubResource("Resource_uj8j7"), SubResource("Resource_t7jsj")])
+
+[node name="Targeter" type="Node2D" parent="." index="10" unique_id=1785351810]
+script = ExtResource("4_iik3i")
+metadata/_custom_type_script = "uid://cvs8a01csxc7t"

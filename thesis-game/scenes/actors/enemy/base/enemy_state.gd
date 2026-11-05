@@ -7,6 +7,7 @@ extends Resource
 @export var can_explode: bool = false
 @export var can_hurt: bool = true
 @export var animation_end_switch: int = -1
+@export var ignore_block_direction: bool = false
 
 
 @abstract func check_switch(enemy: Enemy) -> void

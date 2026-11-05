@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="PowerupInfo" format=3 uid="uid://cljkrmtjc4bhj"]
+
+[ext_resource type="Resource" uid="uid://b6pjfu7mhg8ca" path="res://assets/resources/player_movement/projectile_burst_state.tres" id="1_abn2q"]
+[ext_resource type="Script" uid="uid://ccvk44awagcs0" path="res://scripts/powerup_info.gd" id="1_xkk51"]
+
+[resource]
+script = ExtResource("1_xkk51")
+icon = "uid://k0ve8ehcjgn3"
+powerup = ExtResource("1_abn2q")
+powerup_name = &"Burst Projectile"
+metadata/_custom_type_script = "uid://ccvk44awagcs0"

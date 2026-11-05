@@ -36,7 +36,7 @@ func load_next_room() -> Marker2D:
 
     _current_room = _rooms.get_child(room_index)
     _current_room.room_cleared.connect(advance_room, CONNECT_ONE_SHOT)
-    _current_room.spawn_actors()
+    _current_room.spawn_actors.call_deferred()
 
     return _current_room.player_spawn
 

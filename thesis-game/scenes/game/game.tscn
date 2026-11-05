@@ -44,6 +44,7 @@ offset_bottom = 23.0
 grow_horizontal = 2
 text = "Level X Cleared!"
 label_settings = ExtResource("3_bdhmt")
+visible_characters_behavior = 1
 
 [node name="PowerupText" type="Label" parent="Camera2D/ResultsScreen" unique_id=1924351380]
 custom_minimum_size = Vector2(128, 0)
@@ -59,6 +60,7 @@ offset_bottom = 23.0
 grow_horizontal = 2
 text = "You Got: AUUEueueUíu"
 label_settings = ExtResource("3_bdhmt")
+visible_characters_behavior = 1
 
 [node name="CarryController" type="Node2D" parent="." unique_id=684975796]
 y_sort_enabled = true

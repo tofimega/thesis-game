@@ -33,10 +33,15 @@ collision_layer = 64
 collision_mask = 0
 monitoring = false
 script = ExtResource("1_45wk8")
+lifetime = 0.3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=590928054]
+position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_mgg8m")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=758872984]
+position = Vector2(-6, -12)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_mgg8m")
+autoplay = "default"
+centered = false
