@@ -2,18 +2,39 @@
 
 [ext_resource type="Texture2D" uid="uid://d1sqssrp25tpd" path="res://assets/images/sprites/spark.png" id="1_qym4x"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_3dxvr"]
+atlas = ExtResource("1_qym4x")
+region = Rect2(0, 0, 3, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qutnu"]
+atlas = ExtResource("1_qym4x")
+region = Rect2(3, 0, 3, 3)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mgg8m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3dxvr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qutnu")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_mgg8m"]
-radius = 4.0
+radius = 3.0
 
 [node name="Simple" type="Area2D" unique_id=1128695473]
-collision_layer = 0
-collision_mask = 0
+collision_layer = 288
+collision_mask = 6
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=442110721]
-scale = Vector2(2.6666667, 2.6666667)
-texture = ExtResource("1_qym4x")
-region_enabled = true
-region_rect = Rect2(0, 0, 3, 3)
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=708009097]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_mgg8m")
+autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=772367995]
 shape = SubResource("CircleShape2D_mgg8m")

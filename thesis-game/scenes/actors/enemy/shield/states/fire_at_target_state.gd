@@ -3,7 +3,9 @@ extends EnemyState
 
 signal fired
 
-@export var bullet: PackedScene
+@export var bullet_movement: PackedScene
+@export var bullet_collision: PackedScene
+@export var bullet_speed: float = 40
 @export_node_path("Targeter") var targeter: NodePath
 
 var targeter_node: Targeter
@@ -18,11 +20,12 @@ func process_enemy(_enemy: Enemy, _delta: float) -> void:
 
 
 func enter_state(_enemy: Enemy) -> void:
-    var node: Node2D = bullet.instantiate()
-    node.top_level = true
-    node.rotation = targeter_node.get_direction_to_target().angle()
-    node.position = targeter_node.position
-
+    var node: BulletMovement = bullet_movement.instantiate()
+    node.bullet_collision_scene = bullet_collision
+    SceneControl.insert_into_game(node)
+    node.global_position = targeter_node.global_position
+    node.velocity = targeter_node.get_direction_to_target() * bullet_speed
+    
 
 func exit_state(_enemy: Enemy) -> void:
     pass

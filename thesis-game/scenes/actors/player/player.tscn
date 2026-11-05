@@ -137,7 +137,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mgg8m"]
-radius = 7.0
+radius = 2.236068
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4iwnj"]
 radius = 3.0
@@ -185,6 +185,7 @@ animations = Dictionary[int, StringName]({
 wait_time = 0.06
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=920848685]
+position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_mgg8m")
 
 [node name="KnockBackHandler" type="Node" parent="." unique_id=1549154095 node_paths=PackedStringArray("knockback_body", "knockback_timer")]
@@ -195,7 +196,6 @@ knockback_timer = NodePath("../KnockbackTimer")
 metadata/_custom_type_script = "uid://qphgmkvrhto2"
 
 [node name="DamageTaker" type="Area2D" parent="." unique_id=1205574186 node_paths=PackedStringArray("invincibility_timer")]
-collision_layer = 0
 collision_mask = 56
 monitorable = false
 script = ExtResource("8_i174x")

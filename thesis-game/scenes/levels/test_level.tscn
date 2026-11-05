@@ -51,5 +51,8 @@ metadata/_custom_type_script = "uid://b5ofmh2rfq14f"
 position = Vector2(136, 88)
 direction_override = NodePath("../../../Chaser_1_Direction2")
 
+[node name="NME_Shield_2" parent="Rooms/Room2/Offset/Dynamic" parent_id_path=PackedInt32Array(761868479, 881910093) index="1" unique_id=1652088445 instance_placeholder="res://scenes/actors/enemy/shield/type_2/NME_shield_2.tscn"]
+position = Vector2(56, 56)
+
 [editable path="Rooms/Room"]
 [editable path="Rooms/Room2"]
