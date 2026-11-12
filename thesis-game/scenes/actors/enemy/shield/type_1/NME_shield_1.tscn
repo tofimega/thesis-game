@@ -25,21 +25,9 @@ radius = 48.0
 atlas = ExtResource("5_fdirn")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xh3i6"]
-atlas = ExtResource("5_fdirn")
-region = Rect2(64, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qs4x4"]
-atlas = ExtResource("5_fdirn")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l4s1w"]
-atlas = ExtResource("5_fdirn")
-region = Rect2(96, 0, 16, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_8ut5w"]
 atlas = ExtResource("5_fdirn")
-region = Rect2(0, 0, 16, 16)
+region = Rect2(64, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_srq5t"]
 atlas = ExtResource("5_fdirn")
@@ -49,11 +37,7 @@ region = Rect2(32, 0, 16, 16)
 atlas = ExtResource("5_fdirn")
 region = Rect2(96, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ogaiy"]
-atlas = ExtResource("5_fdirn")
-region = Rect2(64, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_xh3i6"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_ogaiy"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -65,7 +49,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xh3i6")
+"texture": SubResource("AtlasTexture_8ut5w")
 }],
 "loop": 1,
 "name": &"block_left",
@@ -73,7 +57,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qs4x4")
+"texture": SubResource("AtlasTexture_srq5t")
 }],
 "loop": 1,
 "name": &"block_right",
@@ -81,27 +65,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_l4s1w")
+"texture": SubResource("AtlasTexture_owm0b")
 }],
 "loop": 1,
 "name": &"block_up",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8ut5w")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_srq5t")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_owm0b")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ogaiy")
-}],
-"loop": 1,
-"name": &"default",
 "speed": 5.0
 }]
 
@@ -125,7 +92,7 @@ direction_source = NodePath("../Direction")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BombDamageTaker" index="0" unique_id=2081982658]
 shape = SubResource("CircleShape2D_mgg8m")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" parent_id_path=PackedInt32Array(1817027655) index="0" unique_id=584307677]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" parent_id_path=PackedInt32Array(1012384815) index="0" unique_id=584307677]
 z_index = 1
 shape = SubResource("CircleShape2D_mgg8m")
 debug_color = Color(0.9999066, 0, 0.11277779, 0.41960785)
@@ -151,5 +118,6 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AggroRange" index="0" unique_id=1275047775]
 shape = SubResource("CircleShape2D_vx4jr")
 
-[node name="AnimatedSprite2D" parent="." index="9" unique_id=1227982333]
-sprite_frames = SubResource("SpriteFrames_xh3i6")
+[node name="AnimationHandler" parent="." index="9" unique_id=1893500937]
+sprite_frames = SubResource("SpriteFrames_ogaiy")
+animation = &"block_right"

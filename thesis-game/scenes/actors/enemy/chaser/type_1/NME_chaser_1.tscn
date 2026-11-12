@@ -117,7 +117,7 @@ region = Rect2(128, 0, 16, 16)
 atlas = ExtResource("8_d3sbm")
 region = Rect2(144, 0, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_5hncg"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_urqa0"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -152,7 +152,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"default",
-"speed": 10.0
+"speed": 8.0
 }]
 
 [node name="Chaser_1" unique_id=656223141 instance=ExtResource("1_l1883")]
@@ -205,6 +205,10 @@ one_shot = true
 wait_time = 5.0
 one_shot = true
 
-[node name="AnimatedSprite2D" parent="." index="12" unique_id=1227982333]
-sprite_frames = SubResource("SpriteFrames_5hncg")
-frame_progress = 0.022612812
+[node name="AnimationHandler" parent="." index="12" unique_id=1893500937 node_paths=PackedStringArray("direction")]
+sprite_frames = SubResource("SpriteFrames_urqa0")
+frame_progress = 0.7133741
+direction = NodePath("../Direction")
+
+[connection signal="animation_finished" from="AnimationHandler" to="." method="_animation_over"]
+[connection signal="animation_looped" from="AnimationHandler" to="." method="_animation_over"]

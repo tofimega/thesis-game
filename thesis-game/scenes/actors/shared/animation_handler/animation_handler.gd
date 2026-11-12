@@ -2,6 +2,7 @@ class_name AnimationHandler
 extends AnimatedSprite2D
 
 @export var animations: Dictionary[Player.State, StringName]
+@export var direction: Direction = null
 
 var flicker: bool:
     set = set_flicker
@@ -10,16 +11,21 @@ var current_animation: StringName = ""
 var _current_state: Player.State = Player.State.SPAWN
 var _carry_state: CarryHandler.CarryState = CarryHandler.CarryState.FREE
 
-@onready var timer: Timer = get_node_or_null(^"Timer")
-@onready var direction: Direction = $"../Direction"
-
 var _dir: Direction.Dir = Direction.Dir.DOWN
+
+@onready var timer: Timer = get_node_or_null(^"Timer")
+
+
+func _ready() -> void:
+    if timer == null:
+        timer = Timer.new()
+        add_child.call_deferred(timer)
 
 func _process(_delta: float) -> void:
     if is_instance_valid(direction) and direction.face_direction != _dir:
         _dir = direction.face_direction
         switch_anim_string(current_animation)
-    
+
 
 func set_flicker(on: bool) -> void:
     flicker = on
@@ -39,7 +45,7 @@ func switch_anim(state: Player.State) -> void:
 func switch_anim_string(a: StringName) -> void:
     var anim_name: StringName = a
     current_animation = anim_name
-    var dir_anim_name: StringName = anim_name + "_" + direction.Dir.find_key(direction.face_direction).to_lower()
+    var dir_anim_name: StringName = anim_name + "_" + direction.Dir.find_key(direction.face_direction).to_lower() if direction != null else ""
 
     if sprite_frames.has_animation(dir_anim_name): play(dir_anim_name)
     elif sprite_frames.has_animation(anim_name): play(anim_name)

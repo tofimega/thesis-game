@@ -82,6 +82,19 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_wfv0q"]
+viewport_path = NodePath("PowerupRaw")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f5ibx"]
+resource_local_to_scene = true
+shader = ExtResource("2_tg413")
+shader_parameter/tex = SubResource("ViewportTexture_wfv0q")
+shader_parameter/mask_type = 5
+shader_parameter/curve = 0.3410000161975
+shader_parameter/color_offset = -0.5
+shader_parameter/mask_brightness = 0.17600000836
+shader_parameter/aspect = 1.0
+
 [node name="SceneControl" type="Node" unique_id=1014466701]
 script = ExtResource("1_rmhsi")
 
@@ -206,3 +219,38 @@ color = Color(0.10747976, 0.10747973, 0.10747973, 1)
 sprite_frames = SubResource("SpriteFrames_mgg8m")
 centered = false
 script = ExtResource("6_hb684")
+
+[node name="PowerupRaw" type="SubViewport" parent="." unique_id=444995788]
+size = Vector2i(72, 72)
+
+[node name="ColorRect" type="ColorRect" parent="PowerupRaw" unique_id=584588981]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.105882354, 0.105882354, 0.105882354, 1)
+
+[node name="TextureRect" type="TextureRect" parent="PowerupRaw/ColorRect" unique_id=63240759]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="PowerupDisplay" type="SubViewport" parent="." unique_id=218257854]
+disable_3d = true
+transparent_bg = true
+snap_2d_transforms_to_pixel = true
+size = Vector2i(216, 216)
+
+[node name="ColorRect" type="ColorRect" parent="PowerupDisplay" unique_id=466020041]
+material = SubResource("ShaderMaterial_f5ibx")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

@@ -14,8 +14,8 @@ var current_state: EnemyState
 @onready var damage_taker: DamageTaker = $DamageTaker
 @onready var bomb_damage_taker: DamageTaker = $BombDamageTaker
 @onready var direction: Direction = $Direction
-@onready var animated_sprite_2d: AnimationHandler = $AnimatedSprite2D
-@onready var sprite_flicker: Flickerer = $AnimatedSprite2D/SpriteFlicker
+@onready var animated_sprite_2d: AnimationHandler = $AnimationHandler
+@onready var sprite_flicker: Flickerer = $AnimationHandler/SpriteFlicker
 
 
 func _ready() -> void:

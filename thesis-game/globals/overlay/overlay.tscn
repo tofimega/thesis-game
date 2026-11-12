@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cpwq3bcmdk2c0"]
 
 [ext_resource type="Script" uid="uid://cf3wt1njeo6wk" path="res://globals/overlay/overlay.gd" id="1_ynx6w"]
+[ext_resource type="Texture2D" uid="uid://b0bqpl13p1qmi" path="res://assets/images/sprites/PH-enemy.png" id="2_2klt3"]
 [ext_resource type="Texture2D" uid="uid://d3n5ns2samxo" path="res://assets/images/ui/control_panel.png" id="2_7asm7"]
 
 [sub_resource type="Gradient" id="Gradient_mpier"]
@@ -13,6 +14,8 @@ fill_to = Vector2(0, 1)
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_wr0pm"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_co2uy"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_abn2q"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2klt3"]
 
@@ -31,6 +34,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ynx6w")
+default_powerup_texture = ExtResource("2_2klt3")
 
 [node name="Backgorund" type="TextureRect" parent="." unique_id=811357847]
 layout_mode = 1
@@ -91,9 +95,12 @@ mouse_filter = 0
 texture = SubResource("PlaceholderTexture2D_co2uy")
 expand_mode = 1
 
-[node name="Joystick" type="Panel" parent="HBoxContainer/NinePatchRect/LeftPanel/VBoxContainer" unique_id=1822365273]
+[node name="PowerupIcon" type="TextureRect" parent="HBoxContainer/NinePatchRect/LeftPanel/VBoxContainer" unique_id=777526844]
+texture_filter = 2
 custom_minimum_size = Vector2(0, 72)
 layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_abn2q")
+expand_mode = 1
 
 [node name="Viewport" type="TextureRect" parent="HBoxContainer" unique_id=297340783]
 texture_filter = 1

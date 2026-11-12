@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://ltde63n4iguk"]
+
+[ext_resource type="Texture2D" uid="uid://cyg1uf1waphiy" path="res://assets/images/sprites/player/player (edit).png" id="1_xmj1h"]
+[ext_resource type="Script" uid="uid://u0pxxecx1kk5" path="res://scenes/actors/shared/animation_handler/animation_handler.gd" id="2_afjei"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l17oj"]
+atlas = ExtResource("1_xmj1h")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oj104"]
+atlas = ExtResource("1_xmj1h")
+region = Rect2(16, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xducv"]
+atlas = ExtResource("1_xmj1h")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4iwnj"]
+atlas = ExtResource("1_xmj1h")
+region = Rect2(51, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_068wj"]
+atlas = ExtResource("1_xmj1h")
+region = Rect2(35, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yab6n"]
+atlas = ExtResource("1_xmj1h")
+region = Rect2(17, 0, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j2q5q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l17oj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oj104")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xducv")
+}],
+"loop": 1,
+"name": &"stand_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4iwnj")
+}],
+"loop": 1,
+"name": &"stand_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_068wj")
+}],
+"loop": 1,
+"name": &"stand_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yab6n")
+}],
+"loop": 1,
+"name": &"stand_up",
+"speed": 5.0
+}]
+
+[node name="AnimationHandler" type="AnimatedSprite2D" unique_id=1893500937 node_paths=PackedStringArray("direction")]
+sprite_frames = SubResource("SpriteFrames_j2q5q")
+animation = &"stand_right"
+script = ExtResource("2_afjei")
+animations = Dictionary[int, StringName]({
+0: &"stand",
+1: &"stand",
+2: &"stand",
+3: &"stand",
+4: &"stand",
+5: &"stand",
+6: &"stand",
+7: &"stand",
+8: &"stand"
+})
+direction = NodePath("")
+
+[node name="Timer" type="Timer" parent="." unique_id=1923921039]
+wait_time = 0.06
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

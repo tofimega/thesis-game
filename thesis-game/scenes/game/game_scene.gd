@@ -31,7 +31,9 @@ func load_level(index: int) -> void:
     var level_scene: PackedScene = load(level_map.map[_level_index])
 
     set_player_powerup(find_powerup(index))
-
+    if last_powerup !=null:
+        SceneControl.powerup_icon.texture = last_powerup.get_texture()
+        SceneControl.powerup_icon.visible = true
     var unlocked_powerups: Array = level_map.unlock_power_on_clear.keys().filter(func(k: int) -> bool: return k < index)
     if !unlocked_powerups.is_empty():
         set_player_powerup(level_map.unlock_power_on_clear[unlocked_powerups.max()])

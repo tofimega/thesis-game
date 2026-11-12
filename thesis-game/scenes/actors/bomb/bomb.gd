@@ -58,6 +58,8 @@ func _physics_process(delta: float) -> void:
 func set_bomb_mode(b: BombMode) -> void:
     bomb_mode = b
     shadow.visible = true
+    visible = true
+    set_physics_process(false)
 
     match bomb_mode:
         BombMode.INACTIVE:
@@ -67,30 +69,24 @@ func set_bomb_mode(b: BombMode) -> void:
             hit_box.set_deferred("monitoring", false)
             set_collision_layer_value(3, false)
             set_collision_mask_value(1, false)
-            set_physics_process(false)
             visible = false
         BombMode.CARRIED:
-            shadow.visible = false
             z_index = 1
+            shadow.visible = false
             fuse_1.start()
-            visible = true
             animated_sprite_2d.play("default")
             hit_box.set_deferred("monitoring", false)
-            set_physics_process(false)
             set_collision_layer_value(3, false)
             set_collision_mask_value(1, false)
         BombMode.AIRBORNE:
             z_index = 1
-            visible = true
             hit_box.set_deferred("monitoring", false)
-            set_collision_layer_value(3, false)
             set_physics_process(true)
+            set_collision_layer_value(3, false)
             set_collision_mask_value(1, true)
         BombMode.GROUNDED:
             z_index = 0
-            visible = true
             hit_box.set_deferred("monitoring", true)
-            set_physics_process(false)
             set_collision_layer_value(3, true)
             set_collision_mask_value(1, true)
 

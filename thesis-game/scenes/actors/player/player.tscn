@@ -1,15 +1,14 @@
 [gd_scene format=3 uid="uid://86ruhs3hrnbv"]
 
 [ext_resource type="Script" uid="uid://buyqecp1yu3om" path="res://scenes/actors/player/player.gd" id="1_wmv1v"]
-[ext_resource type="Texture2D" uid="uid://cyg1uf1waphiy" path="res://assets/images/sprites/player/player (edit).png" id="2_l17oj"]
 [ext_resource type="Script" uid="uid://dkumwt15yafqn" path="res://scenes/actors/player/movement/player_movement_state.gd" id="2_mpktj"]
-[ext_resource type="Script" uid="uid://u0pxxecx1kk5" path="res://scripts/shared_actor_components/animation_handler.gd" id="3_oj104"]
 [ext_resource type="Resource" uid="uid://bb4xklvn2jr62" path="res://assets/resources/player_movement/player_walk.tres" id="3_qdyt2"]
 [ext_resource type="Script" uid="uid://c57i14wd82g2p" path="res://scenes/actors/player/movement/do_nothing_state.gd" id="4_inh5e"]
 [ext_resource type="Script" uid="uid://vhranncln5i1" path="res://scenes/actors/player/movement/conditions/psc_timer_running.gd" id="5_4iwnj"]
 [ext_resource type="Resource" uid="uid://b2dqu522t34fw" path="res://assets/resources/player_movement/conditions/true.tres" id="5_inh5e"]
 [ext_resource type="Script" uid="uid://b5ofmh2rfq14f" path="res://scripts/shared_actor_components/direction.gd" id="7_g2g7f"]
 [ext_resource type="Script" uid="uid://mb8x5tek235p" path="res://scenes/actors/player/carry_handler.gd" id="8_fp13k"]
+[ext_resource type="PackedScene" uid="uid://ltde63n4iguk" path="res://scenes/actors/shared/animation_handler/animation_handler.tscn" id="8_hcvpp"]
 [ext_resource type="Script" uid="uid://by3emb6fcj3rt" path="res://scripts/shared_actor_components/damage_taker.gd" id="8_i174x"]
 [ext_resource type="Texture2D" uid="uid://cxysss2857v3e" path="res://assets/images/sprites/shadow.png" id="9_hcvpp"]
 [ext_resource type="Script" uid="uid://qphgmkvrhto2" path="res://scripts/shared_actor_components/knockback_handler.gd" id="10_i174x"]
@@ -66,76 +65,6 @@ script = ExtResource("4_inh5e")
 state_condition = ExtResource("5_inh5e")
 metadata/_custom_type_script = "uid://c57i14wd82g2p"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_l17oj"]
-atlas = ExtResource("2_l17oj")
-region = Rect2(0, 0, 16, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_oj104"]
-atlas = ExtResource("2_l17oj")
-region = Rect2(16, 0, 16, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xducv"]
-atlas = ExtResource("2_l17oj")
-region = Rect2(0, 0, 16, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4iwnj"]
-atlas = ExtResource("2_l17oj")
-region = Rect2(51, 0, 16, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_068wj"]
-atlas = ExtResource("2_l17oj")
-region = Rect2(35, 0, 16, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yab6n"]
-atlas = ExtResource("2_l17oj")
-region = Rect2(17, 0, 16, 24)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_j2q5q"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_l17oj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_oj104")
-}],
-"loop": 1,
-"name": &"default",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xducv")
-}],
-"loop": 1,
-"name": &"stand_down",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4iwnj")
-}],
-"loop": 1,
-"name": &"stand_left",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_068wj")
-}],
-"loop": 1,
-"name": &"stand_right",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yab6n")
-}],
-"loop": 1,
-"name": &"stand_up",
-"speed": 5.0
-}]
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_mgg8m"]
 radius = 2.236068
 
@@ -164,25 +93,9 @@ rotation = 1.5707964
 script = ExtResource("7_g2g7f")
 metadata/_custom_type_script = "uid://b5ofmh2rfq14f"
 
-[node name="AnimationHandler" type="AnimatedSprite2D" parent="." unique_id=825897239]
+[node name="AnimationHandler" parent="." unique_id=1893500937 node_paths=PackedStringArray("direction") instance=ExtResource("8_hcvpp")]
 position = Vector2(0, -12)
-sprite_frames = SubResource("SpriteFrames_j2q5q")
-animation = &"stand_right"
-script = ExtResource("3_oj104")
-animations = Dictionary[int, StringName]({
-0: &"stand",
-1: &"stand",
-2: &"stand",
-3: &"stand",
-4: &"stand",
-5: &"stand",
-6: &"stand",
-7: &"stand",
-8: &"stand"
-})
-
-[node name="Timer" type="Timer" parent="AnimationHandler" unique_id=1861656201]
-wait_time = 0.06
+direction = NodePath("../Direction")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=920848685]
 position = Vector2(0, -2)
@@ -243,13 +156,11 @@ metadata/_custom_type_script = "uid://dlyvegrsfhjry"
 
 [node name="Center" type="Marker2D" parent="." unique_id=253030731]
 
-[connection signal="timeout" from="AnimationHandler/Timer" to="AnimationHandler" method="_on_timer_timeout"]
 [connection signal="hit" from="DamageTaker" to="Direction" method="set_dir_from_vector"]
 [connection signal="hit" from="DamageTaker" to="KnockBackHandler" method="start_knockback"]
 [connection signal="hit" from="DamageTaker" to="CarryHandler" method="_on_damage_taker_hit"]
 [connection signal="hit" from="DamageTaker" to="AnimationHandler" method="set_flicker" unbinds=1 binds= [true]]
 [connection signal="hit" from="DamageTaker" to="Health" method="dec_health" unbinds=1 binds= [1]]
-[connection signal="carry_set" from="CarryHandler" to="AnimationHandler" method="_on_carry_state_changed"]
+[connection signal="iframes_over" from="DamageTaker" to="AnimationHandler" method="set_flicker" binds= [false]]
 [connection signal="try_carry" from="CarryHandler" to="." method="_try_carry"]
 [connection signal="try_throw" from="CarryHandler" to="." method="_try_throw"]
-[connection signal="timeout" from="InvinTimer" to="AnimationHandler" method="set_flicker" binds= [false]]

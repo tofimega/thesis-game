@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="LevelMap" format=3 uid="uid://dws781cajxk7e"]
 
-[ext_resource type="Script" uid="uid://ccrc3f7amak14" path="res://scripts/level_map.gd" id="1_wovgt"]
-[ext_resource type="Script" uid="uid://ccvk44awagcs0" path="res://scripts/powerup_info.gd" id="2_535wy"]
+[ext_resource type="Script" uid="uid://ccrc3f7amak14" path="res://scripts/resources/level_map.gd" id="1_wovgt"]
+[ext_resource type="Script" uid="uid://ccvk44awagcs0" path="res://scripts/resources/powerup_info.gd" id="2_535wy"]
 [ext_resource type="Resource" uid="uid://cljkrmtjc4bhj" path="res://assets/resources/powerup_info/burst_projectile.tres" id="3_cevys"]
 
 [resource]

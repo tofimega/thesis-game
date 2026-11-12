@@ -7,6 +7,7 @@ const START_SCENE_UID: String = MENU
 
 var current_scene: Node = null
 var loaded_scene_path: String
+
 @onready var loading_screen: ColorRect = $GameRaw/CanvasLayer/LoadingScreen
 
 @onready var game_view: SubViewport = $GameView
@@ -17,10 +18,9 @@ var loaded_scene_path: String
 @onready var health_sprite: HealthSprite = $HealthRaw/ColorRect/HealthSprite
 @onready var label: ScrollingLabel = $TextRaw/ColorRect/Label
 @onready var health_display: SubViewport = $HealthDisplay
-
-
-func fade_loading(alpha: float, time: float = 1)->void:
-    await create_tween().tween_property(loading_screen, "color:a", alpha, time).finished
+@onready var powerup_raw: SubViewport = $PowerupRaw
+@onready var powerup_display: SubViewport = $PowerupDisplay
+@onready var powerup_icon: TextureRect = $PowerupRaw/ColorRect/TextureRect
 
 
 func _ready() -> void:
@@ -32,6 +32,10 @@ func _input(event: InputEvent) -> void:
     if event is InputEventMouse || !event.is_action_type():
         return
     game_raw.push_input(event)
+
+
+func fade_loading(alpha: float, time: float = 1) -> void:
+    await create_tween().tween_property(loading_screen, "color:a", alpha, time).finished
 
 
 func begin_game(level_index: int, level_map: LevelMap = null, fade: bool = true) -> void:
@@ -48,7 +52,13 @@ func back_to_menu(panel: MenuScene.MenuPanel = MenuScene.MenuPanel.LEVEL_SCELECT
     if fade: fade_loading(0, .3)
 
 
-func _scene_switch(new: String, fade: bool=true) -> void:
+func insert_into_game(node: Node2D) -> void:
+    if current_scene is not GameScene: return
+    var gs: GameScene = current_scene as GameScene
+    gs._current_level._current_room.dynamic.add_child(node)
+
+
+func _scene_switch(new: String, fade: bool = true) -> void:
     if fade: await fade_loading(1, .3)
     var new_scene: PackedScene = load(new)
     if !new_scene.can_instantiate():
@@ -61,8 +71,3 @@ func _scene_switch(new: String, fade: bool=true) -> void:
     loading_screen.move_to_front()
     current_scene = root
     loaded_scene_path = new
-
-func insert_into_game(node: Node2D)->void:
-    if current_scene is not GameScene: return
-    var gs: GameScene = current_scene as GameScene
-    gs._current_level._current_room.dynamic.add_child(node)

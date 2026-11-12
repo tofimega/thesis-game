@@ -22,6 +22,7 @@ var current_panel: Submenu = null
 func _ready() -> void:
     panels.make_read_only()
     SceneControl.health_sprite.on = false
+    SceneControl.powerup_icon.visible = false
     for p: Submenu in panels.values():
         p.visible = false
         p.set_process_input(false)
