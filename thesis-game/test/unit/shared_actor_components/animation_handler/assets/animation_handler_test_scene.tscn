@@ -1,0 +1,211 @@
+[gd_scene format=3 uid="uid://u4eb1lfdhgph"]
+
+[ext_resource type="PackedScene" uid="uid://ltde63n4iguk" path="res://scenes/actors/shared/animation_handler/animation_handler.tscn" id="1_j4vys"]
+[ext_resource type="Texture2D" uid="uid://cyg1uf1waphiy" path="res://assets/images/sprites/player/player (edit).png" id="2_tsyjl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l17oj"]
+atlas = ExtResource("2_tsyjl")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oj104"]
+atlas = ExtResource("2_tsyjl")
+region = Rect2(16, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xducv"]
+atlas = ExtResource("2_tsyjl")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4iwnj"]
+atlas = ExtResource("2_tsyjl")
+region = Rect2(51, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_068wj"]
+atlas = ExtResource("2_tsyjl")
+region = Rect2(35, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yab6n"]
+atlas = ExtResource("2_tsyjl")
+region = Rect2(17, 0, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u7h7b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l17oj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oj104")
+}],
+"loop": 1,
+"name": &"anim",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l17oj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oj104")
+}],
+"loop": 1,
+"name": &"animc",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l17oj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oj104")
+}],
+"loop": 1,
+"name": &"animc_carry",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l17oj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oj104")
+}],
+"loop": 1,
+"name": &"animcd_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l17oj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oj104")
+}],
+"loop": 1,
+"name": &"animcd_down_carry",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l17oj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oj104")
+}],
+"loop": 1,
+"name": &"animcd_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l17oj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oj104")
+}],
+"loop": 1,
+"name": &"animcd_left_carry",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l17oj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oj104")
+}],
+"loop": 1,
+"name": &"animcd_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l17oj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oj104")
+}],
+"loop": 1,
+"name": &"animcd_right_carry",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l17oj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oj104")
+}],
+"loop": 1,
+"name": &"animcd_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l17oj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oj104")
+}],
+"loop": 1,
+"name": &"animcd_up_carry",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xducv")
+}],
+"loop": 1,
+"name": &"animd_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4iwnj")
+}],
+"loop": 1,
+"name": &"animd_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_068wj")
+}],
+"loop": 1,
+"name": &"animd_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yab6n")
+}],
+"loop": 1,
+"name": &"animd_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l17oj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oj104")
+}],
+"loop": 1,
+"name": &"animsc_carry",
+"speed": 5.0
+}]
+
+[node name="AnimationHandler" unique_id=1893500937 instance=ExtResource("1_j4vys")]
+sprite_frames = SubResource("SpriteFrames_u7h7b")
+animation = &"animcd_down"
+autoplay = ""
+animations = Dictionary[int, StringName]({
+0: &"anim",
+1: &"anim",
+2: &"anim",
+3: &"anim",
+4: &"anim",
+5: &"anim",
+6: &"anim",
+7: &"anim",
+8: &"anim"
+})

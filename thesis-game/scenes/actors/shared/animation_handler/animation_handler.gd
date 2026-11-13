@@ -11,19 +11,16 @@ var current_animation: StringName = ""
 var _current_state: Player.State = Player.State.SPAWN
 var _carry_state: CarryHandler.CarryState = CarryHandler.CarryState.FREE
 
-var _dir: Direction.Dir = Direction.Dir.DOWN
+var _last_dir: Direction.Dir = Direction.Dir.DOWN
+var _last_carry: CarryHandler.CarryState = CarryHandler.CarryState.FREE
 
-@onready var timer: Timer = get_node_or_null(^"Timer")
+@onready var timer: Timer = $Timer
 
-
-func _ready() -> void:
-    if timer == null:
-        timer = Timer.new()
-        add_child.call_deferred(timer)
 
 func _process(_delta: float) -> void:
-    if is_instance_valid(direction) and direction.face_direction != _dir:
-        _dir = direction.face_direction
+    if (direction != null and direction.face_direction != _last_dir) or _last_carry != _carry_state:
+        _last_dir = direction.face_direction if direction !=null else _last_dir
+        _last_carry = _carry_state
         switch_anim_string(current_animation)
 
 
@@ -47,15 +44,21 @@ func switch_anim_string(a: StringName) -> void:
     current_animation = anim_name
     var dir_anim_name: StringName = anim_name + "_" + direction.Dir.find_key(direction.face_direction).to_lower() if direction != null else ""
 
-    if sprite_frames.has_animation(dir_anim_name): play(dir_anim_name)
+    var no_anim_found: bool = false
+    if direction!=null && sprite_frames.has_animation(dir_anim_name): play(dir_anim_name)
     elif sprite_frames.has_animation(anim_name): play(anim_name)
-
+    else: no_anim_found = true
+    
     if _carry_state == CarryHandler.CarryState.CARRY:
+        var base_anim_not_found: bool = no_anim_found
+        no_anim_found = false
         var carry_anim_name: StringName = anim_name + "_carry"
         var dir_carry_anim_name: StringName = dir_anim_name + "_carry"
-        if sprite_frames.has_animation(dir_carry_anim_name): play(dir_carry_anim_name)
+        if direction != null && sprite_frames.has_animation(dir_carry_anim_name): play(dir_carry_anim_name)
         elif sprite_frames.has_animation(carry_anim_name): play(carry_anim_name)
+        else: no_anim_found = true && base_anim_not_found 
 
+    if no_anim_found: push_error("No animation of name "+ a)
 
 func _get_anim_name(state: Player.State) -> StringName:
     return animations[state]

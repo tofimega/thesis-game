@@ -49,3 +49,8 @@ func stop_music(fade_time: float = .3) -> void:
 func _free_player(a: AudioStreamPlayer) -> void:
     a.get_parent().remove_child(a)
     _available_players.push_back(a)
+
+func clear_pool()->void:
+    for n: AudioStreamPlayer in _available_players:
+        n.queue_free()
+    _available_players.clear()

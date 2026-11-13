@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://mb8x5tek235p" path="res://scenes/actors/player/carry_handler.gd" id="8_fp13k"]
 [ext_resource type="PackedScene" uid="uid://ltde63n4iguk" path="res://scenes/actors/shared/animation_handler/animation_handler.tscn" id="8_hcvpp"]
 [ext_resource type="Script" uid="uid://by3emb6fcj3rt" path="res://scripts/shared_actor_components/damage_taker.gd" id="8_i174x"]
+[ext_resource type="Texture2D" uid="uid://cyg1uf1waphiy" path="res://assets/images/sprites/player/player (edit).png" id="9_4iwnj"]
 [ext_resource type="Texture2D" uid="uid://cxysss2857v3e" path="res://assets/images/sprites/shadow.png" id="9_hcvpp"]
 [ext_resource type="Script" uid="uid://qphgmkvrhto2" path="res://scripts/shared_actor_components/knockback_handler.gd" id="10_i174x"]
 [ext_resource type="Script" uid="uid://dlyvegrsfhjry" path="res://scripts/shared_actor_components/health.gd" id="14_4iwnj"]
@@ -65,6 +66,124 @@ script = ExtResource("4_inh5e")
 state_condition = ExtResource("5_inh5e")
 metadata/_custom_type_script = "uid://c57i14wd82g2p"
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_l17oj"]
+atlas = ExtResource("9_4iwnj")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oj104"]
+atlas = ExtResource("9_4iwnj")
+region = Rect2(16, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xducv"]
+atlas = ExtResource("9_4iwnj")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4iwnj"]
+atlas = ExtResource("9_4iwnj")
+region = Rect2(64, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_068wj"]
+atlas = ExtResource("9_4iwnj")
+region = Rect2(48, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q2guw"]
+atlas = ExtResource("9_4iwnj")
+region = Rect2(112, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yab6n"]
+atlas = ExtResource("9_4iwnj")
+region = Rect2(32, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_npmmh"]
+atlas = ExtResource("9_4iwnj")
+region = Rect2(96, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5mkge"]
+atlas = ExtResource("9_4iwnj")
+region = Rect2(16, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qxscg"]
+atlas = ExtResource("9_4iwnj")
+region = Rect2(80, 0, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q2guw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l17oj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oj104")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xducv")
+}],
+"loop": 1,
+"name": &"stand_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4iwnj")
+}],
+"loop": 1,
+"name": &"stand_down_carry",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_068wj")
+}],
+"loop": 1,
+"name": &"stand_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q2guw")
+}],
+"loop": 1,
+"name": &"stand_left_carry",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yab6n")
+}],
+"loop": 1,
+"name": &"stand_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_npmmh")
+}],
+"loop": 1,
+"name": &"stand_right_carry",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5mkge")
+}],
+"loop": 1,
+"name": &"stand_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qxscg")
+}],
+"loop": 1,
+"name": &"stand_up_carry",
+"speed": 5.0
+}]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_mgg8m"]
 radius = 2.236068
 
@@ -95,6 +214,8 @@ metadata/_custom_type_script = "uid://b5ofmh2rfq14f"
 
 [node name="AnimationHandler" parent="." unique_id=1893500937 node_paths=PackedStringArray("direction") instance=ExtResource("8_hcvpp")]
 position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_q2guw")
+animation = &"stand_up_carry"
 direction = NodePath("../Direction")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=920848685]
@@ -162,5 +283,6 @@ metadata/_custom_type_script = "uid://dlyvegrsfhjry"
 [connection signal="hit" from="DamageTaker" to="AnimationHandler" method="set_flicker" unbinds=1 binds= [true]]
 [connection signal="hit" from="DamageTaker" to="Health" method="dec_health" unbinds=1 binds= [1]]
 [connection signal="iframes_over" from="DamageTaker" to="AnimationHandler" method="set_flicker" binds= [false]]
+[connection signal="carry_set" from="CarryHandler" to="AnimationHandler" method="_on_carry_state_changed"]
 [connection signal="try_carry" from="CarryHandler" to="." method="_try_carry"]
 [connection signal="try_throw" from="CarryHandler" to="." method="_try_throw"]

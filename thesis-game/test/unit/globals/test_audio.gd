@@ -3,6 +3,10 @@ extends GutTest
 const TEST_TONE: AudioStream = preload("uid://bfpmb2qi0uxu6")
 
 
+func after_all() -> void:
+    Audio.clear_pool()
+
+
 func test_music_bus() -> void:
     assert_eq(Audio._music.bus, &"Music")
 

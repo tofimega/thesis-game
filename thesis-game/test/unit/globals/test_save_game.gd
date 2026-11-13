@@ -7,7 +7,7 @@ var FPATH: String = SaveGame.SAVE_FOLDER + str(RESERVED_SAVE_INDEX):
         pass
 
 
-func before_all() -> void:
+func before_each() -> void:
     DirAccess.make_dir_recursive_absolute(SaveGame.SAVE_FOLDER)
     if FileAccess.file_exists(SaveGame.SAVE_FOLDER + str(RESERVED_SAVE_INDEX)):
         DirAccess.remove_absolute(SaveGame.SAVE_FOLDER + str(RESERVED_SAVE_INDEX))
@@ -65,20 +65,27 @@ class TestLoad extends GutTest:
             fail_test(error_string(FileAccess.get_open_error()))
             return
         var test_header: SaveGame.SaveHeader = SaveGame.SaveHeader.new()
+        var test_flags: PackedByteArray = PackedByteArray()
+        test_flags.resize(SaveGame.SaveFlag.size())
+        for i: int in SaveGame.SaveFlag.size():
+            test_flags[i] = randi_range(0, 255)
         test_header.timestamp = Time.get_datetime_dict_from_system()
         test_header.new_game = false
-        test_header.store_header(save_file)
+        SaveGame._data = test_flags
+        test_header.completion = SaveGame._calc_completion()
+        gut.p(test_header.store_header(save_file))
         save_file.store_64(SaveGame.SaveFlag.size())
         for i: int in SaveGame.SaveFlag.size():
-            save_file.store_8(randi_range(0, 255))
+            save_file.store_8(test_flags[i])
 
-        save_file = FileAccess.open(FPATH, FileAccess.READ)
-
+        save_file.close()
+    
         var result: SaveGame.SaveHeader = SaveGame.load_game(RESERVED_SAVE_INDEX, [])
-
+        
+        save_file = FileAccess.open(FPATH, FileAccess.READ)
         var result_header: SaveGame.SaveHeader = SaveGame.SaveHeader.from_file(save_file)
-        assert_true(result_header.eq(result))
-        assert_true(result.eq(test_header))
+        assert_true(result_header.eq(result), "loaded file header is not the same as expected")
+        assert_true(result.eq(test_header), "loaded file header is not the same as saved")
         save_file.get_64()
 
         var buffer: PackedByteArray = save_file.get_buffer(SaveGame.SaveFlag.size())
@@ -206,7 +213,7 @@ class TestFlag extends GutTest:
 
     func test_set_flag() -> void:
         var value: int = randi_range(0, 255)
-        var flag: SaveGame.SaveFlag = randi_range(0, SaveGame.SaveFlag.size()-1) as SaveGame.SaveFlag
+        var flag: SaveGame.SaveFlag = randi_range(0, SaveGame.SaveFlag.size() - 1) as SaveGame.SaveFlag
         watch_signals(SaveGame.signals)
         SaveGame.update_flag(flag, value)
         assert_signal_emit_count(SaveGame.signals.state_updated, 1)

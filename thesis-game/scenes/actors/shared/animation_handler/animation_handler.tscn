@@ -11,22 +11,6 @@ region = Rect2(0, 0, 16, 24)
 atlas = ExtResource("1_xmj1h")
 region = Rect2(16, 0, 16, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xducv"]
-atlas = ExtResource("1_xmj1h")
-region = Rect2(0, 0, 16, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4iwnj"]
-atlas = ExtResource("1_xmj1h")
-region = Rect2(51, 0, 16, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_068wj"]
-atlas = ExtResource("1_xmj1h")
-region = Rect2(35, 0, 16, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yab6n"]
-atlas = ExtResource("1_xmj1h")
-region = Rect2(17, 0, 16, 24)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_j2q5q"]
 animations = [{
 "frames": [{
@@ -39,43 +23,11 @@ animations = [{
 "loop": 1,
 "name": &"default",
 "speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xducv")
-}],
-"loop": 1,
-"name": &"stand_down",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4iwnj")
-}],
-"loop": 1,
-"name": &"stand_left",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_068wj")
-}],
-"loop": 1,
-"name": &"stand_right",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yab6n")
-}],
-"loop": 1,
-"name": &"stand_up",
-"speed": 5.0
 }]
 
-[node name="AnimationHandler" type="AnimatedSprite2D" unique_id=1893500937 node_paths=PackedStringArray("direction")]
+[node name="AnimationHandler" type="AnimatedSprite2D" unique_id=1893500937]
 sprite_frames = SubResource("SpriteFrames_j2q5q")
-animation = &"stand_right"
+autoplay = "default"
 script = ExtResource("2_afjei")
 animations = Dictionary[int, StringName]({
 0: &"stand",
@@ -88,7 +40,6 @@ animations = Dictionary[int, StringName]({
 7: &"stand",
 8: &"stand"
 })
-direction = NodePath("")
 
 [node name="Timer" type="Timer" parent="." unique_id=1923921039]
 wait_time = 0.06
