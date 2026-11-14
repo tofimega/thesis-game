@@ -73,7 +73,6 @@ texture = ExtResource("5_vx4jr")
 material = ExtResource("6_gmiaa")
 instance_shader_parameters/flicker_on = false
 sprite_frames = SubResource("SpriteFrames_yxneg")
-animation = &"default"
 direction = NodePath("../Direction")
 
 [node name="SpriteFlicker" type="Node" parent="AnimationHandler" unique_id=819612518 node_paths=PackedStringArray("sprite")]
@@ -85,3 +84,5 @@ sprite = NodePath("..")
 [connection signal="hit" from="DamageTaker" to="AnimationHandler" method="set_flicker" unbinds=1 binds= [true]]
 [connection signal="iframes_over" from="DamageTaker" to="AnimationHandler" method="set_flicker" binds= [false]]
 [connection signal="hit" from="BombDamageTaker" to="." method="_on_bomb_damage_taker_hit"]
+[connection signal="animation_finished" from="AnimationHandler" to="." method="_animation_over"]
+[connection signal="animation_looped" from="AnimationHandler" to="." method="_animation_over"]

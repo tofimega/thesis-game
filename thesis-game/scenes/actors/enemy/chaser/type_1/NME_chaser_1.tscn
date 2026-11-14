@@ -210,5 +210,3 @@ sprite_frames = SubResource("SpriteFrames_urqa0")
 frame_progress = 0.7133741
 direction = NodePath("../Direction")
 
-[connection signal="animation_finished" from="AnimationHandler" to="." method="_animation_over"]
-[connection signal="animation_looped" from="AnimationHandler" to="." method="_animation_over"]

@@ -89,14 +89,18 @@ func test_animation_updates_on_carry_state_change() -> void:
     simulate(test_case, 1, 1)
     assert_eq(test_case.animation, ANIM_CARRY + "_carry")
 
+signal cont
 
 func test_flicker_works() -> void:
+    var vis: bool = test_case.visible
     test_case.flicker = true
     assert_false(test_case.timer.is_stopped())
-    var vis: bool = test_case.visible
-    await wait_seconds(test_case.timer.wait_time)
+    
+    test_case.timer.timeout.connect(cont.emit, CONNECT_DEFERRED | CONNECT_ONE_SHOT)
+    await cont
     assert_ne(test_case.visible, vis)
-    await wait_seconds(test_case.timer.wait_time)
+    test_case.timer.timeout.connect(cont.emit, CONNECT_DEFERRED | CONNECT_ONE_SHOT)
+    await cont
     assert_eq(test_case.visible, vis)
     test_case.flicker = false
     assert_true(test_case.timer.is_stopped())

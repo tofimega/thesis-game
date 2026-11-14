@@ -41,24 +41,25 @@ func switch_anim(state: Player.State) -> void:
 
 func switch_anim_string(a: StringName) -> void:
     var anim_name: StringName = a
-    current_animation = anim_name
-    var dir_anim_name: StringName = anim_name + "_" + direction.Dir.find_key(direction.face_direction).to_lower() if direction != null else ""
-
-    var no_anim_found: bool = false
-    if direction!=null && sprite_frames.has_animation(dir_anim_name): play(dir_anim_name)
-    elif sprite_frames.has_animation(anim_name): play(anim_name)
-    else: no_anim_found = true
+    
+    var dir_anim_name: String = anim_name + "_" + direction.Dir.find_key(direction.face_direction).to_lower() if direction != null else ""
+    var selected_animation: String = ""
+    
+    if direction!=null && sprite_frames.has_animation(dir_anim_name): selected_animation = dir_anim_name
+    elif sprite_frames.has_animation(anim_name): selected_animation = anim_name
+    
     
     if _carry_state == CarryHandler.CarryState.CARRY:
-        var base_anim_not_found: bool = no_anim_found
-        no_anim_found = false
-        var carry_anim_name: StringName = anim_name + "_carry"
-        var dir_carry_anim_name: StringName = dir_anim_name + "_carry"
-        if direction != null && sprite_frames.has_animation(dir_carry_anim_name): play(dir_carry_anim_name)
-        elif sprite_frames.has_animation(carry_anim_name): play(carry_anim_name)
-        else: no_anim_found = true && base_anim_not_found 
+        var carry_anim_name: String = anim_name + "_carry"
+        var dir_carry_anim_name: String = dir_anim_name + "_carry"
+        if direction != null && sprite_frames.has_animation(dir_carry_anim_name): selected_animation = dir_carry_anim_name
+        elif sprite_frames.has_animation(carry_anim_name): selected_animation = carry_anim_name
+    
 
-    if no_anim_found: push_error("No animation of name "+ a)
+    if selected_animation == "": push_error("No animation of name "+ a)
+    else:
+        current_animation = anim_name
+        play(selected_animation)
 
 func _get_anim_name(state: Player.State) -> StringName:
     return animations[state]
